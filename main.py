@@ -28,15 +28,20 @@ def aplicacionComandos():
             if(comandoPath.lower() == "path"):
                 print(direccionPath)
                 archivo = open(direccionPath, "r")
-                contenidoLeido = leerArchivo(archivo)#aca ya leemos todo lo que esta dentro del archivo
-                reconocerComentarios(contenidoLeido)
-                
-                
+                contenidoLeido = leerArchivo(archivo)#aca ya leemos todo lo que esta dentro del archivo                
+                comandosArchivo = contenidoLeido.split('\n') #separamos con split para tomar todas las lineas del archivo que estamos leyendo
+                for buscamosComando in range(len(comandosArchivo)):
+                    reconocerComentarios(comandosArchivo[buscamosComando])
+                    if(comandosArchivo[buscamosComando] == 'mkdisk'):
+                        print("reconoce comando mkdisk")
+                    if(comandosArchivo[buscamosComando] == "rep"):
+                        print("reconoce comando rep")
+
 
 def reconocerComentarios(datos):
     lineas = datos.split('\n')
     indice = len(lineas)
-    print(indice)
+    #print(indice)
     for linea in lineas:
         exprecionRegular = re.compile('#(\w*\s*)', re.IGNORECASE)
         if(exprecionRegular.match(linea) != None): 
