@@ -1,6 +1,7 @@
 import os
 import ctypes
-
+import re
+from load import *
 
 
 def main():
@@ -25,9 +26,30 @@ def aplicacionComandos():
                 comandoPath = obtenerPath[1]
                 direccionPath = siguienteParametro[1]
             if(comandoPath.lower() == "path"):
-                print("funciona")
                 print(direccionPath)
+                archivo = open(direccionPath, "r")
+                contenidoLeido = leerArchivo(archivo)#aca ya leemos todo lo que esta dentro del archivo
+                reconocerComentarios(contenidoLeido)
+                
+                
 
+def reconocerComentarios(datos):
+    lineas = datos.split('\n')
+    indice = len(lineas)
+    print(indice)
+    for linea in lineas:
+        exprecionRegular = re.compile('#(\w*\s*)', re.IGNORECASE)
+        if(exprecionRegular.match(linea) != None): 
+            print("es un comentario: "+linea) #funciona la parte de saber los comentarios
+        
+        
+        #else: print("No es un comentario")
+
+
+            
 if __name__ == "__main__":
     main()
-                
+
+# execute -path=/home/luis/Escritorio/Archivos2023/proyectos/MIA_P1_201700841/prueba.adsj
+#mkdisk - size=3000 -unit=K -path=/home/user/Disco1.dsk
+
