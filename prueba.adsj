@@ -1,5 +1,5 @@
-mkdisk
-#hola
-#espero funcione #esto
+mkdisk -size=1 -unit=K -path=/home/user/Disco1.dsk
+mkdisk -path=/home/user/Disco2.dsk -unit=M -size=2
+#mkdisk -size=5 -unit=M -path="/home/mis discos/Disco3.dsk"
+#mkdisk -size=10 -path="/home/mis discos/Disco4.dsk"
 rep
-#si funciona
