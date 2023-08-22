@@ -41,54 +41,81 @@ def aplicacionComandos():
                         
                     if(separamosLineaComando[0].lower() == 'mkdisk'):
                         # execute -path=/home/luis/Escritorio/Archivos2023/proyectos/MIA_P1_201700841/prueba.adsj
+                        banderaUnit = False
+                        banderaFit = False
+                        
+                        buscarUnit = '-unit='
+                        buscarFit = '-fit='
+                        
+                        unitEncontrado = buscandoUnit(separamosLineaComando,buscarUnit)
+                        fitEncontrado = buscandoFit(separamosLineaComando,buscarFit)
+                        
+                        if(unitEncontrado != -1):
+                            banderaUnit = True #aca si existe entonces hace todo el proceso del unit
+                        else: print("Aqui se crea el disco por defecto en Megabytes") #desde aca trabajaria
+                        
+                        if(fitEncontrado != -1):
+                            banderaFit = True #aca si existe entonces hace todo el proceso del unit
+                        else: print("Aqui se crea el disco por defecto con FF") #desde aca trabajaria
+                        
                         for buscoParametro in range(1,len(separamosLineaComando)): #se debe de iniciar en 1 para omitir el mkdisk
                             primerSplitComandos = separamosLineaComando[buscoParametro].split('=')
                             #print(primerSplitComandos)
                             segundoSplitComandos = primerSplitComandos[0].split('-')
                             #print(segundoSplitComandos)
-                            if(segundoSplitComandos[1].lower() == "size"):
-                                print("entro en size")
-                                valorSize = primerSplitComandos[1]
-                                if(valorSize > 0):
-                                    print(valorSize)
+                            valorDelComando=primerSplitComandos[1]
+                            valorpath= ""
+                                
                             if(segundoSplitComandos[1].lower() == "path"):
-                                print("entro en path")
-                                valorPath = primerSplitComandos[1]
-                                print(valorPath)
-                            if(segundoSplitComandos[1].lower() == "unit"): #es opcional, si no se muestra entonces debe de crearse un disco en megas
-                                print("entro en unit")
-                                valorUnit = primerSplitComandos[1]
-                                print(valorUnit)
-                            if(segundoSplitComandos[1].lower() == "fit"): #como es opcional se tomara siempre el primer ajuste (FF)
-                                print("entro en fit")
-                                valorFit = primerSplitComandos[1]
-                                print(valorFit)
+                                #print("entro en path")
+                                valorPath = valorDelComando
+                                #print(valorPath)
+                                if(Fcreate_file(valorPath)):exit()
+                            if(segundoSplitComandos[1].lower() == "size"):
+                                valorSize = valorDelComando
+                                if(int(valorSize) >= 1):
+                                    print(valorSize)
+                                    #tamaño del disco a crear
+                                    #Crrfile = open(valorPath, "rb+") #lectura y escritura
+                                    #Winit_size(Crrfile,int(valorSize))#le paso el archivo abierto
+                                    
+                                    
+                                
+                                
+                            if(banderaUnit == True):
+                                if(segundoSplitComandos[1].lower() == "unit"):
+                                    print("entro en unit")
+                                    valorUnit = primerSplitComandos[1] #aca tenemos el valor, ya sea K o M
+                                    print(valorUnit)
+                                    if(valorUnit.lower() == 'k'):
+                                        print("kilobytes")
+                                    else: print("Megabytes")
+                            #else: print("Aqui se crea el disco por defecto en Megabytes")
                             
-                                                      
-                         
                             
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+                            
+                            #if(segundoSplitComandos[1].lower() == "unit"): #es opcional, si no se muestra entonces debe de crearse un disco en megas
+                            
+                            if(banderaFit == True):
+                                if(segundoSplitComandos[1].lower() == "fit"): #como es opcional se tomara siempre el primer ajuste (FF)
+                                    print("entro en fit")
+                                    valorFit = primerSplitComandos[1]
+                                    print(valorFit)
+                                    if(valorFit.lower() == "bf"):
+                                        print("Indicará el mejor ajuste")
+                                    elif(valorFit.lower() == "ff"):
+                                        print("Utilizará el primer ajuste")
+                                    elif(valorFit.lower() == "wf"):
+                                        print("Utilizará el peor ajuste")
+                                    else:print("error")
                     if (separamosLineaComando[0].lower() == "rmdisk"):
                         print("reconoce comando rmdisk") #eliminar archivo
                     if (separamosLineaComando[0].lower() == "fdisk"):
                         print("reconoce el comando fdisk")
                     if(separamosLineaComando[0].lower() == "rep"):
                         print("reconoce comando rep")
+
+
 
 
 def reconocerComentarios(datos):
@@ -112,8 +139,24 @@ def reconocePath():
     print("Path")
 
 def reconoceUnit():
-    print("U1nit")
-            
+    print("Unit")
+    
+    
+def buscandoUnit(lista, unit):
+    contador = 0
+    for indice, elemento in enumerate(lista):
+        if elemento == unit+'K' or elemento == unit+'M' or elemento == unit+'m' or elemento == unit+'k':
+            return elemento
+    return -1    
+
+def buscandoFit(lista, fits):
+    contador = 0
+    for indice, elemento in enumerate(lista):
+        if elemento == fits+'BF' or elemento == fits+'FF' or elemento == fits+'WF' or elemento == fits+'bf' or elemento == fits+'ff' or elemento == fits+'wf':
+            return elemento
+    return -1 
+
+
 if __name__ == "__main__":
     main()
 
