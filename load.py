@@ -6,10 +6,20 @@ def leerArchivo(archivo): #para el path del archivo de entrada
         archivo.close()
         return data
     except Exception as e:
+        print(f"Error al leer archivo: {e}")
+
+   
+def Fread_displacement(file, displacement, obj): #desplazamiento -> cuanto se desplaza el puntero 
+    try:
+        print("Leyendo en: ", displacement)
+        file.seek(displacement)
+        data = file.read(len(obj.doSerialize()))
+        obj.doDeserialize(data)
+    except Exception as e:
         print(f"Error al leer objeto: {e}")
         
-def Fwrite_displacement(file, displacement, obj):
-    data = obj.doSerialize()
+
+def Fwrite_displacement(file, displacement, data): #este data es bites
     file.seek(displacement)
     file.write(data)
 
