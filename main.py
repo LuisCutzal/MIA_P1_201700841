@@ -2,7 +2,7 @@ import os
 import ctypes
 import re
 from load import *
-
+from ArchivoComandos import iniciarAnalisis
 def main():
     print("Luis Antonio Cutzal Chalí")
     print("201700841")
@@ -10,6 +10,19 @@ def main():
     aplicacionComandos()
 
 def aplicacionComandos():
+    #input = iniciarAnalisis("execute -path=/home/luis/Escritorio/Archivos2023/proyectos/MIA_P1_201700841/prueba.adsj")
+    #print(input)
+    #iniciarAnalisis(input)
+    
+    
+    while True: 
+        #iniciarAnalisis(input("-> "))
+        iniciamos = iniciarAnalisis(input("-> "))
+        #print(input)
+        iniciarAnalisis(iniciamos)
+    
+    
+    '''
     while True:
         comandoIngresado = input("-> ")
         analizarComando = comandoIngresado.split(' ')
@@ -25,7 +38,7 @@ def aplicacionComandos():
                 comandoPath = obtenerPath[1]
                 direccionPath = siguienteParametro[1]
             if(comandoPath.lower() == "path"):
-                print(direccionPath)
+                #print(direccionPath)
                 archivo = open(direccionPath, "r")
                 contenidoLeido = leerArchivo(archivo)#aca ya leemos todo lo que esta dentro del archivo                
                 comandosArchivo = contenidoLeido.split('\n') #separamos con split para tomar todas las lineas del archivo que estamos leyendo
@@ -63,25 +76,20 @@ def aplicacionComandos():
                             #print(primerSplitComandos)
                             segundoSplitComandos = primerSplitComandos[0].split('-')
                             #print(segundoSplitComandos)
-                            valorDelComando=primerSplitComandos[1]
-                            valorpath= ""
-                                
+                            
                             if(segundoSplitComandos[1].lower() == "path"):
                                 #print("entro en path")
-                                valorPath = valorDelComando
+                                valorPath = primerSplitComandos[1]
                                 #print(valorPath)
-                                if(Fcreate_file(valorPath)):exit()
-                            if(segundoSplitComandos[1].lower() == "size"):
-                                valorSize = valorDelComando
-                                if(int(valorSize) >= 1):
-                                    print(valorSize)
+                                
+                            elif(segundoSplitComandos[1].lower() == "size"):
+                                valorSize = primerSplitComandos[1]
+                                #if(int(valorSize) >= 1):
+                                    #print("valor" + valorPath)
                                     #tamaño del disco a crear
                                     #Crrfile = open(valorPath, "rb+") #lectura y escritura
                                     #Winit_size(Crrfile,int(valorSize))#le paso el archivo abierto
                                     
-                                    
-                                
-                                
                             if(banderaUnit == True):
                                 if(segundoSplitComandos[1].lower() == "unit"):
                                     print("entro en unit")
@@ -108,6 +116,7 @@ def aplicacionComandos():
                                     elif(valorFit.lower() == "wf"):
                                         print("Utilizará el peor ajuste")
                                     else:print("error")
+
                     if (separamosLineaComando[0].lower() == "rmdisk"):
                         print("reconoce comando rmdisk") #eliminar archivo
                     if (separamosLineaComando[0].lower() == "fdisk"):
@@ -116,7 +125,7 @@ def aplicacionComandos():
                         print("reconoce comando rep")
 
 
-
+'''
 
 def reconocerComentarios(datos):
     lineas = datos.split('\n')
@@ -155,6 +164,8 @@ def buscandoFit(lista, fits):
         if elemento == fits+'BF' or elemento == fits+'FF' or elemento == fits+'WF' or elemento == fits+'bf' or elemento == fits+'ff' or elemento == fits+'wf':
             return elemento
     return -1 
+
+
 
 
 if __name__ == "__main__":
