@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'COMENTARIOS EXECUTE FIT GUION ID IGUAL MKDISK NOMBREARCHIVO NUMEROS PATH SIZE STRING UNIT VALORDEPATHinicio : instruccionesinstrucciones : instrucciones instruccioninstrucciones : instruccioninstruccion : comandoexecute\n                   | comandomkdisk\n                   | comentarioscomandoexecute : EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVOcomandomkdisk : MKDISK listaparametros_mkdisklistaparametros_mkdisk : listaparametros_mkdisk parametromkdisk\n                              | parametromkdiskparametromkdisk : GUION parametropath\n                       | GUION parametrosize\n                       | GUION parametrounit\n                       | GUION parametrofitparametropath : PATH IGUAL VALORDEPATH NOMBREARCHIVOparametrosize : SIZE IGUAL NUMEROSparametrounit : UNIT IGUAL IDparametrofit : FIT IGUAL IDcomentarios : COMENTARIOS'
+_lr_signature = 'COMENTARIOS EXECUTE FIT GUION ID IGUAL MKDISK NOMBREARCHIVO NUMEROS PATH REP SIZE STRING UNIT VALORDEPATHinicio : instruccionesinstrucciones : instrucciones instruccioninstrucciones : instruccioninstruccion : comandoexecute\n                   | comandomkdisk\n                   | comentarios\n                   | comandorepcomandoexecute : EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVOcomandomkdisk : MKDISK listaparametros_mkdisklistaparametros_mkdisk : listaparametros_mkdisk parametromkdisk\n                              | parametromkdiskparametromkdisk : GUION parametropath\n                       | GUION parametrosize\n                       | GUION parametrounit\n                       | GUION parametrofitparametropath : PATH IGUAL VALORDEPATH NOMBREARCHIVOparametrosize : SIZE IGUAL NUMEROSparametrounit : UNIT IGUAL IDparametrofit : FIT IGUAL IDcomentarios : COMENTARIOScomandorep : REP NOMBREARCHIVO'
     
-_lr_action_items = {'EXECUTE':([0,2,3,4,5,6,9,10,12,13,16,17,18,19,20,32,33,34,35,36,],[7,7,-3,-4,-5,-6,-19,-2,-8,-10,-9,-11,-12,-13,-14,-16,-17,-18,-7,-15,]),'MKDISK':([0,2,3,4,5,6,9,10,12,13,16,17,18,19,20,32,33,34,35,36,],[8,8,-3,-4,-5,-6,-19,-2,-8,-10,-9,-11,-12,-13,-14,-16,-17,-18,-7,-15,]),'COMENTARIOS':([0,2,3,4,5,6,9,10,12,13,16,17,18,19,20,32,33,34,35,36,],[9,9,-3,-4,-5,-6,-19,-2,-8,-10,-9,-11,-12,-13,-14,-16,-17,-18,-7,-15,]),'$end':([1,2,3,4,5,6,9,10,12,13,16,17,18,19,20,32,33,34,35,36,],[0,-1,-3,-4,-5,-6,-19,-2,-8,-10,-9,-11,-12,-13,-14,-16,-17,-18,-7,-15,]),'GUION':([7,8,12,13,16,17,18,19,20,32,33,34,36,],[11,14,14,-10,-9,-11,-12,-13,-14,-16,-17,-18,-15,]),'PATH':([11,14,],[15,21,]),'SIZE':([14,],[22,]),'UNIT':([14,],[23,]),'FIT':([14,],[24,]),'IGUAL':([15,21,22,23,24,],[25,26,27,28,29,]),'VALORDEPATH':([25,26,],[30,31,]),'NUMEROS':([27,],[32,]),'ID':([28,29,],[33,34,]),'NOMBREARCHIVO':([30,31,],[35,36,]),}
+_lr_action_items = {'EXECUTE':([0,2,3,4,5,6,7,10,12,14,15,17,19,20,21,22,23,35,36,37,38,39,],[8,8,-3,-4,-5,-6,-7,-20,-2,-9,-11,-21,-10,-12,-13,-14,-15,-17,-18,-19,-8,-16,]),'MKDISK':([0,2,3,4,5,6,7,10,12,14,15,17,19,20,21,22,23,35,36,37,38,39,],[9,9,-3,-4,-5,-6,-7,-20,-2,-9,-11,-21,-10,-12,-13,-14,-15,-17,-18,-19,-8,-16,]),'COMENTARIOS':([0,2,3,4,5,6,7,10,12,14,15,17,19,20,21,22,23,35,36,37,38,39,],[10,10,-3,-4,-5,-6,-7,-20,-2,-9,-11,-21,-10,-12,-13,-14,-15,-17,-18,-19,-8,-16,]),'REP':([0,2,3,4,5,6,7,10,12,14,15,17,19,20,21,22,23,35,36,37,38,39,],[11,11,-3,-4,-5,-6,-7,-20,-2,-9,-11,-21,-10,-12,-13,-14,-15,-17,-18,-19,-8,-16,]),'$end':([1,2,3,4,5,6,7,10,12,14,15,17,19,20,21,22,23,35,36,37,38,39,],[0,-1,-3,-4,-5,-6,-7,-20,-2,-9,-11,-21,-10,-12,-13,-14,-15,-17,-18,-19,-8,-16,]),'GUION':([8,9,14,15,19,20,21,22,23,35,36,37,39,],[13,16,16,-11,-10,-12,-13,-14,-15,-17,-18,-19,-16,]),'NOMBREARCHIVO':([11,33,34,],[17,38,39,]),'PATH':([13,16,],[18,24,]),'SIZE':([16,],[25,]),'UNIT':([16,],[26,]),'FIT':([16,],[27,]),'IGUAL':([18,24,25,26,27,],[28,29,30,31,32,]),'VALORDEPATH':([28,29,],[33,34,]),'NUMEROS':([30,],[35,]),'ID':([31,32,],[36,37,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'inicio':([0,],[1,]),'instrucciones':([0,],[2,]),'instruccion':([0,2,],[3,10,]),'comandoexecute':([0,2,],[4,4,]),'comandomkdisk':([0,2,],[5,5,]),'comentarios':([0,2,],[6,6,]),'listaparametros_mkdisk':([8,],[12,]),'parametromkdisk':([8,12,],[13,16,]),'parametropath':([14,],[17,]),'parametrosize':([14,],[18,]),'parametrounit':([14,],[19,]),'parametrofit':([14,],[20,]),}
+_lr_goto_items = {'inicio':([0,],[1,]),'instrucciones':([0,],[2,]),'instruccion':([0,2,],[3,12,]),'comandoexecute':([0,2,],[4,4,]),'comandomkdisk':([0,2,],[5,5,]),'comentarios':([0,2,],[6,6,]),'comandorep':([0,2,],[7,7,]),'listaparametros_mkdisk':([9,],[14,]),'parametromkdisk':([9,14,],[15,19,]),'parametropath':([16,],[20,]),'parametrosize':([16,],[21,]),'parametrounit':([16,],[22,]),'parametrofit':([16,],[23,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,23 +27,25 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> inicio","S'",1,None,None,None),
-  ('inicio -> instrucciones','inicio',1,'p_inicio','ArchivoComandos.py',75),
-  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_instrucciones','ArchivoComandos.py',79),
-  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones_instruccion','ArchivoComandos.py',85),
-  ('instruccion -> comandoexecute','instruccion',1,'p_instruccion','ArchivoComandos.py',92),
-  ('instruccion -> comandomkdisk','instruccion',1,'p_instruccion','ArchivoComandos.py',93),
-  ('instruccion -> comentarios','instruccion',1,'p_instruccion','ArchivoComandos.py',94),
-  ('comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO','comandoexecute',6,'p_comandoexecute','ArchivoComandos.py',100),
-  ('comandomkdisk -> MKDISK listaparametros_mkdisk','comandomkdisk',2,'p_comandomkdisk','ArchivoComandos.py',104),
-  ('listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk','listaparametros_mkdisk',2,'p_listaparametros_mkdisk','ArchivoComandos.py',108),
-  ('listaparametros_mkdisk -> parametromkdisk','listaparametros_mkdisk',1,'p_listaparametros_mkdisk','ArchivoComandos.py',109),
-  ('parametromkdisk -> GUION parametropath','parametromkdisk',2,'p_parametromkdisk','ArchivoComandos.py',118),
-  ('parametromkdisk -> GUION parametrosize','parametromkdisk',2,'p_parametromkdisk','ArchivoComandos.py',119),
-  ('parametromkdisk -> GUION parametrounit','parametromkdisk',2,'p_parametromkdisk','ArchivoComandos.py',120),
-  ('parametromkdisk -> GUION parametrofit','parametromkdisk',2,'p_parametromkdisk','ArchivoComandos.py',121),
-  ('parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO','parametropath',4,'p_parametropath','ArchivoComandos.py',125),
-  ('parametrosize -> SIZE IGUAL NUMEROS','parametrosize',3,'p_parametrosize','ArchivoComandos.py',130),
-  ('parametrounit -> UNIT IGUAL ID','parametrounit',3,'p_parametrounit','ArchivoComandos.py',134),
-  ('parametrofit -> FIT IGUAL ID','parametrofit',3,'p_parametrofit','ArchivoComandos.py',138),
-  ('comentarios -> COMENTARIOS','comentarios',1,'p_comentarios','ArchivoComandos.py',142),
+  ('inicio -> instrucciones','inicio',1,'p_inicio','ArchivoComandos.py',76),
+  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_instrucciones','ArchivoComandos.py',80),
+  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones_instruccion','ArchivoComandos.py',86),
+  ('instruccion -> comandoexecute','instruccion',1,'p_instruccion','ArchivoComandos.py',93),
+  ('instruccion -> comandomkdisk','instruccion',1,'p_instruccion','ArchivoComandos.py',94),
+  ('instruccion -> comentarios','instruccion',1,'p_instruccion','ArchivoComandos.py',95),
+  ('instruccion -> comandorep','instruccion',1,'p_instruccion','ArchivoComandos.py',96),
+  ('comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO','comandoexecute',6,'p_comandoexecute','ArchivoComandos.py',102),
+  ('comandomkdisk -> MKDISK listaparametros_mkdisk','comandomkdisk',2,'p_comandomkdisk','ArchivoComandos.py',106),
+  ('listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk','listaparametros_mkdisk',2,'p_listaparametros_mkdisk','ArchivoComandos.py',111),
+  ('listaparametros_mkdisk -> parametromkdisk','listaparametros_mkdisk',1,'p_listaparametros_mkdisk','ArchivoComandos.py',112),
+  ('parametromkdisk -> GUION parametropath','parametromkdisk',2,'p_parametromkdisk','ArchivoComandos.py',121),
+  ('parametromkdisk -> GUION parametrosize','parametromkdisk',2,'p_parametromkdisk','ArchivoComandos.py',122),
+  ('parametromkdisk -> GUION parametrounit','parametromkdisk',2,'p_parametromkdisk','ArchivoComandos.py',123),
+  ('parametromkdisk -> GUION parametrofit','parametromkdisk',2,'p_parametromkdisk','ArchivoComandos.py',124),
+  ('parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO','parametropath',4,'p_parametropath','ArchivoComandos.py',128),
+  ('parametrosize -> SIZE IGUAL NUMEROS','parametrosize',3,'p_parametrosize','ArchivoComandos.py',133),
+  ('parametrounit -> UNIT IGUAL ID','parametrounit',3,'p_parametrounit','ArchivoComandos.py',137),
+  ('parametrofit -> FIT IGUAL ID','parametrofit',3,'p_parametrofit','ArchivoComandos.py',141),
+  ('comentarios -> COMENTARIOS','comentarios',1,'p_comentarios','ArchivoComandos.py',145),
+  ('comandorep -> REP NOMBREARCHIVO','comandorep',2,'p_rep','ArchivoComandos.py',150),
 ]

@@ -9,14 +9,14 @@ def leerArchivo(archivo): #para el path del archivo de entrada
         print(f"Error al leer archivo: {e}")
 
    
-def Fread_displacement(file, displacement, obj): #desplazamiento -> cuanto se desplaza el puntero 
+def Fread_displacement(path, displacement, size): #desplazamiento -> cuanto se desplaza el puntero sieze-> cuantos bites debemos leer
     try:
-        print("Leyendo en: ", displacement)
-        file.seek(displacement)
-        data = file.read(len(obj.doSerialize()))
-        obj.doDeserialize(data)
+        with open(path, "rb+") as file:
+            file.seek(int(displacement))
+            data = file.read(size)
+            return data #cantidad en bytes que leimos
     except Exception as e:
-        print(f"Error al leer objeto: {e}")
+        print(f"Error al leer archivo: {e}")
         
 
 def Fwrite_displacement(file, displacement, data): #este data es bites

@@ -13,52 +13,56 @@ Rule 3     instrucciones -> instruccion
 Rule 4     instruccion -> comandoexecute
 Rule 5     instruccion -> comandomkdisk
 Rule 6     instruccion -> comentarios
-Rule 7     comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO
-Rule 8     comandomkdisk -> MKDISK listaparametros_mkdisk
-Rule 9     listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk
-Rule 10    listaparametros_mkdisk -> parametromkdisk
-Rule 11    parametromkdisk -> GUION parametropath
-Rule 12    parametromkdisk -> GUION parametrosize
-Rule 13    parametromkdisk -> GUION parametrounit
-Rule 14    parametromkdisk -> GUION parametrofit
-Rule 15    parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO
-Rule 16    parametrosize -> SIZE IGUAL NUMEROS
-Rule 17    parametrounit -> UNIT IGUAL ID
-Rule 18    parametrofit -> FIT IGUAL ID
-Rule 19    comentarios -> COMENTARIOS
+Rule 7     instruccion -> comandorep
+Rule 8     comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO
+Rule 9     comandomkdisk -> MKDISK listaparametros_mkdisk
+Rule 10    listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk
+Rule 11    listaparametros_mkdisk -> parametromkdisk
+Rule 12    parametromkdisk -> GUION parametropath
+Rule 13    parametromkdisk -> GUION parametrosize
+Rule 14    parametromkdisk -> GUION parametrounit
+Rule 15    parametromkdisk -> GUION parametrofit
+Rule 16    parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO
+Rule 17    parametrosize -> SIZE IGUAL NUMEROS
+Rule 18    parametrounit -> UNIT IGUAL ID
+Rule 19    parametrofit -> FIT IGUAL ID
+Rule 20    comentarios -> COMENTARIOS
+Rule 21    comandorep -> REP NOMBREARCHIVO
 
 Terminals, with rules where they appear
 
-COMENTARIOS          : 19
-EXECUTE              : 7
-FIT                  : 18
-GUION                : 7 11 12 13 14
-ID                   : 17 18
-IGUAL                : 7 15 16 17 18
-MKDISK               : 8
-NOMBREARCHIVO        : 7 15
-NUMEROS              : 16
-PATH                 : 7 15
-SIZE                 : 16
+COMENTARIOS          : 20
+EXECUTE              : 8
+FIT                  : 19
+GUION                : 8 12 13 14 15
+ID                   : 18 19
+IGUAL                : 8 16 17 18 19
+MKDISK               : 9
+NOMBREARCHIVO        : 8 16 21
+NUMEROS              : 17
+PATH                 : 8 16
+REP                  : 21
+SIZE                 : 17
 STRING               : 
-UNIT                 : 17
-VALORDEPATH          : 7 15
+UNIT                 : 18
+VALORDEPATH          : 8 16
 error                : 
 
 Nonterminals, with rules where they appear
 
 comandoexecute       : 4
 comandomkdisk        : 5
+comandorep           : 7
 comentarios          : 6
 inicio               : 0
 instruccion          : 2 3
 instrucciones        : 1 2
-listaparametros_mkdisk : 8 9
-parametrofit         : 14
-parametromkdisk      : 9 10
-parametropath        : 11
-parametrosize        : 12
-parametrounit        : 13
+listaparametros_mkdisk : 9 10
+parametrofit         : 15
+parametromkdisk      : 10 11
+parametropath        : 12
+parametrosize        : 13
+parametrounit        : 14
 
 Parsing method: LALR
 
@@ -71,13 +75,16 @@ state 0
     (4) instruccion -> . comandoexecute
     (5) instruccion -> . comandomkdisk
     (6) instruccion -> . comentarios
-    (7) comandoexecute -> . EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO
-    (8) comandomkdisk -> . MKDISK listaparametros_mkdisk
-    (19) comentarios -> . COMENTARIOS
+    (7) instruccion -> . comandorep
+    (8) comandoexecute -> . EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO
+    (9) comandomkdisk -> . MKDISK listaparametros_mkdisk
+    (20) comentarios -> . COMENTARIOS
+    (21) comandorep -> . REP NOMBREARCHIVO
 
-    EXECUTE         shift and go to state 7
-    MKDISK          shift and go to state 8
-    COMENTARIOS     shift and go to state 9
+    EXECUTE         shift and go to state 8
+    MKDISK          shift and go to state 9
+    COMENTARIOS     shift and go to state 10
+    REP             shift and go to state 11
 
     inicio                         shift and go to state 1
     instrucciones                  shift and go to state 2
@@ -85,6 +92,7 @@ state 0
     comandoexecute                 shift and go to state 4
     comandomkdisk                  shift and go to state 5
     comentarios                    shift and go to state 6
+    comandorep                     shift and go to state 7
 
 state 1
 
@@ -99,19 +107,23 @@ state 2
     (4) instruccion -> . comandoexecute
     (5) instruccion -> . comandomkdisk
     (6) instruccion -> . comentarios
-    (7) comandoexecute -> . EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO
-    (8) comandomkdisk -> . MKDISK listaparametros_mkdisk
-    (19) comentarios -> . COMENTARIOS
+    (7) instruccion -> . comandorep
+    (8) comandoexecute -> . EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO
+    (9) comandomkdisk -> . MKDISK listaparametros_mkdisk
+    (20) comentarios -> . COMENTARIOS
+    (21) comandorep -> . REP NOMBREARCHIVO
 
     $end            reduce using rule 1 (inicio -> instrucciones .)
-    EXECUTE         shift and go to state 7
-    MKDISK          shift and go to state 8
-    COMENTARIOS     shift and go to state 9
+    EXECUTE         shift and go to state 8
+    MKDISK          shift and go to state 9
+    COMENTARIOS     shift and go to state 10
+    REP             shift and go to state 11
 
-    instruccion                    shift and go to state 10
+    instruccion                    shift and go to state 12
     comandoexecute                 shift and go to state 4
     comandomkdisk                  shift and go to state 5
     comentarios                    shift and go to state 6
+    comandorep                     shift and go to state 7
 
 state 3
 
@@ -120,6 +132,7 @@ state 3
     EXECUTE         reduce using rule 3 (instrucciones -> instruccion .)
     MKDISK          reduce using rule 3 (instrucciones -> instruccion .)
     COMENTARIOS     reduce using rule 3 (instrucciones -> instruccion .)
+    REP             reduce using rule 3 (instrucciones -> instruccion .)
     $end            reduce using rule 3 (instrucciones -> instruccion .)
 
 
@@ -130,6 +143,7 @@ state 4
     EXECUTE         reduce using rule 4 (instruccion -> comandoexecute .)
     MKDISK          reduce using rule 4 (instruccion -> comandoexecute .)
     COMENTARIOS     reduce using rule 4 (instruccion -> comandoexecute .)
+    REP             reduce using rule 4 (instruccion -> comandoexecute .)
     $end            reduce using rule 4 (instruccion -> comandoexecute .)
 
 
@@ -140,6 +154,7 @@ state 5
     EXECUTE         reduce using rule 5 (instruccion -> comandomkdisk .)
     MKDISK          reduce using rule 5 (instruccion -> comandomkdisk .)
     COMENTARIOS     reduce using rule 5 (instruccion -> comandomkdisk .)
+    REP             reduce using rule 5 (instruccion -> comandomkdisk .)
     $end            reduce using rule 5 (instruccion -> comandomkdisk .)
 
 
@@ -150,296 +165,340 @@ state 6
     EXECUTE         reduce using rule 6 (instruccion -> comentarios .)
     MKDISK          reduce using rule 6 (instruccion -> comentarios .)
     COMENTARIOS     reduce using rule 6 (instruccion -> comentarios .)
+    REP             reduce using rule 6 (instruccion -> comentarios .)
     $end            reduce using rule 6 (instruccion -> comentarios .)
 
 
 state 7
 
-    (7) comandoexecute -> EXECUTE . GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO
+    (7) instruccion -> comandorep .
 
-    GUION           shift and go to state 11
+    EXECUTE         reduce using rule 7 (instruccion -> comandorep .)
+    MKDISK          reduce using rule 7 (instruccion -> comandorep .)
+    COMENTARIOS     reduce using rule 7 (instruccion -> comandorep .)
+    REP             reduce using rule 7 (instruccion -> comandorep .)
+    $end            reduce using rule 7 (instruccion -> comandorep .)
 
 
 state 8
 
-    (8) comandomkdisk -> MKDISK . listaparametros_mkdisk
-    (9) listaparametros_mkdisk -> . listaparametros_mkdisk parametromkdisk
-    (10) listaparametros_mkdisk -> . parametromkdisk
-    (11) parametromkdisk -> . GUION parametropath
-    (12) parametromkdisk -> . GUION parametrosize
-    (13) parametromkdisk -> . GUION parametrounit
-    (14) parametromkdisk -> . GUION parametrofit
+    (8) comandoexecute -> EXECUTE . GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO
 
-    GUION           shift and go to state 14
+    GUION           shift and go to state 13
 
-    listaparametros_mkdisk         shift and go to state 12
-    parametromkdisk                shift and go to state 13
 
 state 9
 
-    (19) comentarios -> COMENTARIOS .
+    (9) comandomkdisk -> MKDISK . listaparametros_mkdisk
+    (10) listaparametros_mkdisk -> . listaparametros_mkdisk parametromkdisk
+    (11) listaparametros_mkdisk -> . parametromkdisk
+    (12) parametromkdisk -> . GUION parametropath
+    (13) parametromkdisk -> . GUION parametrosize
+    (14) parametromkdisk -> . GUION parametrounit
+    (15) parametromkdisk -> . GUION parametrofit
 
-    EXECUTE         reduce using rule 19 (comentarios -> COMENTARIOS .)
-    MKDISK          reduce using rule 19 (comentarios -> COMENTARIOS .)
-    COMENTARIOS     reduce using rule 19 (comentarios -> COMENTARIOS .)
-    $end            reduce using rule 19 (comentarios -> COMENTARIOS .)
+    GUION           shift and go to state 16
 
+    listaparametros_mkdisk         shift and go to state 14
+    parametromkdisk                shift and go to state 15
 
 state 10
+
+    (20) comentarios -> COMENTARIOS .
+
+    EXECUTE         reduce using rule 20 (comentarios -> COMENTARIOS .)
+    MKDISK          reduce using rule 20 (comentarios -> COMENTARIOS .)
+    COMENTARIOS     reduce using rule 20 (comentarios -> COMENTARIOS .)
+    REP             reduce using rule 20 (comentarios -> COMENTARIOS .)
+    $end            reduce using rule 20 (comentarios -> COMENTARIOS .)
+
+
+state 11
+
+    (21) comandorep -> REP . NOMBREARCHIVO
+
+    NOMBREARCHIVO   shift and go to state 17
+
+
+state 12
 
     (2) instrucciones -> instrucciones instruccion .
 
     EXECUTE         reduce using rule 2 (instrucciones -> instrucciones instruccion .)
     MKDISK          reduce using rule 2 (instrucciones -> instrucciones instruccion .)
     COMENTARIOS     reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    REP             reduce using rule 2 (instrucciones -> instrucciones instruccion .)
     $end            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
 
 
-state 11
-
-    (7) comandoexecute -> EXECUTE GUION . PATH IGUAL VALORDEPATH NOMBREARCHIVO
-
-    PATH            shift and go to state 15
-
-
-state 12
-
-    (8) comandomkdisk -> MKDISK listaparametros_mkdisk .
-    (9) listaparametros_mkdisk -> listaparametros_mkdisk . parametromkdisk
-    (11) parametromkdisk -> . GUION parametropath
-    (12) parametromkdisk -> . GUION parametrosize
-    (13) parametromkdisk -> . GUION parametrounit
-    (14) parametromkdisk -> . GUION parametrofit
-
-    EXECUTE         reduce using rule 8 (comandomkdisk -> MKDISK listaparametros_mkdisk .)
-    MKDISK          reduce using rule 8 (comandomkdisk -> MKDISK listaparametros_mkdisk .)
-    COMENTARIOS     reduce using rule 8 (comandomkdisk -> MKDISK listaparametros_mkdisk .)
-    $end            reduce using rule 8 (comandomkdisk -> MKDISK listaparametros_mkdisk .)
-    GUION           shift and go to state 14
-
-    parametromkdisk                shift and go to state 16
-
 state 13
 
-    (10) listaparametros_mkdisk -> parametromkdisk .
+    (8) comandoexecute -> EXECUTE GUION . PATH IGUAL VALORDEPATH NOMBREARCHIVO
 
-    GUION           reduce using rule 10 (listaparametros_mkdisk -> parametromkdisk .)
-    EXECUTE         reduce using rule 10 (listaparametros_mkdisk -> parametromkdisk .)
-    MKDISK          reduce using rule 10 (listaparametros_mkdisk -> parametromkdisk .)
-    COMENTARIOS     reduce using rule 10 (listaparametros_mkdisk -> parametromkdisk .)
-    $end            reduce using rule 10 (listaparametros_mkdisk -> parametromkdisk .)
+    PATH            shift and go to state 18
 
 
 state 14
 
-    (11) parametromkdisk -> GUION . parametropath
-    (12) parametromkdisk -> GUION . parametrosize
-    (13) parametromkdisk -> GUION . parametrounit
-    (14) parametromkdisk -> GUION . parametrofit
-    (15) parametropath -> . PATH IGUAL VALORDEPATH NOMBREARCHIVO
-    (16) parametrosize -> . SIZE IGUAL NUMEROS
-    (17) parametrounit -> . UNIT IGUAL ID
-    (18) parametrofit -> . FIT IGUAL ID
+    (9) comandomkdisk -> MKDISK listaparametros_mkdisk .
+    (10) listaparametros_mkdisk -> listaparametros_mkdisk . parametromkdisk
+    (12) parametromkdisk -> . GUION parametropath
+    (13) parametromkdisk -> . GUION parametrosize
+    (14) parametromkdisk -> . GUION parametrounit
+    (15) parametromkdisk -> . GUION parametrofit
 
-    PATH            shift and go to state 21
-    SIZE            shift and go to state 22
-    UNIT            shift and go to state 23
-    FIT             shift and go to state 24
+    EXECUTE         reduce using rule 9 (comandomkdisk -> MKDISK listaparametros_mkdisk .)
+    MKDISK          reduce using rule 9 (comandomkdisk -> MKDISK listaparametros_mkdisk .)
+    COMENTARIOS     reduce using rule 9 (comandomkdisk -> MKDISK listaparametros_mkdisk .)
+    REP             reduce using rule 9 (comandomkdisk -> MKDISK listaparametros_mkdisk .)
+    $end            reduce using rule 9 (comandomkdisk -> MKDISK listaparametros_mkdisk .)
+    GUION           shift and go to state 16
 
-    parametropath                  shift and go to state 17
-    parametrosize                  shift and go to state 18
-    parametrounit                  shift and go to state 19
-    parametrofit                   shift and go to state 20
+    parametromkdisk                shift and go to state 19
 
 state 15
 
-    (7) comandoexecute -> EXECUTE GUION PATH . IGUAL VALORDEPATH NOMBREARCHIVO
+    (11) listaparametros_mkdisk -> parametromkdisk .
 
-    IGUAL           shift and go to state 25
+    GUION           reduce using rule 11 (listaparametros_mkdisk -> parametromkdisk .)
+    EXECUTE         reduce using rule 11 (listaparametros_mkdisk -> parametromkdisk .)
+    MKDISK          reduce using rule 11 (listaparametros_mkdisk -> parametromkdisk .)
+    COMENTARIOS     reduce using rule 11 (listaparametros_mkdisk -> parametromkdisk .)
+    REP             reduce using rule 11 (listaparametros_mkdisk -> parametromkdisk .)
+    $end            reduce using rule 11 (listaparametros_mkdisk -> parametromkdisk .)
 
 
 state 16
 
-    (9) listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .
+    (12) parametromkdisk -> GUION . parametropath
+    (13) parametromkdisk -> GUION . parametrosize
+    (14) parametromkdisk -> GUION . parametrounit
+    (15) parametromkdisk -> GUION . parametrofit
+    (16) parametropath -> . PATH IGUAL VALORDEPATH NOMBREARCHIVO
+    (17) parametrosize -> . SIZE IGUAL NUMEROS
+    (18) parametrounit -> . UNIT IGUAL ID
+    (19) parametrofit -> . FIT IGUAL ID
 
-    GUION           reduce using rule 9 (listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .)
-    EXECUTE         reduce using rule 9 (listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .)
-    MKDISK          reduce using rule 9 (listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .)
-    COMENTARIOS     reduce using rule 9 (listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .)
-    $end            reduce using rule 9 (listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .)
+    PATH            shift and go to state 24
+    SIZE            shift and go to state 25
+    UNIT            shift and go to state 26
+    FIT             shift and go to state 27
 
+    parametropath                  shift and go to state 20
+    parametrosize                  shift and go to state 21
+    parametrounit                  shift and go to state 22
+    parametrofit                   shift and go to state 23
 
 state 17
 
-    (11) parametromkdisk -> GUION parametropath .
+    (21) comandorep -> REP NOMBREARCHIVO .
 
-    GUION           reduce using rule 11 (parametromkdisk -> GUION parametropath .)
-    EXECUTE         reduce using rule 11 (parametromkdisk -> GUION parametropath .)
-    MKDISK          reduce using rule 11 (parametromkdisk -> GUION parametropath .)
-    COMENTARIOS     reduce using rule 11 (parametromkdisk -> GUION parametropath .)
-    $end            reduce using rule 11 (parametromkdisk -> GUION parametropath .)
+    EXECUTE         reduce using rule 21 (comandorep -> REP NOMBREARCHIVO .)
+    MKDISK          reduce using rule 21 (comandorep -> REP NOMBREARCHIVO .)
+    COMENTARIOS     reduce using rule 21 (comandorep -> REP NOMBREARCHIVO .)
+    REP             reduce using rule 21 (comandorep -> REP NOMBREARCHIVO .)
+    $end            reduce using rule 21 (comandorep -> REP NOMBREARCHIVO .)
 
 
 state 18
 
-    (12) parametromkdisk -> GUION parametrosize .
-
-    GUION           reduce using rule 12 (parametromkdisk -> GUION parametrosize .)
-    EXECUTE         reduce using rule 12 (parametromkdisk -> GUION parametrosize .)
-    MKDISK          reduce using rule 12 (parametromkdisk -> GUION parametrosize .)
-    COMENTARIOS     reduce using rule 12 (parametromkdisk -> GUION parametrosize .)
-    $end            reduce using rule 12 (parametromkdisk -> GUION parametrosize .)
-
-
-state 19
-
-    (13) parametromkdisk -> GUION parametrounit .
-
-    GUION           reduce using rule 13 (parametromkdisk -> GUION parametrounit .)
-    EXECUTE         reduce using rule 13 (parametromkdisk -> GUION parametrounit .)
-    MKDISK          reduce using rule 13 (parametromkdisk -> GUION parametrounit .)
-    COMENTARIOS     reduce using rule 13 (parametromkdisk -> GUION parametrounit .)
-    $end            reduce using rule 13 (parametromkdisk -> GUION parametrounit .)
-
-
-state 20
-
-    (14) parametromkdisk -> GUION parametrofit .
-
-    GUION           reduce using rule 14 (parametromkdisk -> GUION parametrofit .)
-    EXECUTE         reduce using rule 14 (parametromkdisk -> GUION parametrofit .)
-    MKDISK          reduce using rule 14 (parametromkdisk -> GUION parametrofit .)
-    COMENTARIOS     reduce using rule 14 (parametromkdisk -> GUION parametrofit .)
-    $end            reduce using rule 14 (parametromkdisk -> GUION parametrofit .)
-
-
-state 21
-
-    (15) parametropath -> PATH . IGUAL VALORDEPATH NOMBREARCHIVO
-
-    IGUAL           shift and go to state 26
-
-
-state 22
-
-    (16) parametrosize -> SIZE . IGUAL NUMEROS
-
-    IGUAL           shift and go to state 27
-
-
-state 23
-
-    (17) parametrounit -> UNIT . IGUAL ID
+    (8) comandoexecute -> EXECUTE GUION PATH . IGUAL VALORDEPATH NOMBREARCHIVO
 
     IGUAL           shift and go to state 28
 
 
+state 19
+
+    (10) listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .
+
+    GUION           reduce using rule 10 (listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .)
+    EXECUTE         reduce using rule 10 (listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .)
+    MKDISK          reduce using rule 10 (listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .)
+    COMENTARIOS     reduce using rule 10 (listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .)
+    REP             reduce using rule 10 (listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .)
+    $end            reduce using rule 10 (listaparametros_mkdisk -> listaparametros_mkdisk parametromkdisk .)
+
+
+state 20
+
+    (12) parametromkdisk -> GUION parametropath .
+
+    GUION           reduce using rule 12 (parametromkdisk -> GUION parametropath .)
+    EXECUTE         reduce using rule 12 (parametromkdisk -> GUION parametropath .)
+    MKDISK          reduce using rule 12 (parametromkdisk -> GUION parametropath .)
+    COMENTARIOS     reduce using rule 12 (parametromkdisk -> GUION parametropath .)
+    REP             reduce using rule 12 (parametromkdisk -> GUION parametropath .)
+    $end            reduce using rule 12 (parametromkdisk -> GUION parametropath .)
+
+
+state 21
+
+    (13) parametromkdisk -> GUION parametrosize .
+
+    GUION           reduce using rule 13 (parametromkdisk -> GUION parametrosize .)
+    EXECUTE         reduce using rule 13 (parametromkdisk -> GUION parametrosize .)
+    MKDISK          reduce using rule 13 (parametromkdisk -> GUION parametrosize .)
+    COMENTARIOS     reduce using rule 13 (parametromkdisk -> GUION parametrosize .)
+    REP             reduce using rule 13 (parametromkdisk -> GUION parametrosize .)
+    $end            reduce using rule 13 (parametromkdisk -> GUION parametrosize .)
+
+
+state 22
+
+    (14) parametromkdisk -> GUION parametrounit .
+
+    GUION           reduce using rule 14 (parametromkdisk -> GUION parametrounit .)
+    EXECUTE         reduce using rule 14 (parametromkdisk -> GUION parametrounit .)
+    MKDISK          reduce using rule 14 (parametromkdisk -> GUION parametrounit .)
+    COMENTARIOS     reduce using rule 14 (parametromkdisk -> GUION parametrounit .)
+    REP             reduce using rule 14 (parametromkdisk -> GUION parametrounit .)
+    $end            reduce using rule 14 (parametromkdisk -> GUION parametrounit .)
+
+
+state 23
+
+    (15) parametromkdisk -> GUION parametrofit .
+
+    GUION           reduce using rule 15 (parametromkdisk -> GUION parametrofit .)
+    EXECUTE         reduce using rule 15 (parametromkdisk -> GUION parametrofit .)
+    MKDISK          reduce using rule 15 (parametromkdisk -> GUION parametrofit .)
+    COMENTARIOS     reduce using rule 15 (parametromkdisk -> GUION parametrofit .)
+    REP             reduce using rule 15 (parametromkdisk -> GUION parametrofit .)
+    $end            reduce using rule 15 (parametromkdisk -> GUION parametrofit .)
+
+
 state 24
 
-    (18) parametrofit -> FIT . IGUAL ID
+    (16) parametropath -> PATH . IGUAL VALORDEPATH NOMBREARCHIVO
 
     IGUAL           shift and go to state 29
 
 
 state 25
 
-    (7) comandoexecute -> EXECUTE GUION PATH IGUAL . VALORDEPATH NOMBREARCHIVO
+    (17) parametrosize -> SIZE . IGUAL NUMEROS
 
-    VALORDEPATH     shift and go to state 30
+    IGUAL           shift and go to state 30
 
 
 state 26
 
-    (15) parametropath -> PATH IGUAL . VALORDEPATH NOMBREARCHIVO
+    (18) parametrounit -> UNIT . IGUAL ID
 
-    VALORDEPATH     shift and go to state 31
+    IGUAL           shift and go to state 31
 
 
 state 27
 
-    (16) parametrosize -> SIZE IGUAL . NUMEROS
+    (19) parametrofit -> FIT . IGUAL ID
 
-    NUMEROS         shift and go to state 32
+    IGUAL           shift and go to state 32
 
 
 state 28
 
-    (17) parametrounit -> UNIT IGUAL . ID
+    (8) comandoexecute -> EXECUTE GUION PATH IGUAL . VALORDEPATH NOMBREARCHIVO
 
-    ID              shift and go to state 33
+    VALORDEPATH     shift and go to state 33
 
 
 state 29
 
-    (18) parametrofit -> FIT IGUAL . ID
+    (16) parametropath -> PATH IGUAL . VALORDEPATH NOMBREARCHIVO
 
-    ID              shift and go to state 34
+    VALORDEPATH     shift and go to state 34
 
 
 state 30
 
-    (7) comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH . NOMBREARCHIVO
+    (17) parametrosize -> SIZE IGUAL . NUMEROS
 
-    NOMBREARCHIVO   shift and go to state 35
+    NUMEROS         shift and go to state 35
 
 
 state 31
 
-    (15) parametropath -> PATH IGUAL VALORDEPATH . NOMBREARCHIVO
+    (18) parametrounit -> UNIT IGUAL . ID
 
-    NOMBREARCHIVO   shift and go to state 36
+    ID              shift and go to state 36
 
 
 state 32
 
-    (16) parametrosize -> SIZE IGUAL NUMEROS .
+    (19) parametrofit -> FIT IGUAL . ID
 
-    GUION           reduce using rule 16 (parametrosize -> SIZE IGUAL NUMEROS .)
-    EXECUTE         reduce using rule 16 (parametrosize -> SIZE IGUAL NUMEROS .)
-    MKDISK          reduce using rule 16 (parametrosize -> SIZE IGUAL NUMEROS .)
-    COMENTARIOS     reduce using rule 16 (parametrosize -> SIZE IGUAL NUMEROS .)
-    $end            reduce using rule 16 (parametrosize -> SIZE IGUAL NUMEROS .)
+    ID              shift and go to state 37
 
 
 state 33
 
-    (17) parametrounit -> UNIT IGUAL ID .
+    (8) comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH . NOMBREARCHIVO
 
-    GUION           reduce using rule 17 (parametrounit -> UNIT IGUAL ID .)
-    EXECUTE         reduce using rule 17 (parametrounit -> UNIT IGUAL ID .)
-    MKDISK          reduce using rule 17 (parametrounit -> UNIT IGUAL ID .)
-    COMENTARIOS     reduce using rule 17 (parametrounit -> UNIT IGUAL ID .)
-    $end            reduce using rule 17 (parametrounit -> UNIT IGUAL ID .)
+    NOMBREARCHIVO   shift and go to state 38
 
 
 state 34
 
-    (18) parametrofit -> FIT IGUAL ID .
+    (16) parametropath -> PATH IGUAL VALORDEPATH . NOMBREARCHIVO
 
-    GUION           reduce using rule 18 (parametrofit -> FIT IGUAL ID .)
-    EXECUTE         reduce using rule 18 (parametrofit -> FIT IGUAL ID .)
-    MKDISK          reduce using rule 18 (parametrofit -> FIT IGUAL ID .)
-    COMENTARIOS     reduce using rule 18 (parametrofit -> FIT IGUAL ID .)
-    $end            reduce using rule 18 (parametrofit -> FIT IGUAL ID .)
+    NOMBREARCHIVO   shift and go to state 39
 
 
 state 35
 
-    (7) comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .
+    (17) parametrosize -> SIZE IGUAL NUMEROS .
 
-    EXECUTE         reduce using rule 7 (comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    MKDISK          reduce using rule 7 (comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    COMENTARIOS     reduce using rule 7 (comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    $end            reduce using rule 7 (comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    GUION           reduce using rule 17 (parametrosize -> SIZE IGUAL NUMEROS .)
+    EXECUTE         reduce using rule 17 (parametrosize -> SIZE IGUAL NUMEROS .)
+    MKDISK          reduce using rule 17 (parametrosize -> SIZE IGUAL NUMEROS .)
+    COMENTARIOS     reduce using rule 17 (parametrosize -> SIZE IGUAL NUMEROS .)
+    REP             reduce using rule 17 (parametrosize -> SIZE IGUAL NUMEROS .)
+    $end            reduce using rule 17 (parametrosize -> SIZE IGUAL NUMEROS .)
 
 
 state 36
 
-    (15) parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .
+    (18) parametrounit -> UNIT IGUAL ID .
 
-    GUION           reduce using rule 15 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    EXECUTE         reduce using rule 15 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    MKDISK          reduce using rule 15 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    COMENTARIOS     reduce using rule 15 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    $end            reduce using rule 15 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    GUION           reduce using rule 18 (parametrounit -> UNIT IGUAL ID .)
+    EXECUTE         reduce using rule 18 (parametrounit -> UNIT IGUAL ID .)
+    MKDISK          reduce using rule 18 (parametrounit -> UNIT IGUAL ID .)
+    COMENTARIOS     reduce using rule 18 (parametrounit -> UNIT IGUAL ID .)
+    REP             reduce using rule 18 (parametrounit -> UNIT IGUAL ID .)
+    $end            reduce using rule 18 (parametrounit -> UNIT IGUAL ID .)
+
+
+state 37
+
+    (19) parametrofit -> FIT IGUAL ID .
+
+    GUION           reduce using rule 19 (parametrofit -> FIT IGUAL ID .)
+    EXECUTE         reduce using rule 19 (parametrofit -> FIT IGUAL ID .)
+    MKDISK          reduce using rule 19 (parametrofit -> FIT IGUAL ID .)
+    COMENTARIOS     reduce using rule 19 (parametrofit -> FIT IGUAL ID .)
+    REP             reduce using rule 19 (parametrofit -> FIT IGUAL ID .)
+    $end            reduce using rule 19 (parametrofit -> FIT IGUAL ID .)
+
+
+state 38
+
+    (8) comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .
+
+    EXECUTE         reduce using rule 8 (comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    MKDISK          reduce using rule 8 (comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    COMENTARIOS     reduce using rule 8 (comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    REP             reduce using rule 8 (comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    $end            reduce using rule 8 (comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+
+
+state 39
+
+    (16) parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .
+
+    GUION           reduce using rule 16 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    EXECUTE         reduce using rule 16 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    MKDISK          reduce using rule 16 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    COMENTARIOS     reduce using rule 16 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    REP             reduce using rule 16 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    $end            reduce using rule 16 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
 

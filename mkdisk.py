@@ -87,7 +87,6 @@ class MKDISK(ctypes.Structure):
         self.size, self.path, self.fit, self.unit = struct.unpack(const, datoBinarioMBR)
         
     def convertirFit(self, fit):
-        print(self.fit)
         if self.fit == "BF":
             return "B"
         elif self.fit == "FF":

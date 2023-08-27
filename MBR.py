@@ -10,7 +10,6 @@ class MBR():
         self.dsk_fit = dsk_fit
         self.constMBR = '3I c'
         
-    
     def doSerialize(self):
         objetoMBR = struct.pack( #todo debe de estar en binario
             self.constMBR,
@@ -24,6 +23,8 @@ class MBR():
     def doDeserialize(self, data):
         sizeMK = struct.calcsize(self.constMBR)
         datoBinarioMBR = data[:sizeMK]
-        self.mbr_tamano, self.mbr_fecha_creacion, self.mbr_dsk_signature, self.dsk_fit = struct.unpack(const, datoBinarioMBR)
+        self.mbr_tamano, self.mbr_fecha_creacion, self.mbr_dsk_signature, self.dsk_fit = struct.unpack(self.constMBR, datoBinarioMBR)
+        self.mbr_fecha_creacion = convertirFecha(self.mbr_fecha_creacion)
+        
         
     

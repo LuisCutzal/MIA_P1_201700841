@@ -16,3 +16,11 @@ def randomVal(inicio, fin):
 def tiempo():
     valorTiempo = datetime.datetime.now() #devuelve fecha y hora, se puede combertir en string, entero y volverlo a descombertir
     return int(valorTiempo.timestamp()) #esto se puede transformar en binario y volverlo a transformar a int
+
+
+def convertirFecha(fecha):
+    return datetime.datetime.fromtimestamp(fecha)
+
+
+def deBinaString(datoBinario):
+    return datoBinario.decode().rstrip('\x00')

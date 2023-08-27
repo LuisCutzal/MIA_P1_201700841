@@ -2,13 +2,14 @@ import ply.yacc as sintactico
 import ply.lex as lexico
 from ejecutarexecute import comandoExecute
 from mkdisk import *
-
+from rep import *
 palabrasReservadas = {"execute":"EXECUTE",
                       "mkdisk": "MKDISK",
                       "path": "PATH",
                       "size": "SIZE",
                       "unit": "UNIT",
-                      "fit": "FIT"}
+                      "fit": "FIT",
+                      "rep": "REP"}
 tokens = ["ID",
           "STRING",
           "NUMEROS",
@@ -91,7 +92,8 @@ def p_instrucciones_instruccion(t):
 def p_instruccion(t):
     '''instruccion : comandoexecute
                    | comandomkdisk
-                   | comentarios'''
+                   | comentarios
+                   | comandorep'''
     t[0] = t[1]
 
 
@@ -144,6 +146,11 @@ def p_comentarios(t):
     print("#"+t[1])
     t[0] = ""
 
+def p_rep(t):
+    '''comandorep : REP NOMBREARCHIVO'''
+    REP().ejecutarRep()
+    t[0]= ""
+
 
 def iniciarAnalisis(comando):
     global input
@@ -156,3 +163,4 @@ def iniciarAnalisis(comando):
     elif salida == []:
         return ""
     else: return salida[0]
+
