@@ -1,3 +1,8 @@
+import ctypes
+import struct
+from utilities import *
+from load import *
+
 class PARTICION():
     
     def __init__(self):
@@ -8,7 +13,7 @@ class PARTICION():
         self.part_s = 0
         self.part_name = "\0" * 16
         self.constanteParticion = '3c 2I 16C'
-
+    
     def set_valores(self,part_status,part_type,part_fit,part_start,part_s,part_name):
         self.part_status = part_status
         self.part_type = part_type
@@ -33,4 +38,11 @@ class PARTICION():
         partSize = struct.calcsize(self.constanteParticion)
         datoBinarioParticion = data[:partSize]
         self.part_status, self.part_type, self.part_fit, self.part_start, self.part_s, self.part_name = struct.unpack(self.constanteParticion, datoBinarioParticion)
-        
+    
+    def convertirFit(self, fit):
+        if self.part_fit == "BF":
+            return "B"
+        elif self.part_fit == "FF":
+            return "F"
+        elif self.part_fit == "WF":
+            return "W"

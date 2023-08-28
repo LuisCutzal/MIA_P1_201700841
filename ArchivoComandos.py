@@ -3,12 +3,14 @@ import ply.lex as lexico
 from ejecutarexecute import comandoExecute
 from mkdisk import *
 from rep import *
+from rmdisk import *
 palabrasReservadas = {"execute":"EXECUTE",
                       "mkdisk": "MKDISK",
                       "path": "PATH",
                       "size": "SIZE",
                       "unit": "UNIT",
                       "fit": "FIT",
+                      "rmdisk": "RMDISK",
                       "rep": "REP"}
 tokens = ["ID",
           "STRING",
@@ -93,7 +95,8 @@ def p_instruccion(t):
     '''instruccion : comandoexecute
                    | comandomkdisk
                    | comentarios
-                   | comandorep'''
+                   | comandorep
+                   | comandormdisk'''
     t[0] = t[1]
 
 
@@ -151,6 +154,11 @@ def p_rep(t):
     REP().ejecutarRep()
     t[0]= ""
 
+def p_comandormdisk(t):
+    '''comandormdisk : RMDISK GUION parametropath'''
+    RMDISK().ejecutarRMDISK(t[3])
+    t[0]=""
+    
 
 def iniciarAnalisis(comando):
     global input
