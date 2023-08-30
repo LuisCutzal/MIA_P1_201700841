@@ -2,7 +2,7 @@ import ctypes
 import struct
 from utilities import *
 from load import *
-class EXTENDIDA(self):
+class EXTENDIDA(self): #es un EBR porque tendre muchos objetos ebr
     
     def __init__(self):
         self.part_status = "\0"
@@ -11,7 +11,7 @@ class EXTENDIDA(self):
         self.part_s = 0
         self.part_next = -1
         self.part_name = "\0" * 16
-        self.constanteExtendida = '2c 3I 16C'
+        self.constanteExtendida = '2c 2I i 16s' # 2 char, 2 enteros sin signo, 1 entero con signo y una cadena de chars
         self.next = None
     
     def set_valores(self,part_status, part_fit, part_start,part_s,part_next,part_name ):
@@ -26,12 +26,12 @@ class EXTENDIDA(self):
     def doSerialize(self): #esto es lo que escribire en el archivo binario
         nuevaExtendida = struct.pack(
             self.constanteExtendida,
-            self.part_status,
-            self.part_fit,
+            convertirstringaBin(self.part_status),
+            convertirstringaBin(self.part_fit),
             self.part_start,
             self.part_s,
             self.part_next,
-            self.part_name
+            convertirstringaBin(self.part_name)
         ) 
         return nuevaExtendida
     

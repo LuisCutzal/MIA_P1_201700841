@@ -4,6 +4,8 @@ from ejecutarexecute import comandoExecute
 from mkdisk import *
 from rep import *
 from rmdisk import *
+from fdisk import *
+
 palabrasReservadas = {"execute":"EXECUTE",
                       "mkdisk": "MKDISK",
                       "path": "PATH",
@@ -11,6 +13,11 @@ palabrasReservadas = {"execute":"EXECUTE",
                       "unit": "UNIT",
                       "fit": "FIT",
                       "rmdisk": "RMDISK",
+                      "fdisk" : "FDISK",
+                      "name" : "NAME",
+                      "type" : "TYPE",
+                      "delete" : "DELETE",
+                      "add" : "ADD",
                       "rep": "REP"}
 tokens = ["ID",
           "STRING",
@@ -51,7 +58,7 @@ def t_NOMBREARCHIVO(t):
     return t
 
 def t_ID(t):
-    r"[a-zA-Z][a-zA-Z]*"
+    r"[a-zA-Z0-9_][a-zA-Z0-9_]*"
     #aca se deben de reconocer las palabras reservadas
     t.type = palabrasReservadas.get(t.value.lower(),"ID")
     return t
@@ -96,7 +103,8 @@ def p_instruccion(t):
                    | comandomkdisk
                    | comentarios
                    | comandorep
-                   | comandormdisk'''
+                   | comandormdisk
+                   | comandofdisk'''
     t[0] = t[1]
 
 
@@ -158,6 +166,51 @@ def p_comandormdisk(t):
     '''comandormdisk : RMDISK GUION parametropath'''
     RMDISK().ejecutarRMDISK(t[3])
     t[0]=""
+    
+
+def p_comandofdisk(t):
+    '''comandofdisk : FDISK listaparametros_fdisk'''
+    FDISK(t[2]).ejecutarFDISK()
+    t[0]=""
+
+def p_listaparametros_fdisk(t):
+    '''listaparametros_fdisk : listaparametros_fdisk parametrofdisk
+                             | parametrofdisk'''
+    if len(t) == 3:
+        t[1].append(t[2])
+        t[0] = t[1]
+    else:
+        t[0] = [t[1]]
+    
+def p_parametrofdisk(t):
+    '''parametrofdisk : GUION parametrosize
+                      | GUION parametropath
+                      | GUION parametroname
+                      | GUION parametrounit
+                      | GUION parametrotype
+                      | GUION parametrofit
+                      | GUION parametrodelete
+                      | GUION parametroadd'''
+    t[0] = t[2]
+    
+def p_parametroname(t):
+    '''parametroname : NAME IGUAL STRING
+                     | NAME IGUAL ID'''
+    t[0] = {"valorname" : t[3]}
+
+def p_parametrotype(t):
+    '''parametrotype : TYPE IGUAL ID'''
+    t[0] = {"valortype" : t[3]}
+
+
+def p_parametrodelete(t):
+    '''parametrodelete : DELETE IGUAL ID'''
+    t[0] = {"valordelete" : t[3]}
+    
+def p_parametroadd(t):
+    '''parametroadd : ADD IGUAL NUMEROS'''
+    t[0] = {"valoradd" : t[3]}
+    
     
 
 def iniciarAnalisis(comando):

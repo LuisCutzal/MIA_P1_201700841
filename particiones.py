@@ -3,16 +3,16 @@ import struct
 from utilities import *
 from load import *
 
-class PARTICION():
-    
+class PARTICION(ctypes.Structure):
+   
     def __init__(self):
-        self.part_status = "\0"
-        self.part_type = "\0"
-        self.part_fit = "\0"
+        self.part_status = '\0'
+        self.part_type = '\0'
+        self.part_fit = '\0'
         self.part_start = 0
         self.part_s = 0
-        self.part_name = "\0" * 16
-        self.constanteParticion = '3c 2I 16C'
+        self.part_name = '\0' * 16
+        self.constanteParticion = '3c 2I 16s'
     
     def set_valores(self,part_status,part_type,part_fit,part_start,part_s,part_name):
         self.part_status = part_status
@@ -25,12 +25,12 @@ class PARTICION():
     def doSerialize(self):#esto es lo que escribire en el archivo binario
         nuevaParticion = struct.pack(
             self.constanteParticion,
-            self.part_status,
-            self.part_type,
-            self.part_fit,
+            convertirstringaBin(self.part_status),
+            convertirstringaBin(self.part_type),
+            convertirstringaBin(self.part_fit),
             self.part_start,
             self.part_s,
-            self.part_name
+            convertirstringaBin(self.part_name)
         )
         return nuevaParticion
     
@@ -38,11 +38,3 @@ class PARTICION():
         partSize = struct.calcsize(self.constanteParticion)
         datoBinarioParticion = data[:partSize]
         self.part_status, self.part_type, self.part_fit, self.part_start, self.part_s, self.part_name = struct.unpack(self.constanteParticion, datoBinarioParticion)
-    
-    def convertirFit(self, fit):
-        if self.part_fit == "BF":
-            return "B"
-        elif self.part_fit == "FF":
-            return "F"
-        elif self.part_fit == "WF":
-            return "W"

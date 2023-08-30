@@ -8,7 +8,7 @@ class REP():
     
     def ejecutarRep(self):
         nuevoObjetoMBR = MBR(0,0,0,"")
-        data=Fread_displacement("/home/luis/Escritorio/Archivos2023/proyectos/MIA_P1_201700841/Disco1.dsk",0,struct.calcsize(nuevoObjetoMBR.constMBR))
+        data=Fread_displacement("/home/luis/Escritorio/Archivos2023/proyectos/Disco1.dsk",0,struct.calcsize(nuevoObjetoMBR.constMBR))
         nuevoObjetoMBR.doDeserialize(data)
         print(deBinaString(nuevoObjetoMBR.dsk_fit))
         print(nuevoObjetoMBR.mbr_dsk_signature)

@@ -3,17 +3,17 @@ import ctypes
 import re
 from load import *
 from ArchivoComandos import iniciarAnalisis
-def main():
-    print("Luis Antonio Cutzal Chalí")
-    print("201700841")
-    print("Proyecto 1")
-    aplicacionComandos()
+
+    
+    
+#hexdump -s 614525 -n 400 -Cv ./test/Disco1.dsk | head -n 100
 
 def aplicacionComandos():
     input = iniciarAnalisis("execute -path=/home/luis/Escritorio/Archivos2023/proyectos/MIA_P1_201700841/prueba.adsj")
     #print(input)
     iniciarAnalisis(input)
-    
+
+  
     
     """while True: 
         #iniciarAnalisis(input("-> "))
@@ -167,9 +167,11 @@ def buscandoFit(lista, fits):
 
 
 
-
 if __name__ == "__main__":
-    main()
+    print("Luis Antonio Cutzal Chalí")
+    print("201700841")
+    print("Proyecto 1")
+    aplicacionComandos()
 
 # execute -path=/home/luis/Escritorio/Archivos2023/proyectos/MIA_P1_201700841/prueba.adsj
 #mkdisk - size=3000 -unit=K -path=/home/user/Disco1.dsk

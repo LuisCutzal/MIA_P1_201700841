@@ -2,5 +2,6 @@
 #mkdisk -path=/home/user/Disco2.dsk -unit=M -size=2
 #mkdisk -size=5 -unit=M -path="/home/mis discos/Disco3.dsk"
 #mkdisk -size=10 -path="/home/mis discos/Disco4.dsk"
-rmdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco1.dsk
+#rmdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco1.dsk
 #rep Disco1.dsk
+fdisk -size=300 -path=/home/Disco1.dsk -name=Particion1
