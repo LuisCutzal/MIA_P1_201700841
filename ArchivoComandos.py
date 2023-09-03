@@ -5,7 +5,9 @@ from mkdisk import *
 from rep import *
 from rmdisk import *
 from fdisk import *
-
+from mount import *
+from unmount import *
+from mkfs import *
 palabrasReservadas = {"execute":"EXECUTE",
                       "mkdisk": "MKDISK",
                       "path": "PATH",
@@ -18,14 +20,21 @@ palabrasReservadas = {"execute":"EXECUTE",
                       "type" : "TYPE",
                       "delete" : "DELETE",
                       "add" : "ADD",
+                      "mount" : "MOUNT",
+                      "unmount" : "UNMOUNT",
+                      "id" : "ID",
+                      "mkfs" : "MKFS",
+                      "fs" : "FS",
                       "rep": "REP"}
-tokens = ["ID",
+
+tokens = ["IDENTIFICADOR",
           "STRING",
           "NUMEROS",
           "COMENTARIOS",
           "GUION",
           "IGUAL",
           "VALORDEPATH",
+          "FORMATEAR",
           "NOMBREARCHIVO"]+list(palabrasReservadas.values())
 
 
@@ -33,10 +42,9 @@ tokens = ["ID",
 t_GUION = r"-"   #como solo es un caracter se hace de esta forma
 t_IGUAL = r"="   #como solo es un caracter se hace de esta forma
 
-#ahora numeros 
-def t_NUMEROS(t):
-    r"-?\d+"
-    return t
+
+
+
 
 def t_STRING(t):
     r'"[^"]*"'
@@ -57,10 +65,19 @@ def t_NOMBREARCHIVO(t):
     r'[a-zA-Z0-9_]+\.(adsj|dsk)' 
     return t
 
-def t_ID(t):
-    r"[a-zA-Z0-9_][a-zA-Z0-9_]*"
+def t_IDENTIFICADOR(t):
+    r"([0-9])*[a-zA-Z_][a-zA-Z0-9_]*"
     #aca se deben de reconocer las palabras reservadas
-    t.type = palabrasReservadas.get(t.value.lower(),"ID")
+    t.type = palabrasReservadas.get(t.value.lower(),"IDENTIFICADOR")
+    return t
+
+#ahora numeros 
+def t_NUMEROS(t):
+    r"-?\d+"
+    return t
+
+def t_FORMATEAR(t):
+    r"(2fs|3fs)"
     return t
 
 t_ignore = " \t\r"
@@ -104,7 +121,10 @@ def p_instruccion(t):
                    | comentarios
                    | comandorep
                    | comandormdisk
-                   | comandofdisk'''
+                   | comandofdisk
+                   | comandomount
+                   | comandounmount
+                   | comandomkfs'''
     t[0] = t[1]
 
 
@@ -145,11 +165,11 @@ def p_parametrosize(t):
     t[0] = {"valorsize" : t[3]}
     
 def p_parametrounit(t):
-    '''parametrounit : UNIT IGUAL ID'''
+    '''parametrounit : UNIT IGUAL IDENTIFICADOR'''
     t[0] = {"valorunit" : t[3]}
     
 def p_parametrofit(t):
-    '''parametrofit : FIT IGUAL ID'''
+    '''parametrofit : FIT IGUAL IDENTIFICADOR'''
     t[0] = {"valorfit" : t[3]}
 
 def p_comentarios(t):
@@ -195,33 +215,96 @@ def p_parametrofdisk(t):
     
 def p_parametroname(t):
     '''parametroname : NAME IGUAL STRING
-                     | NAME IGUAL ID'''
+                     | NAME IGUAL IDENTIFICADOR'''
     t[0] = {"valorname" : t[3]}
 
 def p_parametrotype(t):
-    '''parametrotype : TYPE IGUAL ID'''
+    '''parametrotype : TYPE IGUAL IDENTIFICADOR'''
     t[0] = {"valortype" : t[3]}
 
 
 def p_parametrodelete(t):
-    '''parametrodelete : DELETE IGUAL ID'''
+    '''parametrodelete : DELETE IGUAL IDENTIFICADOR'''
     t[0] = {"valordelete" : t[3]}
     
 def p_parametroadd(t):
     '''parametroadd : ADD IGUAL NUMEROS'''
     t[0] = {"valoradd" : t[3]}
     
-    
+def p_comandomount(t):
+    '''comandomount : MOUNT listaparametros_mount'''
+    MOUNT(t[2]).ejecutarMOUNT()
+    t[0]=""
+
+def p_listaparametros_mount(t):
+    '''listaparametros_mount : listaparametros_mount parametromount
+                             | parametromount'''
+    if len(t) == 3:
+        t[1].append(t[2])
+        t[0] = t[1]
+    else:
+        t[0] = [t[1]]
+
+def p_parametromount(t):
+    '''parametromount : GUION parametropath
+                       | GUION parametroname'''
+    t[0] = t[2]
+
+def p_comandounmount(t):
+    '''comandounmount : UNMOUNT listaids_unmount'''
+    UNMOUNT(t[2]).ejecutarUNMOUNT()
+    t[0]=""
+
+def p_listaids_unmount(t):
+    '''listaids_unmount : listaids_unmount parametrounmount
+                        | parametrounmount'''
+    if len(t) == 3:
+        t[1].append(t[2])
+        t[0] = t[1]
+    else:
+        t[0] = [t[1]]
+        
+def p_parametrounmount(t):
+    '''parametrounmount : GUION parametroid'''
+    t[0] = t[2]
+
+def p_parametroid(t):
+    '''parametroid : ID IGUAL IDENTIFICADOR'''
+    t[0] = {"valorid" : t[3]}
+
+def p_comandomkfs(t):
+    '''comandomkfs : MKFS listaparametros_mkfs'''
+    MKFS(t[2]).ejecutarMKFS()
+    t[0]=""
+
+def p_listaparametros_mkfs(t):
+    '''listaparametros_mkfs : listaparametros_mkfs parametromkfs
+                            | parametromkfs'''
+    if len(t) == 3:
+        t[1].append(t[2])
+        t[0] = t[1]
+    else:
+        t[0] = [t[1]]
+
+def p_parametromkfs(t):
+    '''parametromkfs : GUION parametroid
+                     | GUION parametrotype
+                     | GUION parametrofs'''
+    t[0] = t[2]
+
+def p_parametrofs(t):
+    '''parametrofs : FS IGUAL FORMATEAR'''
+    t[0] = {"valorfs" : t[3]}
 
 def iniciarAnalisis(comando):
     global input
     input = comando
     lex = lexico.lex()
     parser = sintactico.yacc()
-    salida = parser.parse(comando)
-    if salida == None:
+    salIDENTIFICADORa = parser.parse(comando)
+    if salIDENTIFICADORa == None:
         return ""
-    elif salida == []:
+    elif salIDENTIFICADORa == []:
         return ""
-    else: return salida[0]
+    else: return salIDENTIFICADORa[0]
 

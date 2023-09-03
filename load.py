@@ -1,5 +1,5 @@
 import ctypes
-
+import os
 def leerArchivo(archivo): #para el path del archivo de entrada 
     try:
         data = archivo.read()
@@ -38,4 +38,19 @@ def Winit_size(file, size_mb):
     print(f"Tamaño del archivo: {len(buffer)} bytes")
     file.write(buffer)
     print("Tamaño aplicado")
+
+
+def archivoExistente(file):
+    if os.path.exists(file):
+        return True
+
+
+def escribirArchivoExistente(path, displacement, data):
+    try:
+        with open(path, "rb+") as file:
+            file.seek(displacement)
+            file.write(data)
+    except IOError:
+        print("Error al escribir la particion")
+        return
     

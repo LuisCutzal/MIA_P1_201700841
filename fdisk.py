@@ -2,6 +2,8 @@ import ctypes
 import struct
 from utilities import *
 from load import *
+from MBR import *
+from EBR import *
 
 class FDISK(ctypes.Structure):
     def __init__(self,listaParametros):
@@ -15,11 +17,53 @@ class FDISK(ctypes.Structure):
         self.delete = '\0'
         self.add = 0
         self.constanteFDISK = 'I 6s i'
+        self.temporalMBR = ""
     
     def ejecutarFDISK(self):
+        if not self.agregarValores():
+            print("FDISK no se pudo ejecutar correctamente")
+            return
+        self.leerMBR()
+        if self.temporalMBR == "":
+            print("Error, no se encuentra el MBR del archivo")
+            return
+        listaParticiones = [self.temporalMBR.particion1,self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4]
+        if self.existeNombre(listaParticiones):
+            print("FDISK no se pudo ejecutar correctamente")
+            return
+        if self.type == "E":
+            if self.comprobarExtendida(listaParticiones):
+                print("FDISK no se pudo ejecutar correctamente")
+                print("Error, Ya existe una extendida en el disco")
+                return
+        if self.type == "L":
+            if not self.comprobarExtendida(listaParticiones):
+                print("FDISK no se pudo ejecutar correctamente")
+                print("Error, no se puede agregar particion logica sin una extendida")
+                return
+            else: 
+                self.escribirEBR()
+                return
+            
+                
+        if not self.comprobarEspacio(listaParticiones):
+            print("FDISK no se pudo ejecutar correctamente")
+            return
+        if not self.comprobar4Particiones(listaParticiones):
+            print("Error FDISK, existen ya 4 particiones")
+            return
+        self.particionLibre(listaParticiones)
+        self.temporalMBR.mbr_fecha_creacion = convertirTiempoEntero(self.temporalMBR.mbr_fecha_creacion)
+        #self.temporalMBR.dsk_fit = convertirstringaBin(self.temporalMBR.dsk_fit)
+        #print(self.temporalMBR.doSerialize())
+        escribirArchivoExistente(self.path, 0, self.temporalMBR.doSerialize())
+        
+        
+    
+    def agregarValores(self):
         for val in self.listaParametros:
             if val.get("valorsize") != None:
-                self.size = val.get("valorsize")
+                self.size = int(val.get("valorsize"))
             elif val.get("rutaArchivo") != None:
                 self.path = val.get("rutaArchivo") + val.get("nombrearchivo")
             elif val.get("valorname") != None:
@@ -34,4 +78,140 @@ class FDISK(ctypes.Structure):
                 self.delete = val.get("valordelete")
             elif val.get("valoradd") != None:
                 self.add = val.get("valoradd")
-        print(self.size, self.path, self.name, self.unit,self.type,self.fit,self.delete,self.add)
+        #print(self.listaParametros)
+        if self.size <=0:
+            print(f"El valor de size en fdisk {self.size} debe ser mayor a 0")
+            return False
+        if not archivoExistente(self.path):
+            print(f"No existe el archivo en la ruta {self.path}")
+            return False
+        #aca iria la parte de verificar el nombre de las particiones
+        
+        self.calcularValoresSize()
+        self.tipoDeParticion() #falta crear la parte de maximo 4 particiones, 1 particion extendida y mas
+        self.fit = convertirValoresFit(self.fit)
+        return True
+    
+    
+    def calcularValoresSize(self):
+        if self.unit.lower() == "b": #byes
+            print("particion en bytes")
+        elif self.unit.lower() == "k": #kilobytes
+            self.size = self.size * 1024
+            print("particion en kilobytes")
+        elif self.unit.lower() == "m": #megabytes
+            self.size = self.size * 1024 * 1024
+            print("particion en megabytes")
+        else: print(f"Error, el valor {self.unit} de unit no es valido")
+    
+    def tipoDeParticion(self):
+        if self.type.lower() == "p":
+            print("particion primaria")
+        elif self.type.lower() == "e":
+            print("particion extendida")
+        elif self.type.lower() == "l":
+            print("particion logica")
+        else: print(f"Error, el valor {self.type} de type no es valido")
+    
+    
+    def leerMBR(self):
+        temporalMBR = MBR(0,0,0,0)
+        datos = Fread_displacement(self.path,0,struct.calcsize(temporalMBR.constMBR) + struct.calcsize(temporalMBR.particion1.constanteParticion)*4)
+        temporalMBR.doDeserialize(datos) #ya tenemos los datos del mbr
+        self.temporalMBR = temporalMBR
+        
+        
+    def existeNombre(self, listaparticiones): #aca verificamos si el nombre de la particion existe
+        for particion in listaparticiones:
+            if particion.part_name == self.name:
+                print("El nombre de la particion ya existe")
+                return True
+        return False
+    
+    def particionLibre(self, listaparticiones): #aca vamos a escribir la particion en el archivo binario
+        for particion in listaparticiones:
+            if particion.part_status == "\x00":
+                self.crearParticion(particion)
+                return
+            
+    def crearParticion(self,particion):
+        particion.part_status = "1"
+        particion.part_type = self.type
+        particion.part_fit = self.fit
+        particion.part_start = self.comprobarStart([self.temporalMBR.particion1,self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4])
+        particion.part_s = self.size
+        particion.part_name = self.name
+        
+        
+    def comprobarEspacio(self, listaparticiones):
+        cantidadEspacio = 0
+        for particion in listaparticiones:
+            if particion.part_status != "\x00":
+                cantidadEspacio += particion.part_s
+        if self.temporalMBR.mbr_tamano < cantidadEspacio + self.size:
+            print("No existe espacio suficiente para la particion que desea crear")
+            return False
+        return True
+    
+    def comprobar4Particiones(self, listaparticiones):
+        for particion in listaparticiones:
+            if particion.part_status == "\x00":
+                return True
+        return False
+    
+    def comprobarExtendida(self, listaparticiones):
+        for particion in listaparticiones:
+            if particion.part_type == "E":
+                return True
+        return False
+    
+    def comprobarStart(self, listaparticiones):
+        partStart = struct.calcsize(self.temporalMBR.constMBR) + struct.calcsize(self.temporalMBR.particion1.constanteParticion)*4
+        for particion in listaparticiones:
+            if particion.part_status != "\x00":
+                partStart += particion.part_s
+        return partStart
+    
+    def retornarExtendida(self, listaparticiones):
+        for particion in listaparticiones:
+            if particion.part_type == "E":
+                return particion
+    
+    
+    def escribirEBR(self):
+        actualEBR = EBR()
+        listaparticiones = [self.temporalMBR.particion1,self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4]
+        particionExtendida = self.retornarExtendida(listaparticiones)
+        tam = struct.calcsize(actualEBR.constanteExtendida)
+        datosEBR = Fread_displacement(self.path,particionExtendida.part_start,tam)
+        actualEBR.doDeserialize(datosEBR)
+        actualizarSize = particionExtendida.part_s
+        #comienza la lista enlazada
+        if actualizarSize < self.size:
+            print("Error, no se puede crear la particion Logica")
+            return        
+        if actualEBR.part_s == 0: #es el primer ebr
+            actualEBR.part_status = "1"
+            actualEBR.part_fit = self.fit
+            actualEBR.part_start = particionExtendida.part_start
+            actualEBR.part_s = self.size
+            actualEBR.part_next = -1
+            actualEBR.part_name = self.name
+            escribirArchivoExistente(self.path, particionExtendida.part_start, actualEBR.doSerialize())
+            print(particionExtendida.part_start)
+        while actualEBR.part_next != -1:
+            actualEBR.doDeserialize(Fread_displacement(self.path, actualEBR.part_next, tam))  #porque debemos de leer el siguiente
+            actualizarSize -= actualEBR.part_s
+            if actualEBR.part_name == self.name:
+                print("Ya existe la particion logica")
+                return
+        actualEBR.part_next = actualEBR.part_start + self.size
+        escribirArchivoExistente(self.path,actualEBR.part_start,actualEBR.doSerialize())#solo su next
+        nuevoEBR = EBR()
+        nuevoEBR.part_status = "1"
+        nuevoEBR.part_fit = self.fit
+        nuevoEBR.part_start = actualEBR.part_next
+        nuevoEBR.part_s = self.size
+        nuevoEBR.part_next = -1
+        nuevoEBR.part_name = self.name
+        escribirArchivoExistente(self.path, nuevoEBR.part_start, nuevoEBR.doSerialize())

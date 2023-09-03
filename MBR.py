@@ -27,9 +27,14 @@ class MBR(ctypes.Structure):
     
     def doDeserialize(self, data):
         sizeMK = struct.calcsize(self.constMBR)
+        sizeParticionesEst = struct.calcsize(self.particion1.constanteParticion)
         datoBinarioMBR = data[:sizeMK]
         self.mbr_tamano, self.mbr_fecha_creacion, self.mbr_dsk_signature, self.dsk_fit = struct.unpack(self.constMBR, datoBinarioMBR)
         self.mbr_fecha_creacion = convertirFecha(self.mbr_fecha_creacion)
+        self.particion1.doDeserialize(data[sizeMK:sizeParticionesEst+ sizeMK]) #aca deserealizamos desde el inicio del archivo hasta el tamaño de la primera particion
+        self.particion2.doDeserialize(data[sizeMK+sizeParticionesEst:sizeMK+sizeParticionesEst*2]) #aca deserealizamos desde el tamaño de la primera particion hasta el tamaño de la segunda particion
+        self.particion3.doDeserialize(data[sizeMK+sizeParticionesEst*2:sizeMK+sizeParticionesEst*3])
+        self.particion4.doDeserialize(data[sizeMK+sizeParticionesEst*3:])
         
         
     

@@ -49,7 +49,7 @@ class MKDISK(ctypes.Structure):
         Crrfile = open(self.path,"rb+")
         desplazamiento = 0
         self.calcularValoresSize()
-        nuevoMBR = MBR(self.size,tiempo(),randomVal(1,100),convertirstringaBin(self.convertirFit(self.fit)))
+        nuevoMBR = MBR(self.size,tiempo(),randomVal(1,100),convertirstringaBin(convertirValoresFit(self.fit)))
         datos = nuevoMBR.doSerialize()
         Winit_size(Crrfile,self.size)
         Fwrite_displacement(Crrfile,desplazamiento,datos) #archivo, desplazamiento y valores en binario
@@ -77,7 +77,7 @@ class MKDISK(ctypes.Structure):
             self.size,
             tiempo(),
             randomVal(1,100),
-            convertirstringaBin(self.convertirFit(self.fit))
+            convertirstringaBin(convertirValoresFit(self.fit))
         )
         return objetoMk
 
@@ -86,18 +86,11 @@ class MKDISK(ctypes.Structure):
         datoBinarioMBR = data[:sizeMK]
         self.size, self.path, self.fit, self.unit = struct.unpack(const, datoBinarioMBR)
         
-    def convertirFit(self, fit):
-        if self.fit == "BF":
-            return "B"
-        elif self.fit == "FF":
-            return "F"
-        elif self.fit == "WF":
-            return "W"
         
     def calcularValoresSize(self):
-        if self.unit == "K":
+        if self.unit.lower() == "k":
             self.size = self.size * 1024
-        elif self.unit == "M":
+        elif self.unit.lower() == "m":
             self.size = self.size * 1024 * 1024
         
         

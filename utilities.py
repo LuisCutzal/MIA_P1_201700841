@@ -21,6 +21,18 @@ def tiempo():
 def convertirFecha(fecha):
     return datetime.datetime.fromtimestamp(fecha)
 
+def convertirTiempoEntero(fecha):
+    return int(fecha.timestamp())
+
 
 def deBinaString(datoBinario):
     return datoBinario.decode().rstrip('\x00')
+
+def convertirValoresFit(valorFit):
+    if valorFit == "BF":
+        return "B"
+    elif valorFit == "FF":
+        return "F"
+    elif valorFit == "WF":
+        return "W"
+    else: print(f"el valor {valorFit} de fit no es valido")

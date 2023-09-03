@@ -2,7 +2,7 @@ import ctypes
 import struct
 from utilities import *
 from load import *
-class EXTENDIDA(self): #es un EBR porque tendre muchos objetos ebr
+class EBR(ctypes.Structure): #es un EBR porque tendre muchos objetos ebr
     
     def __init__(self):
         self.part_status = "\0"
@@ -12,9 +12,9 @@ class EXTENDIDA(self): #es un EBR porque tendre muchos objetos ebr
         self.part_next = -1
         self.part_name = "\0" * 16
         self.constanteExtendida = '2c 2I i 16s' # 2 char, 2 enteros sin signo, 1 entero con signo y una cadena de chars
-        self.next = None
+        
     
-    def set_valores(self,part_status, part_fit, part_start,part_s,part_next,part_name ):
+    def set_valores(self, part_status, part_fit, part_start,part_s, part_next, part_name ):
         self.part_status = part_status
         self.part_fit = part_fit
         self.part_start = part_start
@@ -37,7 +37,13 @@ class EXTENDIDA(self): #es un EBR porque tendre muchos objetos ebr
     
     def doDeserialize(self, data):
         partSize = struct.calcsize(self.constanteExtendida)
-        datoBinarioExtendida = data[:partSize]
-        self.part_status,self.part_fit,self.part_start,self.part_s,self.part_next,self.part_name = struct.unpack(self.constanteExtendida,datoBinarioExtendida)
-    
-    
+        datosEBR = struct.unpack(self.constanteExtendida,data)
+        if datosEBR[2] == 0 and datosEBR[3] == 0:
+            return self
+        self.part_status = deBinaString(datosEBR[0])
+        self.part_fit = deBinaString(datosEBR[1])
+        self.part_start = (datosEBR[2])
+        self.part_s = (datosEBR[3])
+        self.part_next = (datosEBR[4])
+        self.part_name = deBinaString(datosEBR[5])
+        return self    

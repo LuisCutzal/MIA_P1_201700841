@@ -36,5 +36,13 @@ class PARTICION(ctypes.Structure):
     
     def doDeserialize(self, data):
         partSize = struct.calcsize(self.constanteParticion)
-        datoBinarioParticion = data[:partSize]
-        self.part_status, self.part_type, self.part_fit, self.part_start, self.part_s, self.part_name = struct.unpack(self.constanteParticion, datoBinarioParticion)
+        datosParticion = struct.unpack(self.constanteParticion, data)
+        if datosParticion[3] == 0 and datosParticion[4] == 0:
+            return self
+        self.part_status = deBinaString(datosParticion[0]) #convertimos los datos binarios a strings
+        self.part_type= deBinaString(datosParticion[1]) #convertimos los datos binarios a strings
+        self.part_fit= deBinaString(datosParticion[2]) #convertimos los datos binarios a strings
+        self.part_start= datosParticion[3]
+        self.part_s = datosParticion[4]
+        self.part_name = deBinaString(datosParticion[5])
+        return self
