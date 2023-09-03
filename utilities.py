@@ -36,3 +36,7 @@ def convertirValoresFit(valorFit):
     elif valorFit == "WF":
         return "W"
     else: print(f"el valor {valorFit} de fit no es valido")
+    
+    
+def ejecutarPause():
+    input("presione enter para continuar con el programa")

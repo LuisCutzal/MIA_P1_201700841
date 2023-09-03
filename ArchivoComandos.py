@@ -8,6 +8,7 @@ from fdisk import *
 from mount import *
 from unmount import *
 from mkfs import *
+from utilities import *
 palabrasReservadas = {"execute":"EXECUTE",
                       "mkdisk": "MKDISK",
                       "path": "PATH",
@@ -25,6 +26,7 @@ palabrasReservadas = {"execute":"EXECUTE",
                       "id" : "ID",
                       "mkfs" : "MKFS",
                       "fs" : "FS",
+                      "pause": "PAUSE",
                       "rep": "REP"}
 
 tokens = ["IDENTIFICADOR",
@@ -127,7 +129,10 @@ def p_instruccion(t):
                    | comandomkfs'''
     t[0] = t[1]
 
-
+def p_instruccuion_pausa(t):
+    '''instruccion : PAUSE'''
+    ejecutarPause()
+    t[0] = ""
 
 def p_comandoexecute(t):
     '''comandoexecute : EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO'''

@@ -4,4 +4,5 @@
 #mkdisk -size=10 -path="/home/mis discos/Disco4.dsk"
 #rmdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco1.dsk
 #rep Disco1.dsk
-fdisk -size=1 -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco1.dsk -name=Particion12 -type=L
+#fdisk -size=1 -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco1.dsk -name=Particion12 -type=L
+pause
