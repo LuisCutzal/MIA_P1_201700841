@@ -27,6 +27,7 @@ palabrasReservadas = {"execute":"EXECUTE",
                       "mkfs" : "MKFS",
                       "fs" : "FS",
                       "pause": "PAUSE",
+                      "ruta" : "RUTA",
                       "rep": "REP"}
 
 tokens = ["IDENTIFICADOR",
@@ -64,7 +65,7 @@ def t_VALORDEPATH(t): #solo es la ruta aun no esta el archivo
 
 
 def t_NOMBREARCHIVO(t):
-    r'[a-zA-Z0-9_]+\.(adsj|dsk)' 
+    r'[a-zA-Z0-9_]+\.(adsj|dsk|txt|jpg)' 
     return t
 
 def t_IDENTIFICADOR(t):
@@ -183,10 +184,32 @@ def p_comentarios(t):
     t[0] = ""
 
 def p_rep(t):
-    '''comandorep : REP NOMBREARCHIVO'''
+    '''comandorep : REP listaparametros_rep'''
     REP().ejecutarRep()
     t[0]= ""
+    
+def p_listaparametros_rep(t):
+    '''listaparametros_rep : listaparametros_rep parametrorep
+                           | parametrorep'''
+    if len(t) == 3:
+        t[1].append(t[2])
+        t[0] = t[1]
+    else:
+        t[0] = [t[1]]
+        
+def p_parametrorep(t):
+    '''parametrorep : GUION parametroname
+                    | GUION parametropath
+                    | GUION parametroid
+                    | GUION parametroruta'''
+    t[0] = t[2]
 
+def p_parametroruta(t):
+    '''parametroruta : RUTA IGUAL VALORDEPATH NOMBREARCHIVO'''
+    t[0] = {"rutaArchivo" : t[3],
+            "nombrearchivo": t[4]}
+
+    
 def p_comandormdisk(t):
     '''comandormdisk : RMDISK GUION parametropath'''
     RMDISK().ejecutarRMDISK(t[3])
