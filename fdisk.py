@@ -94,7 +94,7 @@ class FDISK(ctypes.Structure):
             return False
         
         self.calcularValoresSize()
-        self.tipoDeParticion() 
+        self.tipoDeParticion()
         self.fit = convertirValoresFit(self.fit)
         return True
     

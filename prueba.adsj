@@ -3,5 +3,6 @@
 #mkdisk -size=5 -unit=M -path="/home/mis discos/Disco3.dsk"
 #mkdisk -size=10 -path="/home/mis discos/Disco4.dsk"
 #rmdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco1.dsk
-rep -id=061Disco1 -path=/home/user/reports/reporte1.jpg -name=mbr
+#rep -id=061Disco1 -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco3.dsk -name=mbr
 #fdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco3.dsk -name=ParticionE1 -size=1 -type=E -delete=full
+#mkfs -type=full -id=061Disco1

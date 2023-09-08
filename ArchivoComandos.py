@@ -185,7 +185,7 @@ def p_comentarios(t):
 
 def p_rep(t):
     '''comandorep : REP listaparametros_rep'''
-    REP().ejecutarRep()
+    REP(t[2]).ejecutarRep()
     t[0]= ""
     
 def p_listaparametros_rep(t):
@@ -206,8 +206,8 @@ def p_parametrorep(t):
 
 def p_parametroruta(t):
     '''parametroruta : RUTA IGUAL VALORDEPATH NOMBREARCHIVO'''
-    t[0] = {"rutaArchivo" : t[3],
-            "nombrearchivo": t[4]}
+    t[0] = {"ruta" : t[3],
+            "nombre": t[4]}
 
     
 def p_comandormdisk(t):
