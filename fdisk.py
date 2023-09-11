@@ -29,6 +29,9 @@ class FDISK(ctypes.Structure):
             return
         listaParticiones = [self.temporalMBR.particion1,self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4]
         if self.add == 0 and self.delete == '\0':
+            if self.size <=0:
+                print(f"El valor de size no existe o es menor o igual a cero")
+                return False
             #aca comienza todo lo que debe de hacer para agregar particiones sin usar add o delete en el comando
             if self.existeNombre(listaParticiones):
                 print("FDISK no se pudo ejecutar correctamente")
@@ -60,10 +63,17 @@ class FDISK(ctypes.Structure):
             #print(self.temporalMBR.doSerialize())
             escribirArchivoExistente(self.path, 0, self.temporalMBR.doSerialize())
             
+            
         if self.delete != '\0':
-            print("entro en delete")
-            self.eliminarEBR(self.name)
-            self.buscarPartExtendida(listaParticiones)
+            self.eliminarParticion(self.name)
+            """
+            if self.buscarnombre(listaParticiones,self.name):
+                self.eliminarParticion(self.name)
+            else:
+                print("FDISK no se pudo ejecutar correctamente")
+                print("El nombre de la particion no exite o ya fue eliminado")
+                return
+            """
             
             
     
@@ -86,9 +96,7 @@ class FDISK(ctypes.Structure):
             elif val.get("valoradd") != None:
                 self.add = val.get("valoradd")
         #print(self.listaParametros)
-        if self.size <=0:
-            print(f"El valor de size en fdisk {self.size} debe ser mayor a 0")
-            return False
+        
         if not archivoExistente(self.path):
             print(f"No existe el archivo en la ruta {self.path}")
             return False
@@ -125,7 +133,15 @@ class FDISK(ctypes.Structure):
         datos = Fread_displacement(self.path,0,struct.calcsize(temporalMBR.constMBR) + struct.calcsize(temporalMBR.particion1.constanteParticion)*4)
         temporalMBR.doDeserialize(datos) #ya tenemos los datos del mbr
         self.temporalMBR = temporalMBR
-        
+    
+    def buscarnombre(self, listaparticiones, nombre):
+        #esto es para particiones extendidas o primarias
+        for particion in listaparticiones:
+            if nombre in particion.part_name:
+                return True
+        return False
+            
+
         
     def existeNombre(self, listaparticiones): #aca verificamos si el nombre de la particion existe
         for particion in listaparticiones:
@@ -205,6 +221,7 @@ class FDISK(ctypes.Structure):
             actualEBR.part_name = self.name
             escribirArchivoExistente(self.path, particionExtendida.part_start, actualEBR.doSerialize())
             #print(particionExtendida.part_start)
+            return
         while actualEBR.part_next != -1:
             actualEBR.doDeserialize(Fread_displacement(self.path, actualEBR.part_next, tam))  #porque debemos de leer el siguiente
             actualizarSize -= actualEBR.part_s
@@ -222,98 +239,64 @@ class FDISK(ctypes.Structure):
         nuevoEBR.part_name = self.name
         escribirArchivoExistente(self.path, nuevoEBR.part_start, nuevoEBR.doSerialize())
         
-    def verificarNombreEliminar(self, listaparticiones): #esto es para particiones primarias
-        for particion in listaparticiones:
-            if particion.part_name == self.name:
-                return True
-        return False
-        
-    
-    def eliminarEBR(self, nombre):
+    def eliminarParticion(self, nombre):
+        actualMBR = MBR(0,0,0,0)
+        tam = struct.calcsize(actualMBR.constMBR) + struct.calcsize(actualMBR.particion1.constanteParticion)*4
+        #leer el mbr
+        datosMBR = Fread_displacement(self.path,0,tam)
+        #ahora deserealizar los datos
+        actualMBR.doDeserialize(datosMBR)
+        listaparticiones = [actualMBR.particion1, actualMBR.particion2, actualMBR.particion3, actualMBR.particion4]
+        for i in range(len(listaparticiones)):
+            #elimina particiones extendidas o primarias
+            if listaparticiones[i].part_name == nombre:
+                escribirArchivoExistente(self.path,listaparticiones[i].part_start, b'\0'* listaparticiones[i].part_s) #esto reescribe todo el tamaño de la particion rellena de 0
+                #actualizamos el mbr
+                listaparticiones[i].part_fit = '\0'
+                listaparticiones[i].part_name = '\0' * 16
+                listaparticiones[i].part_s = 0
+                listaparticiones[i].part_start = 0
+                listaparticiones[i].part_type = '\0'
+                listaparticiones[i].part_status = '\0'
+                actualMBR.mbr_fecha_creacion = convertirTiempoEntero(actualMBR.mbr_fecha_creacion)
+                escribirArchivoExistente(self.path,0,actualMBR.doSerialize())
+                return
+        temporalParticion=""
+        for particion in listaparticiones: #aca recorremos para obtener la particion extendida
+            if particion.part_type == "E":
+                #entra para bucar particiones logicas
+                temporalParticion = particion
+        if temporalParticion == "":
+            return
         actualEBR = EBR()
-        listaparticiones = [self.temporalMBR.particion1, self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4]
-        particionExtendida = self.retornarExtendida(listaparticiones)
-        tam = struct.calcsize(actualEBR.constanteEBR)
-        if particionExtendida.part_s == 0:
-            print("No hay particiones lógicas en la partición extendida.")
-            return
-        # Leer el primer EBR
-        datosEBR = Fread_displacement(self.path, particionExtendida.part_start, tam)
+        tamanioEBR = struct.calcsize(actualEBR.constanteEBR)
+        datosEBR = Fread_displacement(self.path, temporalParticion.part_start, tamanioEBR)
         actualEBR.doDeserialize(datosEBR)
-        
-        #para eliminar el primer ebr
         if actualEBR.part_name == nombre:
-            # Eliminar el primer EBR ajustando los punteros
-            particionExtendida.part_start = actualEBR.part_next
-            particionExtendida.part_s -= tam  # Restar el tamaño de los datos del EBR eliminado
-            #sobre escribir archivo
-            escribirArchivoExistente(self.path, particionExtendida.part_start, particionExtendida.doSerialize())
-            print(f"Partición lógica {nombre} eliminada.")
+            #encontro la primera particion logica
+            actualEBR = EBR()
+            escribirArchivoExistente(self.path,temporalParticion.part_start,actualEBR.doSerialize())
+            print(f"Particion logica {nombre} eliminada con exito")
             return
-        
         while actualEBR.part_next != -1:
-            datosEBR = Fread_displacement(self.path, actualEBR.part_next, tam)
+            datosEBR = Fread_displacement(self.path, actualEBR.part_next, tamanioEBR)
             siguienteEBR = EBR()
             siguienteEBR.doDeserialize(datosEBR)
             if siguienteEBR.part_name == nombre:
+                escribirArchivoExistente(self.path, siguienteEBR.part_start, b'\0'* siguienteEBR.part_s)
                 actualEBR.part_next = siguienteEBR.part_next
-                particionExtendida.part_s -= tam  # Restar el tamaño de los datos del EBR eliminado 
+                siguienteEBR.part_status = "\0"
+                siguienteEBR.part_fit = "\0"
+                siguienteEBR.part_start = -1
+                siguienteEBR.part_s = 0
+                siguienteEBR.part_next = -1
+                siguienteEBR.part_name = "\0" * 16
                 escribirArchivoExistente(self.path, actualEBR.part_start, actualEBR.doSerialize())
-                print(f"Partición lógica {nombre} eliminada.")
+                print(f"Particion logica {nombre} eliminada con exito")
                 return
-            
             actualEBR = siguienteEBR
         print(f"No se encontró la partición lógica {nombre}.")
-        
-    
-    def eliminarParticionesLogicas(self, path, start, size):
-        # Calcular el número de bytes que ocupan las particiones lógicas
-        actualEBR = EBR()
-        tam_particion_logica = struct.calcsize(actualEBR.constanteEBR)
-
-        # Calcular el número de particiones lógicas dentro de la partición extendida
-        num_particiones_logicas = size // tam_particion_logica
-
-        # Eliminar cada partición lógica dentro de la partición extendida
-        for i in range(num_particiones_logicas):
-            # Calcular la posición de inicio de la partición lógica
-            offset = start + (i * tam_particion_logica)
-
-            # Eliminar la partición lógica sobrescribiendo con caracteres nulos
-            escribirArchivoExistente(path, offset, b'\0' * tam_particion_logica)
-
-    def eliminarParticionExtendida(self):
-        listaparticiones = [self.temporalMBR.particion1, self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4]
-        for i, particion in enumerate(listaparticiones):
-            if particion.part_type == 'E':  # Verificar si es una partición extendida
-                particionExtendida = particion
-                tam_part_extendida = particionExtendida.part_s
-
-                # Eliminar particiones lógicas dentro de la partición extendida
-                self.eliminarParticionesLogicas(self.path, particionExtendida.part_start, tam_part_extendida)
-
-                # Eliminar la partición extendida sobrescribiendo con caracteres nulos
-                escribirArchivoExistente(self.path, particionExtendida.part_start, b'\0' * tam_part_extendida)
-
-                # Actualizar la información en la lista de particiones
-                listaparticiones[i] = PARTICION()  # Crear una partición vacía en ese lugar
-
-                # Actualizar la información en el MBR
-                self.temporalMBR.particion1, self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4 = listaparticiones
-
-                # Escribir el MBR actualizado en el disco
-                escribirArchivoExistente(self.path, 0, self.temporalMBR.doSerialize())
-
-                print("Partición extendida y sus particiones lógicas eliminadas.")
-                return
-
-        print("No se encontró una partición extendida.")
-
-    def buscarPartExtendida(self, listaparticiones):
-        for particion in listaparticiones:
-            if particion.part_type == self.type:
-                if particion.part_name == self.name:
-                    self.eliminarParticionExtendida()
-                    print("particion extendida eliminada con exito")
-                    return
+            
+                
+                
         
