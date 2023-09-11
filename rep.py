@@ -9,6 +9,8 @@ class REP():
         self. path =""
         self.name = ""
         self.ruta = ""
+        self.temporalMBR = ""
+        
     def ejecutarRep(self):
         if not self.agregarvalores():
             print("El comandno rep no se pudo ejecutar correctamente")
@@ -35,6 +37,7 @@ class REP():
     def verificarNombre(self):
         if self.name == "mbr":
             print("mbr")
+            self.crearGrafoMBR()
             return True
         elif self.name == "disk":
             print("disk")
@@ -72,3 +75,15 @@ class REP():
         print("Asignature: " ,nuevoObjetoMBR.mbr_dsk_signature)
         print("Fecha de Creacion:" , nuevoObjetoMBR.mbr_fecha_creacion)
         print("Tamaño disco: " ,nuevoObjetoMBR.mbr_tamano)"""
+        
+    def crearGrafoMBR(self):
+        
+        
+        
+        diagrama = 'digraph G { '"\n"'a0 [shape=none label=<  <TABLE cellspacing="10" cellpadding="10" style="rounded" bgcolor="red"> <TR> <TD bgcolor="yellow">REPORTE MBR</TD> </TR>'
+        
+        
+
+    
+    def crearImagen(self):
+        pass

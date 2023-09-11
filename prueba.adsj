@@ -8,7 +8,10 @@
 #fdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionL1 -type=L -size=1
 #fdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionL2 -type=L -size=2
 #fdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionL3 -type=L -size=3
-fdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionL -delete=full
-#fdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionL4 -type=L -size=1
-#fdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionL5 -type=L -size=1
+#fdisk -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionE1 -delete=full
+
+
 #mkfs -type=full -id=061Disco1
+mount -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionL1
+mount -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionL3
+mount -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionL2

@@ -74,7 +74,11 @@ class FDISK(ctypes.Structure):
                 print("El nombre de la particion no exite o ya fue eliminado")
                 return
             """
+        if self.add > 0:
+            print("Agregando mas espacio")
             
+        if self.add <0:
+            print("Quitando espacio")
             
     
     def agregarValores(self):
@@ -228,6 +232,10 @@ class FDISK(ctypes.Structure):
             if actualEBR.part_name == self.name:
                 print("Ya existe la particion logica")
                 return
+            if actualizarSize < self.size:
+                print("No se puede crear particion ya que no existe espacio suficiente")
+                return
+                
         actualEBR.part_next = actualEBR.part_start + self.size
         escribirArchivoExistente(self.path,actualEBR.part_start,actualEBR.doSerialize())#solo su next
         nuevoEBR = EBR()
