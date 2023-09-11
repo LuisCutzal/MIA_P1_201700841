@@ -217,7 +217,7 @@ class FDISK(ctypes.Structure):
             actualEBR.part_fit = self.fit
             actualEBR.part_start = particionExtendida.part_start
             actualEBR.part_s = self.size
-            actualEBR.part_next = -1
+            actualEBR.part_next = actualEBR.part_next
             actualEBR.part_name = self.name
             escribirArchivoExistente(self.path, particionExtendida.part_start, actualEBR.doSerialize())
             #print(particionExtendida.part_start)
@@ -239,6 +239,7 @@ class FDISK(ctypes.Structure):
         nuevoEBR.part_name = self.name
         escribirArchivoExistente(self.path, nuevoEBR.part_start, nuevoEBR.doSerialize())
         
+
     def eliminarParticion(self, nombre):
         actualMBR = MBR(0,0,0,0)
         tam = struct.calcsize(actualMBR.constMBR) + struct.calcsize(actualMBR.particion1.constanteParticion)*4
@@ -273,11 +274,19 @@ class FDISK(ctypes.Structure):
         datosEBR = Fread_displacement(self.path, temporalParticion.part_start, tamanioEBR)
         actualEBR.doDeserialize(datosEBR)
         if actualEBR.part_name == nombre:
+            if actualEBR.part_next != -1:
+                siguiente = actualEBR.part_next
+                actualEBR = EBR()
+                actualEBR.part_next = siguiente
+                escribirArchivoExistente(self.path,temporalParticion.part_start, actualEBR.doSerialize())
+                print(f"Particion logica {nombre} eliminada con exito")
+                return
             #encontro la primera particion logica
-            actualEBR = EBR()
-            escribirArchivoExistente(self.path,temporalParticion.part_start,actualEBR.doSerialize())
-            print(f"Particion logica {nombre} eliminada con exito")
-            return
+            else:
+                actualEBR = EBR()
+                escribirArchivoExistente(self.path,temporalParticion.part_start,actualEBR.doSerialize())
+                print(f"Particion logica {nombre} eliminada con exito")
+                return
         while actualEBR.part_next != -1:
             datosEBR = Fread_displacement(self.path, actualEBR.part_next, tamanioEBR)
             siguienteEBR = EBR()
@@ -296,7 +305,8 @@ class FDISK(ctypes.Structure):
                 return
             actualEBR = siguienteEBR
         print(f"No se encontró la partición lógica {nombre}.")
-            
+
+
                 
                 
         
