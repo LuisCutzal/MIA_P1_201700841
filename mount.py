@@ -14,24 +14,19 @@ class MOUNT(ctypes.Structure):
         self.constanteMOUNT = '2c'
         self.temporalMBR = ""
         self.temportalEBR = ""
-        self.agregar_a_lista = ListaEnlazada()
         
-    def ejecutarMOUNT(self):
+    def ejecutarMOUNT(self, listaMount):
         if not self.validarMount():
             print("Error, no se pudo ejecutar el comando mount")
-            return
+            return       
         self.leerMBR()
         if self.temporalMBR == "":
             print("Error, no se encuentra el MBR del archivo")
-            return        
-        listaParticiones = [self.temporalMBR.particion1,self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4]
-        self.montarParticion(listaParticiones)
-        self.imprimirMount()
-        return
-        
-        
-        
-    
+            return
+        if not self.buscarParticion(listaMount):
+            print(f"No se encontro la particion {self.name}")
+            return
+   
     def validarMount(self):
         for val in self.listaParametros:
             if val.get("rutaArchivo") != None:
@@ -55,8 +50,7 @@ class MOUNT(ctypes.Structure):
             if particion.part_type == "E":
                 return particion
     
-    
-    def montarParticion(self, listaparticiones):
+    def montarLogica(self, listaparticiones, listaMount, contador):
         #aca se coloca la parte del nombre de la particion
         actualEBR = EBR()
         particionExtendida = self.retornarExtendida(listaparticiones)
@@ -64,24 +58,52 @@ class MOUNT(ctypes.Structure):
         datosEBR = Fread_displacement(self.path,particionExtendida.part_start,tam)
         actualEBR.doDeserialize(datosEBR)
         self.temportalEBR = actualEBR
-        nombre = self.nombrearchivo.split(".") #esto es nombre del disco
         if actualEBR.part_name == self.name: #primera particion
-            #aca encontre la particion ahora comenzare a agregarlo a una lista
-            #                                     nombre disco, nombre particion, estado particion  
-            self.agregar_a_lista.agregar_elemento(nombre[0], actualEBR.part_name, actualEBR.part_status)
-            #agregar_a_lista.imprimir_lista()
-            return
-        
+            contador +=1
+            datosMount = {
+                "path":self.path,
+                "id": self.generarIdParticion(contador),
+                "particion": actualEBR
+            }
+            listaMount.append(datosMount)
+            print(f"Se monto la particion {self.name} con identificador {datosMount['id']}")
+            return True
+        contador +=1    
         while actualEBR.part_next != -1:
             actualEBR.doDeserialize(Fread_displacement(self.path, actualEBR.part_next, tam))
+            contador +=1
             if actualEBR.part_name == self.name:
-                self.agregar_a_lista.agregar_elemento(nombre[0], actualEBR.part_name, actualEBR.part_status)
-                return
-    def imprimirMount(self):
-        print("**** Indice ********** Particion ********** Identificador **********")
-        self.agregar_a_lista.imprimir_lista()
+                datosMount = {
+                    "path":self.path,
+                    "id": self.generarIdParticion(contador),
+                    "particion": actualEBR
+                }
+                listaMount.append(datosMount)
+                print(f"Se monto la particion {self.name} con identificador {datosMount['id']}")
+                return True
+        return False
 
-
+    def generarIdParticion(self, numParticion,):
+        nombre = self.nombrearchivo.split(".")
+        return "41"+str(numParticion)+nombre[0]
+        
+    def buscarParticion(self,listaMount):
+        listaParticiones = [self.temporalMBR.particion1,self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4]
+        contadorparticion = 0
+        for particion in listaParticiones: #para particiones primarias
+            if particion.part_name == self.name:
+                datosMount = {
+                    "path":self.path,
+                    "id": self.generarIdParticion(contadorparticion),
+                    "particion": particion
+                }
+                listaMount.append(datosMount)
+                print(f"Se monto la particion {self.name} con identificador {datosMount['id']}")
+                return True
+            contadorparticion +=1
+        #comienza particiones logicas
+        return self.montarLogica(listaParticiones,listaMount,contadorparticion)
+    
 """
 ultimos digitos carnet + numero particion + nombredisco
 para los ids -> 411disco1

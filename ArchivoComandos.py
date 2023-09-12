@@ -261,7 +261,7 @@ def p_parametroadd(t):
     
 def p_comandomount(t):
     '''comandomount : MOUNT listaparametros_mount'''
-    MOUNT(t[2]).ejecutarMOUNT()
+    MOUNT(t[2]).ejecutarMOUNT(listaMount)
     t[0]=""
 
 def p_listaparametros_mount(t):
@@ -280,7 +280,7 @@ def p_parametromount(t):
 
 def p_comandounmount(t):
     '''comandounmount : UNMOUNT listaids_unmount'''
-    UNMOUNT(t[2]).ejecutarUNMOUNT()
+    UNMOUNT(t[2]).ejecutarUNMOUNT(listaMount)
     t[0]=""
 
 def p_listaids_unmount(t):
@@ -326,7 +326,9 @@ def p_parametrofs(t):
 
 def iniciarAnalisis(comando):
     global input
+    global listaMount
     input = comando
+    listaMount = []
     lex = lexico.lex()
     parser = sintactico.yacc()
     salIDENTIFICADORa = parser.parse(comando)

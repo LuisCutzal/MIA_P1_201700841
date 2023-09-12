@@ -2,14 +2,25 @@ import ctypes
 import struct
 from utilities import *
 from load import *
+
 class UNMOUNT(ctypes.Structure):
     def __init__(self, listaides):
         self.listaides = listaides
         self.id = '\0'
         self.constanteUNMOUNT = 'C'
     
-    def ejecutarUNMOUNT(self):
+    def ejecutarUNMOUNT(self, listaMount):
         for val in self.listaides:
             if val.get("valorid") != None:
                 self.id = val.get("valorid")
-        print(self.id)
+        for identificadores in listaMount:
+            if identificadores['id'] == self.id:
+                listaMount.remove(identificadores)
+                print(f"Se desmonto {self.id} correctamente")
+                return
+        print(f"No se encontro el {self.id} ya sea que no existe o ya esta desmontado")
+            
+                
+    
+    
+    

@@ -9,17 +9,15 @@ from ArchivoComandos import iniciarAnalisis
 #hexdump -s 2173 -n 400 -Cv /home/luis/Escritorio/Archivos2023/proyectos/Disco1.dsk | head -n 100
 
 def aplicacionComandos():
-    input = iniciarAnalisis("execute -path=/home/luis/Escritorio/Archivos2023/proyectos/MIA_P1_201700841/prueba.adsj")
+    """input = iniciarAnalisis("execute -path=/home/luis/Escritorio/Archivos2023/proyectos/MIA_P1_201700841/prueba.adsj")
     #print(input)
-    iniciarAnalisis(input)
-
-  
-    
-    """while True: 
+    iniciarAnalisis(input)"""
+   
+    while True: 
         #iniciarAnalisis(input("-> "))
         iniciamos = iniciarAnalisis(input("-> "))
         #print(input)
-        iniciarAnalisis(iniciamos)"""
+        iniciarAnalisis(iniciamos)
     
     
     '''
