@@ -197,7 +197,7 @@ def p_comentarios(t):
 
 def p_rep(t):
     '''comandorep : REP listaparametros_rep'''
-    REP(t[2]).ejecutarRep()
+    REP(t[2]).ejecutarRep(listaMount)
     t[0]= ""
     
 def p_listaparametros_rep(t):
