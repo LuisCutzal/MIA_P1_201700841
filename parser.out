@@ -24,85 +24,88 @@ Rule 18    parametromkdisk -> GUION parametropath
 Rule 19    parametromkdisk -> GUION parametrosize
 Rule 20    parametromkdisk -> GUION parametrounit
 Rule 21    parametromkdisk -> GUION parametrofit
-Rule 22    parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO
-Rule 23    parametrosize -> SIZE IGUAL NUMEROS
-Rule 24    parametrounit -> UNIT IGUAL IDENTIFICADOR
-Rule 25    parametrofit -> FIT IGUAL IDENTIFICADOR
-Rule 26    comentarios -> COMENTARIOS
-Rule 27    comandorep -> REP listaparametros_rep
-Rule 28    listaparametros_rep -> listaparametros_rep parametrorep
-Rule 29    listaparametros_rep -> parametrorep
-Rule 30    parametrorep -> GUION parametroname
-Rule 31    parametrorep -> GUION parametropath
-Rule 32    parametrorep -> GUION parametroid
-Rule 33    parametrorep -> GUION parametroruta
-Rule 34    parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO
-Rule 35    comandormdisk -> RMDISK GUION parametropath
-Rule 36    comandofdisk -> FDISK listaparametros_fdisk
-Rule 37    listaparametros_fdisk -> listaparametros_fdisk parametrofdisk
-Rule 38    listaparametros_fdisk -> parametrofdisk
-Rule 39    parametrofdisk -> GUION parametrosize
-Rule 40    parametrofdisk -> GUION parametropath
-Rule 41    parametrofdisk -> GUION parametroname
-Rule 42    parametrofdisk -> GUION parametrounit
-Rule 43    parametrofdisk -> GUION parametrotype
-Rule 44    parametrofdisk -> GUION parametrofit
-Rule 45    parametrofdisk -> GUION parametrodelete
-Rule 46    parametrofdisk -> GUION parametroadd
-Rule 47    parametroname -> NAME IGUAL STRING
-Rule 48    parametroname -> NAME IGUAL IDENTIFICADOR
-Rule 49    parametrotype -> TYPE IGUAL IDENTIFICADOR
-Rule 50    parametrodelete -> DELETE IGUAL IDENTIFICADOR
-Rule 51    parametroadd -> ADD IGUAL NUMEROS
-Rule 52    comandomount -> MOUNT listaparametros_mount
-Rule 53    listaparametros_mount -> listaparametros_mount parametromount
-Rule 54    listaparametros_mount -> parametromount
-Rule 55    parametromount -> GUION parametropath
-Rule 56    parametromount -> GUION parametroname
-Rule 57    comandounmount -> UNMOUNT listaids_unmount
-Rule 58    listaids_unmount -> listaids_unmount parametrounmount
-Rule 59    listaids_unmount -> parametrounmount
-Rule 60    parametrounmount -> GUION parametroid
-Rule 61    parametroid -> ID IGUAL IDENTIFICADOR
-Rule 62    comandomkfs -> MKFS listaparametros_mkfs
-Rule 63    listaparametros_mkfs -> listaparametros_mkfs parametromkfs
-Rule 64    listaparametros_mkfs -> parametromkfs
-Rule 65    parametromkfs -> GUION parametroid
-Rule 66    parametromkfs -> GUION parametrotype
-Rule 67    parametromkfs -> GUION parametrofs
-Rule 68    parametrofs -> FS IGUAL FORMATEAR
+Rule 22    parametropath -> PATH IGUAL valorespath
+Rule 23    valorespath -> VALORDEPATH NOMBREARCHIVO
+Rule 24    valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS
+Rule 25    parametrosize -> SIZE IGUAL NUMEROS
+Rule 26    parametrounit -> UNIT IGUAL IDENTIFICADOR
+Rule 27    parametrofit -> FIT IGUAL IDENTIFICADOR
+Rule 28    comentarios -> COMENTARIOS
+Rule 29    comandorep -> REP listaparametros_rep
+Rule 30    listaparametros_rep -> listaparametros_rep parametrorep
+Rule 31    listaparametros_rep -> parametrorep
+Rule 32    parametrorep -> GUION parametroname
+Rule 33    parametrorep -> GUION parametropath
+Rule 34    parametrorep -> GUION parametroid
+Rule 35    parametrorep -> GUION parametroruta
+Rule 36    parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO
+Rule 37    comandormdisk -> RMDISK GUION parametropath
+Rule 38    comandofdisk -> FDISK listaparametros_fdisk
+Rule 39    listaparametros_fdisk -> listaparametros_fdisk parametrofdisk
+Rule 40    listaparametros_fdisk -> parametrofdisk
+Rule 41    parametrofdisk -> GUION parametrosize
+Rule 42    parametrofdisk -> GUION parametropath
+Rule 43    parametrofdisk -> GUION parametroname
+Rule 44    parametrofdisk -> GUION parametrounit
+Rule 45    parametrofdisk -> GUION parametrotype
+Rule 46    parametrofdisk -> GUION parametrofit
+Rule 47    parametrofdisk -> GUION parametrodelete
+Rule 48    parametrofdisk -> GUION parametroadd
+Rule 49    parametroname -> NAME IGUAL STRING
+Rule 50    parametroname -> NAME IGUAL IDENTIFICADOR
+Rule 51    parametrotype -> TYPE IGUAL IDENTIFICADOR
+Rule 52    parametrodelete -> DELETE IGUAL IDENTIFICADOR
+Rule 53    parametroadd -> ADD IGUAL NUMEROS
+Rule 54    comandomount -> MOUNT listaparametros_mount
+Rule 55    listaparametros_mount -> listaparametros_mount parametromount
+Rule 56    listaparametros_mount -> parametromount
+Rule 57    parametromount -> GUION parametropath
+Rule 58    parametromount -> GUION parametroname
+Rule 59    comandounmount -> UNMOUNT listaids_unmount
+Rule 60    listaids_unmount -> listaids_unmount parametrounmount
+Rule 61    listaids_unmount -> parametrounmount
+Rule 62    parametrounmount -> GUION parametroid
+Rule 63    parametroid -> ID IGUAL IDENTIFICADOR
+Rule 64    comandomkfs -> MKFS listaparametros_mkfs
+Rule 65    listaparametros_mkfs -> listaparametros_mkfs parametromkfs
+Rule 66    listaparametros_mkfs -> parametromkfs
+Rule 67    parametromkfs -> GUION parametroid
+Rule 68    parametromkfs -> GUION parametrotype
+Rule 69    parametromkfs -> GUION parametrofs
+Rule 70    parametrofs -> FS IGUAL FORMATEAR
 
 Terminals, with rules where they appear
 
-ADD                  : 51
-COMENTARIOS          : 26
-DELETE               : 50
+ADD                  : 53
+COMENTARIOS          : 28
+COMILLAS             : 24 24
+DELETE               : 52
 EXECUTE              : 14
-FDISK                : 36
-FIT                  : 25
-FORMATEAR            : 68
-FS                   : 68
-GUION                : 14 18 19 20 21 30 31 32 33 35 39 40 41 42 43 44 45 46 55 56 60 65 66 67
-ID                   : 61
-IDENTIFICADOR        : 24 25 48 49 50 61
-IGUAL                : 14 22 23 24 25 34 47 48 49 50 51 61 68
+FDISK                : 38
+FIT                  : 27
+FORMATEAR            : 70
+FS                   : 70
+GUION                : 14 18 19 20 21 32 33 34 35 37 41 42 43 44 45 46 47 48 57 58 62 67 68 69
+ID                   : 63
+IDENTIFICADOR        : 26 27 50 51 52 63
+IGUAL                : 14 22 25 26 27 36 49 50 51 52 53 63 70
 MKDISK               : 15
-MKFS                 : 62
-MOUNT                : 52
-NAME                 : 47 48
-NOMBREARCHIVO        : 14 22 34
-NUMEROS              : 23 51
+MKFS                 : 64
+MOUNT                : 54
+NAME                 : 49 50
+NOMBREARCHIVO        : 14 23 24 36
+NUMEROS              : 25 53
 PATH                 : 14 22
 PAUSE                : 13
-REP                  : 27
-RMDISK               : 35
-RUTA                 : 34
-SIZE                 : 23
-STRING               : 47
-TYPE                 : 49
-UNIT                 : 24
-UNMOUNT              : 57
-VALORDEPATH          : 14 22 34
+REP                  : 29
+RMDISK               : 37
+RUTA                 : 36
+SIZE                 : 25
+STRING               : 49
+TYPE                 : 51
+UNIT                 : 26
+UNMOUNT              : 59
+VALORDEPATH          : 14 23 24 36
 error                : 
 
 Nonterminals, with rules where they appear
@@ -119,29 +122,30 @@ comentarios          : 6
 inicio               : 0
 instruccion          : 2 3
 instrucciones        : 1 2
-listaids_unmount     : 57 58
-listaparametros_fdisk : 36 37
+listaids_unmount     : 59 60
+listaparametros_fdisk : 38 39
 listaparametros_mkdisk : 15 16
-listaparametros_mkfs : 62 63
-listaparametros_mount : 52 53
-listaparametros_rep  : 27 28
-parametroadd         : 46
-parametrodelete      : 45
-parametrofdisk       : 37 38
-parametrofit         : 21 44
-parametrofs          : 67
-parametroid          : 32 60 65
+listaparametros_mkfs : 64 65
+listaparametros_mount : 54 55
+listaparametros_rep  : 29 30
+parametroadd         : 48
+parametrodelete      : 47
+parametrofdisk       : 39 40
+parametrofit         : 21 46
+parametrofs          : 69
+parametroid          : 34 62 67
 parametromkdisk      : 16 17
-parametromkfs        : 63 64
-parametromount       : 53 54
-parametroname        : 30 41 56
-parametropath        : 18 31 35 40 55
-parametrorep         : 28 29
-parametroruta        : 33
-parametrosize        : 19 39
-parametrotype        : 43 66
-parametrounit        : 20 42
-parametrounmount     : 58 59
+parametromkfs        : 65 66
+parametromount       : 55 56
+parametroname        : 32 43 58
+parametropath        : 18 33 37 42 57
+parametrorep         : 30 31
+parametroruta        : 35
+parametrosize        : 19 41
+parametrotype        : 45 68
+parametrounit        : 20 44
+parametrounmount     : 60 61
+valorespath          : 22
 
 Parsing method: LALR
 
@@ -163,13 +167,13 @@ state 0
     (13) instruccion -> . PAUSE
     (14) comandoexecute -> . EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO
     (15) comandomkdisk -> . MKDISK listaparametros_mkdisk
-    (26) comentarios -> . COMENTARIOS
-    (27) comandorep -> . REP listaparametros_rep
-    (35) comandormdisk -> . RMDISK GUION parametropath
-    (36) comandofdisk -> . FDISK listaparametros_fdisk
-    (52) comandomount -> . MOUNT listaparametros_mount
-    (57) comandounmount -> . UNMOUNT listaids_unmount
-    (62) comandomkfs -> . MKFS listaparametros_mkfs
+    (28) comentarios -> . COMENTARIOS
+    (29) comandorep -> . REP listaparametros_rep
+    (37) comandormdisk -> . RMDISK GUION parametropath
+    (38) comandofdisk -> . FDISK listaparametros_fdisk
+    (54) comandomount -> . MOUNT listaparametros_mount
+    (59) comandounmount -> . UNMOUNT listaids_unmount
+    (64) comandomkfs -> . MKFS listaparametros_mkfs
 
     PAUSE           shift and go to state 13
     EXECUTE         shift and go to state 14
@@ -217,13 +221,13 @@ state 2
     (13) instruccion -> . PAUSE
     (14) comandoexecute -> . EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO
     (15) comandomkdisk -> . MKDISK listaparametros_mkdisk
-    (26) comentarios -> . COMENTARIOS
-    (27) comandorep -> . REP listaparametros_rep
-    (35) comandormdisk -> . RMDISK GUION parametropath
-    (36) comandofdisk -> . FDISK listaparametros_fdisk
-    (52) comandomount -> . MOUNT listaparametros_mount
-    (57) comandounmount -> . UNMOUNT listaids_unmount
-    (62) comandomkfs -> . MKFS listaparametros_mkfs
+    (28) comentarios -> . COMENTARIOS
+    (29) comandorep -> . REP listaparametros_rep
+    (37) comandormdisk -> . RMDISK GUION parametropath
+    (38) comandofdisk -> . FDISK listaparametros_fdisk
+    (54) comandomount -> . MOUNT listaparametros_mount
+    (59) comandounmount -> . UNMOUNT listaids_unmount
+    (64) comandomkfs -> . MKFS listaparametros_mkfs
 
     $end            reduce using rule 1 (inicio -> instrucciones .)
     PAUSE           shift and go to state 13
@@ -459,30 +463,30 @@ state 15
 
 state 16
 
-    (26) comentarios -> COMENTARIOS .
+    (28) comentarios -> COMENTARIOS .
 
-    PAUSE           reduce using rule 26 (comentarios -> COMENTARIOS .)
-    EXECUTE         reduce using rule 26 (comentarios -> COMENTARIOS .)
-    MKDISK          reduce using rule 26 (comentarios -> COMENTARIOS .)
-    COMENTARIOS     reduce using rule 26 (comentarios -> COMENTARIOS .)
-    REP             reduce using rule 26 (comentarios -> COMENTARIOS .)
-    RMDISK          reduce using rule 26 (comentarios -> COMENTARIOS .)
-    FDISK           reduce using rule 26 (comentarios -> COMENTARIOS .)
-    MOUNT           reduce using rule 26 (comentarios -> COMENTARIOS .)
-    UNMOUNT         reduce using rule 26 (comentarios -> COMENTARIOS .)
-    MKFS            reduce using rule 26 (comentarios -> COMENTARIOS .)
-    $end            reduce using rule 26 (comentarios -> COMENTARIOS .)
+    PAUSE           reduce using rule 28 (comentarios -> COMENTARIOS .)
+    EXECUTE         reduce using rule 28 (comentarios -> COMENTARIOS .)
+    MKDISK          reduce using rule 28 (comentarios -> COMENTARIOS .)
+    COMENTARIOS     reduce using rule 28 (comentarios -> COMENTARIOS .)
+    REP             reduce using rule 28 (comentarios -> COMENTARIOS .)
+    RMDISK          reduce using rule 28 (comentarios -> COMENTARIOS .)
+    FDISK           reduce using rule 28 (comentarios -> COMENTARIOS .)
+    MOUNT           reduce using rule 28 (comentarios -> COMENTARIOS .)
+    UNMOUNT         reduce using rule 28 (comentarios -> COMENTARIOS .)
+    MKFS            reduce using rule 28 (comentarios -> COMENTARIOS .)
+    $end            reduce using rule 28 (comentarios -> COMENTARIOS .)
 
 
 state 17
 
-    (27) comandorep -> REP . listaparametros_rep
-    (28) listaparametros_rep -> . listaparametros_rep parametrorep
-    (29) listaparametros_rep -> . parametrorep
-    (30) parametrorep -> . GUION parametroname
-    (31) parametrorep -> . GUION parametropath
-    (32) parametrorep -> . GUION parametroid
-    (33) parametrorep -> . GUION parametroruta
+    (29) comandorep -> REP . listaparametros_rep
+    (30) listaparametros_rep -> . listaparametros_rep parametrorep
+    (31) listaparametros_rep -> . parametrorep
+    (32) parametrorep -> . GUION parametroname
+    (33) parametrorep -> . GUION parametropath
+    (34) parametrorep -> . GUION parametroid
+    (35) parametrorep -> . GUION parametroruta
 
     GUION           shift and go to state 30
 
@@ -491,24 +495,24 @@ state 17
 
 state 18
 
-    (35) comandormdisk -> RMDISK . GUION parametropath
+    (37) comandormdisk -> RMDISK . GUION parametropath
 
     GUION           shift and go to state 31
 
 
 state 19
 
-    (36) comandofdisk -> FDISK . listaparametros_fdisk
-    (37) listaparametros_fdisk -> . listaparametros_fdisk parametrofdisk
-    (38) listaparametros_fdisk -> . parametrofdisk
-    (39) parametrofdisk -> . GUION parametrosize
-    (40) parametrofdisk -> . GUION parametropath
-    (41) parametrofdisk -> . GUION parametroname
-    (42) parametrofdisk -> . GUION parametrounit
-    (43) parametrofdisk -> . GUION parametrotype
-    (44) parametrofdisk -> . GUION parametrofit
-    (45) parametrofdisk -> . GUION parametrodelete
-    (46) parametrofdisk -> . GUION parametroadd
+    (38) comandofdisk -> FDISK . listaparametros_fdisk
+    (39) listaparametros_fdisk -> . listaparametros_fdisk parametrofdisk
+    (40) listaparametros_fdisk -> . parametrofdisk
+    (41) parametrofdisk -> . GUION parametrosize
+    (42) parametrofdisk -> . GUION parametropath
+    (43) parametrofdisk -> . GUION parametroname
+    (44) parametrofdisk -> . GUION parametrounit
+    (45) parametrofdisk -> . GUION parametrotype
+    (46) parametrofdisk -> . GUION parametrofit
+    (47) parametrofdisk -> . GUION parametrodelete
+    (48) parametrofdisk -> . GUION parametroadd
 
     GUION           shift and go to state 34
 
@@ -517,11 +521,11 @@ state 19
 
 state 20
 
-    (52) comandomount -> MOUNT . listaparametros_mount
-    (53) listaparametros_mount -> . listaparametros_mount parametromount
-    (54) listaparametros_mount -> . parametromount
-    (55) parametromount -> . GUION parametropath
-    (56) parametromount -> . GUION parametroname
+    (54) comandomount -> MOUNT . listaparametros_mount
+    (55) listaparametros_mount -> . listaparametros_mount parametromount
+    (56) listaparametros_mount -> . parametromount
+    (57) parametromount -> . GUION parametropath
+    (58) parametromount -> . GUION parametroname
 
     GUION           shift and go to state 37
 
@@ -530,10 +534,10 @@ state 20
 
 state 21
 
-    (57) comandounmount -> UNMOUNT . listaids_unmount
-    (58) listaids_unmount -> . listaids_unmount parametrounmount
-    (59) listaids_unmount -> . parametrounmount
-    (60) parametrounmount -> . GUION parametroid
+    (59) comandounmount -> UNMOUNT . listaids_unmount
+    (60) listaids_unmount -> . listaids_unmount parametrounmount
+    (61) listaids_unmount -> . parametrounmount
+    (62) parametrounmount -> . GUION parametroid
 
     GUION           shift and go to state 40
 
@@ -542,12 +546,12 @@ state 21
 
 state 22
 
-    (62) comandomkfs -> MKFS . listaparametros_mkfs
-    (63) listaparametros_mkfs -> . listaparametros_mkfs parametromkfs
-    (64) listaparametros_mkfs -> . parametromkfs
-    (65) parametromkfs -> . GUION parametroid
-    (66) parametromkfs -> . GUION parametrotype
-    (67) parametromkfs -> . GUION parametrofs
+    (64) comandomkfs -> MKFS . listaparametros_mkfs
+    (65) listaparametros_mkfs -> . listaparametros_mkfs parametromkfs
+    (66) listaparametros_mkfs -> . parametromkfs
+    (67) parametromkfs -> . GUION parametroid
+    (68) parametromkfs -> . GUION parametrotype
+    (69) parametromkfs -> . GUION parametrofs
 
     GUION           shift and go to state 43
 
@@ -626,10 +630,10 @@ state 27
     (19) parametromkdisk -> GUION . parametrosize
     (20) parametromkdisk -> GUION . parametrounit
     (21) parametromkdisk -> GUION . parametrofit
-    (22) parametropath -> . PATH IGUAL VALORDEPATH NOMBREARCHIVO
-    (23) parametrosize -> . SIZE IGUAL NUMEROS
-    (24) parametrounit -> . UNIT IGUAL IDENTIFICADOR
-    (25) parametrofit -> . FIT IGUAL IDENTIFICADOR
+    (22) parametropath -> . PATH IGUAL valorespath
+    (25) parametrosize -> . SIZE IGUAL NUMEROS
+    (26) parametrounit -> . UNIT IGUAL IDENTIFICADOR
+    (27) parametrofit -> . FIT IGUAL IDENTIFICADOR
 
     PATH            shift and go to state 50
     SIZE            shift and go to state 51
@@ -643,57 +647,57 @@ state 27
 
 state 28
 
-    (27) comandorep -> REP listaparametros_rep .
-    (28) listaparametros_rep -> listaparametros_rep . parametrorep
-    (30) parametrorep -> . GUION parametroname
-    (31) parametrorep -> . GUION parametropath
-    (32) parametrorep -> . GUION parametroid
-    (33) parametrorep -> . GUION parametroruta
+    (29) comandorep -> REP listaparametros_rep .
+    (30) listaparametros_rep -> listaparametros_rep . parametrorep
+    (32) parametrorep -> . GUION parametroname
+    (33) parametrorep -> . GUION parametropath
+    (34) parametrorep -> . GUION parametroid
+    (35) parametrorep -> . GUION parametroruta
 
-    PAUSE           reduce using rule 27 (comandorep -> REP listaparametros_rep .)
-    EXECUTE         reduce using rule 27 (comandorep -> REP listaparametros_rep .)
-    MKDISK          reduce using rule 27 (comandorep -> REP listaparametros_rep .)
-    COMENTARIOS     reduce using rule 27 (comandorep -> REP listaparametros_rep .)
-    REP             reduce using rule 27 (comandorep -> REP listaparametros_rep .)
-    RMDISK          reduce using rule 27 (comandorep -> REP listaparametros_rep .)
-    FDISK           reduce using rule 27 (comandorep -> REP listaparametros_rep .)
-    MOUNT           reduce using rule 27 (comandorep -> REP listaparametros_rep .)
-    UNMOUNT         reduce using rule 27 (comandorep -> REP listaparametros_rep .)
-    MKFS            reduce using rule 27 (comandorep -> REP listaparametros_rep .)
-    $end            reduce using rule 27 (comandorep -> REP listaparametros_rep .)
+    PAUSE           reduce using rule 29 (comandorep -> REP listaparametros_rep .)
+    EXECUTE         reduce using rule 29 (comandorep -> REP listaparametros_rep .)
+    MKDISK          reduce using rule 29 (comandorep -> REP listaparametros_rep .)
+    COMENTARIOS     reduce using rule 29 (comandorep -> REP listaparametros_rep .)
+    REP             reduce using rule 29 (comandorep -> REP listaparametros_rep .)
+    RMDISK          reduce using rule 29 (comandorep -> REP listaparametros_rep .)
+    FDISK           reduce using rule 29 (comandorep -> REP listaparametros_rep .)
+    MOUNT           reduce using rule 29 (comandorep -> REP listaparametros_rep .)
+    UNMOUNT         reduce using rule 29 (comandorep -> REP listaparametros_rep .)
+    MKFS            reduce using rule 29 (comandorep -> REP listaparametros_rep .)
+    $end            reduce using rule 29 (comandorep -> REP listaparametros_rep .)
     GUION           shift and go to state 30
 
     parametrorep                   shift and go to state 54
 
 state 29
 
-    (29) listaparametros_rep -> parametrorep .
+    (31) listaparametros_rep -> parametrorep .
 
-    GUION           reduce using rule 29 (listaparametros_rep -> parametrorep .)
-    PAUSE           reduce using rule 29 (listaparametros_rep -> parametrorep .)
-    EXECUTE         reduce using rule 29 (listaparametros_rep -> parametrorep .)
-    MKDISK          reduce using rule 29 (listaparametros_rep -> parametrorep .)
-    COMENTARIOS     reduce using rule 29 (listaparametros_rep -> parametrorep .)
-    REP             reduce using rule 29 (listaparametros_rep -> parametrorep .)
-    RMDISK          reduce using rule 29 (listaparametros_rep -> parametrorep .)
-    FDISK           reduce using rule 29 (listaparametros_rep -> parametrorep .)
-    MOUNT           reduce using rule 29 (listaparametros_rep -> parametrorep .)
-    UNMOUNT         reduce using rule 29 (listaparametros_rep -> parametrorep .)
-    MKFS            reduce using rule 29 (listaparametros_rep -> parametrorep .)
-    $end            reduce using rule 29 (listaparametros_rep -> parametrorep .)
+    GUION           reduce using rule 31 (listaparametros_rep -> parametrorep .)
+    PAUSE           reduce using rule 31 (listaparametros_rep -> parametrorep .)
+    EXECUTE         reduce using rule 31 (listaparametros_rep -> parametrorep .)
+    MKDISK          reduce using rule 31 (listaparametros_rep -> parametrorep .)
+    COMENTARIOS     reduce using rule 31 (listaparametros_rep -> parametrorep .)
+    REP             reduce using rule 31 (listaparametros_rep -> parametrorep .)
+    RMDISK          reduce using rule 31 (listaparametros_rep -> parametrorep .)
+    FDISK           reduce using rule 31 (listaparametros_rep -> parametrorep .)
+    MOUNT           reduce using rule 31 (listaparametros_rep -> parametrorep .)
+    UNMOUNT         reduce using rule 31 (listaparametros_rep -> parametrorep .)
+    MKFS            reduce using rule 31 (listaparametros_rep -> parametrorep .)
+    $end            reduce using rule 31 (listaparametros_rep -> parametrorep .)
 
 
 state 30
 
-    (30) parametrorep -> GUION . parametroname
-    (31) parametrorep -> GUION . parametropath
-    (32) parametrorep -> GUION . parametroid
-    (33) parametrorep -> GUION . parametroruta
-    (47) parametroname -> . NAME IGUAL STRING
-    (48) parametroname -> . NAME IGUAL IDENTIFICADOR
-    (22) parametropath -> . PATH IGUAL VALORDEPATH NOMBREARCHIVO
-    (61) parametroid -> . ID IGUAL IDENTIFICADOR
-    (34) parametroruta -> . RUTA IGUAL VALORDEPATH NOMBREARCHIVO
+    (32) parametrorep -> GUION . parametroname
+    (33) parametrorep -> GUION . parametropath
+    (34) parametrorep -> GUION . parametroid
+    (35) parametrorep -> GUION . parametroruta
+    (49) parametroname -> . NAME IGUAL STRING
+    (50) parametroname -> . NAME IGUAL IDENTIFICADOR
+    (22) parametropath -> . PATH IGUAL valorespath
+    (63) parametroid -> . ID IGUAL IDENTIFICADOR
+    (36) parametroruta -> . RUTA IGUAL VALORDEPATH NOMBREARCHIVO
 
     NAME            shift and go to state 59
     PATH            shift and go to state 50
@@ -707,8 +711,8 @@ state 30
 
 state 31
 
-    (35) comandormdisk -> RMDISK GUION . parametropath
-    (22) parametropath -> . PATH IGUAL VALORDEPATH NOMBREARCHIVO
+    (37) comandormdisk -> RMDISK GUION . parametropath
+    (22) parametropath -> . PATH IGUAL valorespath
 
     PATH            shift and go to state 50
 
@@ -716,69 +720,69 @@ state 31
 
 state 32
 
-    (36) comandofdisk -> FDISK listaparametros_fdisk .
-    (37) listaparametros_fdisk -> listaparametros_fdisk . parametrofdisk
-    (39) parametrofdisk -> . GUION parametrosize
-    (40) parametrofdisk -> . GUION parametropath
-    (41) parametrofdisk -> . GUION parametroname
-    (42) parametrofdisk -> . GUION parametrounit
-    (43) parametrofdisk -> . GUION parametrotype
-    (44) parametrofdisk -> . GUION parametrofit
-    (45) parametrofdisk -> . GUION parametrodelete
-    (46) parametrofdisk -> . GUION parametroadd
+    (38) comandofdisk -> FDISK listaparametros_fdisk .
+    (39) listaparametros_fdisk -> listaparametros_fdisk . parametrofdisk
+    (41) parametrofdisk -> . GUION parametrosize
+    (42) parametrofdisk -> . GUION parametropath
+    (43) parametrofdisk -> . GUION parametroname
+    (44) parametrofdisk -> . GUION parametrounit
+    (45) parametrofdisk -> . GUION parametrotype
+    (46) parametrofdisk -> . GUION parametrofit
+    (47) parametrofdisk -> . GUION parametrodelete
+    (48) parametrofdisk -> . GUION parametroadd
 
-    PAUSE           reduce using rule 36 (comandofdisk -> FDISK listaparametros_fdisk .)
-    EXECUTE         reduce using rule 36 (comandofdisk -> FDISK listaparametros_fdisk .)
-    MKDISK          reduce using rule 36 (comandofdisk -> FDISK listaparametros_fdisk .)
-    COMENTARIOS     reduce using rule 36 (comandofdisk -> FDISK listaparametros_fdisk .)
-    REP             reduce using rule 36 (comandofdisk -> FDISK listaparametros_fdisk .)
-    RMDISK          reduce using rule 36 (comandofdisk -> FDISK listaparametros_fdisk .)
-    FDISK           reduce using rule 36 (comandofdisk -> FDISK listaparametros_fdisk .)
-    MOUNT           reduce using rule 36 (comandofdisk -> FDISK listaparametros_fdisk .)
-    UNMOUNT         reduce using rule 36 (comandofdisk -> FDISK listaparametros_fdisk .)
-    MKFS            reduce using rule 36 (comandofdisk -> FDISK listaparametros_fdisk .)
-    $end            reduce using rule 36 (comandofdisk -> FDISK listaparametros_fdisk .)
+    PAUSE           reduce using rule 38 (comandofdisk -> FDISK listaparametros_fdisk .)
+    EXECUTE         reduce using rule 38 (comandofdisk -> FDISK listaparametros_fdisk .)
+    MKDISK          reduce using rule 38 (comandofdisk -> FDISK listaparametros_fdisk .)
+    COMENTARIOS     reduce using rule 38 (comandofdisk -> FDISK listaparametros_fdisk .)
+    REP             reduce using rule 38 (comandofdisk -> FDISK listaparametros_fdisk .)
+    RMDISK          reduce using rule 38 (comandofdisk -> FDISK listaparametros_fdisk .)
+    FDISK           reduce using rule 38 (comandofdisk -> FDISK listaparametros_fdisk .)
+    MOUNT           reduce using rule 38 (comandofdisk -> FDISK listaparametros_fdisk .)
+    UNMOUNT         reduce using rule 38 (comandofdisk -> FDISK listaparametros_fdisk .)
+    MKFS            reduce using rule 38 (comandofdisk -> FDISK listaparametros_fdisk .)
+    $end            reduce using rule 38 (comandofdisk -> FDISK listaparametros_fdisk .)
     GUION           shift and go to state 34
 
     parametrofdisk                 shift and go to state 63
 
 state 33
 
-    (38) listaparametros_fdisk -> parametrofdisk .
+    (40) listaparametros_fdisk -> parametrofdisk .
 
-    GUION           reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
-    PAUSE           reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
-    EXECUTE         reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
-    MKDISK          reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
-    COMENTARIOS     reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
-    REP             reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
-    RMDISK          reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
-    FDISK           reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
-    MOUNT           reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
-    UNMOUNT         reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
-    MKFS            reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
-    $end            reduce using rule 38 (listaparametros_fdisk -> parametrofdisk .)
+    GUION           reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
+    PAUSE           reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
+    EXECUTE         reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
+    MKDISK          reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
+    COMENTARIOS     reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
+    REP             reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
+    RMDISK          reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
+    FDISK           reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
+    MOUNT           reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
+    UNMOUNT         reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
+    MKFS            reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
+    $end            reduce using rule 40 (listaparametros_fdisk -> parametrofdisk .)
 
 
 state 34
 
-    (39) parametrofdisk -> GUION . parametrosize
-    (40) parametrofdisk -> GUION . parametropath
-    (41) parametrofdisk -> GUION . parametroname
-    (42) parametrofdisk -> GUION . parametrounit
-    (43) parametrofdisk -> GUION . parametrotype
-    (44) parametrofdisk -> GUION . parametrofit
-    (45) parametrofdisk -> GUION . parametrodelete
-    (46) parametrofdisk -> GUION . parametroadd
-    (23) parametrosize -> . SIZE IGUAL NUMEROS
-    (22) parametropath -> . PATH IGUAL VALORDEPATH NOMBREARCHIVO
-    (47) parametroname -> . NAME IGUAL STRING
-    (48) parametroname -> . NAME IGUAL IDENTIFICADOR
-    (24) parametrounit -> . UNIT IGUAL IDENTIFICADOR
-    (49) parametrotype -> . TYPE IGUAL IDENTIFICADOR
-    (25) parametrofit -> . FIT IGUAL IDENTIFICADOR
-    (50) parametrodelete -> . DELETE IGUAL IDENTIFICADOR
-    (51) parametroadd -> . ADD IGUAL NUMEROS
+    (41) parametrofdisk -> GUION . parametrosize
+    (42) parametrofdisk -> GUION . parametropath
+    (43) parametrofdisk -> GUION . parametroname
+    (44) parametrofdisk -> GUION . parametrounit
+    (45) parametrofdisk -> GUION . parametrotype
+    (46) parametrofdisk -> GUION . parametrofit
+    (47) parametrofdisk -> GUION . parametrodelete
+    (48) parametrofdisk -> GUION . parametroadd
+    (25) parametrosize -> . SIZE IGUAL NUMEROS
+    (22) parametropath -> . PATH IGUAL valorespath
+    (49) parametroname -> . NAME IGUAL STRING
+    (50) parametroname -> . NAME IGUAL IDENTIFICADOR
+    (26) parametrounit -> . UNIT IGUAL IDENTIFICADOR
+    (51) parametrotype -> . TYPE IGUAL IDENTIFICADOR
+    (27) parametrofit -> . FIT IGUAL IDENTIFICADOR
+    (52) parametrodelete -> . DELETE IGUAL IDENTIFICADOR
+    (53) parametroadd -> . ADD IGUAL NUMEROS
 
     SIZE            shift and go to state 51
     PATH            shift and go to state 50
@@ -800,51 +804,51 @@ state 34
 
 state 35
 
-    (52) comandomount -> MOUNT listaparametros_mount .
-    (53) listaparametros_mount -> listaparametros_mount . parametromount
-    (55) parametromount -> . GUION parametropath
-    (56) parametromount -> . GUION parametroname
+    (54) comandomount -> MOUNT listaparametros_mount .
+    (55) listaparametros_mount -> listaparametros_mount . parametromount
+    (57) parametromount -> . GUION parametropath
+    (58) parametromount -> . GUION parametroname
 
-    PAUSE           reduce using rule 52 (comandomount -> MOUNT listaparametros_mount .)
-    EXECUTE         reduce using rule 52 (comandomount -> MOUNT listaparametros_mount .)
-    MKDISK          reduce using rule 52 (comandomount -> MOUNT listaparametros_mount .)
-    COMENTARIOS     reduce using rule 52 (comandomount -> MOUNT listaparametros_mount .)
-    REP             reduce using rule 52 (comandomount -> MOUNT listaparametros_mount .)
-    RMDISK          reduce using rule 52 (comandomount -> MOUNT listaparametros_mount .)
-    FDISK           reduce using rule 52 (comandomount -> MOUNT listaparametros_mount .)
-    MOUNT           reduce using rule 52 (comandomount -> MOUNT listaparametros_mount .)
-    UNMOUNT         reduce using rule 52 (comandomount -> MOUNT listaparametros_mount .)
-    MKFS            reduce using rule 52 (comandomount -> MOUNT listaparametros_mount .)
-    $end            reduce using rule 52 (comandomount -> MOUNT listaparametros_mount .)
+    PAUSE           reduce using rule 54 (comandomount -> MOUNT listaparametros_mount .)
+    EXECUTE         reduce using rule 54 (comandomount -> MOUNT listaparametros_mount .)
+    MKDISK          reduce using rule 54 (comandomount -> MOUNT listaparametros_mount .)
+    COMENTARIOS     reduce using rule 54 (comandomount -> MOUNT listaparametros_mount .)
+    REP             reduce using rule 54 (comandomount -> MOUNT listaparametros_mount .)
+    RMDISK          reduce using rule 54 (comandomount -> MOUNT listaparametros_mount .)
+    FDISK           reduce using rule 54 (comandomount -> MOUNT listaparametros_mount .)
+    MOUNT           reduce using rule 54 (comandomount -> MOUNT listaparametros_mount .)
+    UNMOUNT         reduce using rule 54 (comandomount -> MOUNT listaparametros_mount .)
+    MKFS            reduce using rule 54 (comandomount -> MOUNT listaparametros_mount .)
+    $end            reduce using rule 54 (comandomount -> MOUNT listaparametros_mount .)
     GUION           shift and go to state 37
 
     parametromount                 shift and go to state 75
 
 state 36
 
-    (54) listaparametros_mount -> parametromount .
+    (56) listaparametros_mount -> parametromount .
 
-    GUION           reduce using rule 54 (listaparametros_mount -> parametromount .)
-    PAUSE           reduce using rule 54 (listaparametros_mount -> parametromount .)
-    EXECUTE         reduce using rule 54 (listaparametros_mount -> parametromount .)
-    MKDISK          reduce using rule 54 (listaparametros_mount -> parametromount .)
-    COMENTARIOS     reduce using rule 54 (listaparametros_mount -> parametromount .)
-    REP             reduce using rule 54 (listaparametros_mount -> parametromount .)
-    RMDISK          reduce using rule 54 (listaparametros_mount -> parametromount .)
-    FDISK           reduce using rule 54 (listaparametros_mount -> parametromount .)
-    MOUNT           reduce using rule 54 (listaparametros_mount -> parametromount .)
-    UNMOUNT         reduce using rule 54 (listaparametros_mount -> parametromount .)
-    MKFS            reduce using rule 54 (listaparametros_mount -> parametromount .)
-    $end            reduce using rule 54 (listaparametros_mount -> parametromount .)
+    GUION           reduce using rule 56 (listaparametros_mount -> parametromount .)
+    PAUSE           reduce using rule 56 (listaparametros_mount -> parametromount .)
+    EXECUTE         reduce using rule 56 (listaparametros_mount -> parametromount .)
+    MKDISK          reduce using rule 56 (listaparametros_mount -> parametromount .)
+    COMENTARIOS     reduce using rule 56 (listaparametros_mount -> parametromount .)
+    REP             reduce using rule 56 (listaparametros_mount -> parametromount .)
+    RMDISK          reduce using rule 56 (listaparametros_mount -> parametromount .)
+    FDISK           reduce using rule 56 (listaparametros_mount -> parametromount .)
+    MOUNT           reduce using rule 56 (listaparametros_mount -> parametromount .)
+    UNMOUNT         reduce using rule 56 (listaparametros_mount -> parametromount .)
+    MKFS            reduce using rule 56 (listaparametros_mount -> parametromount .)
+    $end            reduce using rule 56 (listaparametros_mount -> parametromount .)
 
 
 state 37
 
-    (55) parametromount -> GUION . parametropath
-    (56) parametromount -> GUION . parametroname
-    (22) parametropath -> . PATH IGUAL VALORDEPATH NOMBREARCHIVO
-    (47) parametroname -> . NAME IGUAL STRING
-    (48) parametroname -> . NAME IGUAL IDENTIFICADOR
+    (57) parametromount -> GUION . parametropath
+    (58) parametromount -> GUION . parametroname
+    (22) parametropath -> . PATH IGUAL valorespath
+    (49) parametroname -> . NAME IGUAL STRING
+    (50) parametroname -> . NAME IGUAL IDENTIFICADOR
 
     PATH            shift and go to state 50
     NAME            shift and go to state 59
@@ -854,47 +858,47 @@ state 37
 
 state 38
 
-    (57) comandounmount -> UNMOUNT listaids_unmount .
-    (58) listaids_unmount -> listaids_unmount . parametrounmount
-    (60) parametrounmount -> . GUION parametroid
+    (59) comandounmount -> UNMOUNT listaids_unmount .
+    (60) listaids_unmount -> listaids_unmount . parametrounmount
+    (62) parametrounmount -> . GUION parametroid
 
-    PAUSE           reduce using rule 57 (comandounmount -> UNMOUNT listaids_unmount .)
-    EXECUTE         reduce using rule 57 (comandounmount -> UNMOUNT listaids_unmount .)
-    MKDISK          reduce using rule 57 (comandounmount -> UNMOUNT listaids_unmount .)
-    COMENTARIOS     reduce using rule 57 (comandounmount -> UNMOUNT listaids_unmount .)
-    REP             reduce using rule 57 (comandounmount -> UNMOUNT listaids_unmount .)
-    RMDISK          reduce using rule 57 (comandounmount -> UNMOUNT listaids_unmount .)
-    FDISK           reduce using rule 57 (comandounmount -> UNMOUNT listaids_unmount .)
-    MOUNT           reduce using rule 57 (comandounmount -> UNMOUNT listaids_unmount .)
-    UNMOUNT         reduce using rule 57 (comandounmount -> UNMOUNT listaids_unmount .)
-    MKFS            reduce using rule 57 (comandounmount -> UNMOUNT listaids_unmount .)
-    $end            reduce using rule 57 (comandounmount -> UNMOUNT listaids_unmount .)
+    PAUSE           reduce using rule 59 (comandounmount -> UNMOUNT listaids_unmount .)
+    EXECUTE         reduce using rule 59 (comandounmount -> UNMOUNT listaids_unmount .)
+    MKDISK          reduce using rule 59 (comandounmount -> UNMOUNT listaids_unmount .)
+    COMENTARIOS     reduce using rule 59 (comandounmount -> UNMOUNT listaids_unmount .)
+    REP             reduce using rule 59 (comandounmount -> UNMOUNT listaids_unmount .)
+    RMDISK          reduce using rule 59 (comandounmount -> UNMOUNT listaids_unmount .)
+    FDISK           reduce using rule 59 (comandounmount -> UNMOUNT listaids_unmount .)
+    MOUNT           reduce using rule 59 (comandounmount -> UNMOUNT listaids_unmount .)
+    UNMOUNT         reduce using rule 59 (comandounmount -> UNMOUNT listaids_unmount .)
+    MKFS            reduce using rule 59 (comandounmount -> UNMOUNT listaids_unmount .)
+    $end            reduce using rule 59 (comandounmount -> UNMOUNT listaids_unmount .)
     GUION           shift and go to state 40
 
     parametrounmount               shift and go to state 78
 
 state 39
 
-    (59) listaids_unmount -> parametrounmount .
+    (61) listaids_unmount -> parametrounmount .
 
-    GUION           reduce using rule 59 (listaids_unmount -> parametrounmount .)
-    PAUSE           reduce using rule 59 (listaids_unmount -> parametrounmount .)
-    EXECUTE         reduce using rule 59 (listaids_unmount -> parametrounmount .)
-    MKDISK          reduce using rule 59 (listaids_unmount -> parametrounmount .)
-    COMENTARIOS     reduce using rule 59 (listaids_unmount -> parametrounmount .)
-    REP             reduce using rule 59 (listaids_unmount -> parametrounmount .)
-    RMDISK          reduce using rule 59 (listaids_unmount -> parametrounmount .)
-    FDISK           reduce using rule 59 (listaids_unmount -> parametrounmount .)
-    MOUNT           reduce using rule 59 (listaids_unmount -> parametrounmount .)
-    UNMOUNT         reduce using rule 59 (listaids_unmount -> parametrounmount .)
-    MKFS            reduce using rule 59 (listaids_unmount -> parametrounmount .)
-    $end            reduce using rule 59 (listaids_unmount -> parametrounmount .)
+    GUION           reduce using rule 61 (listaids_unmount -> parametrounmount .)
+    PAUSE           reduce using rule 61 (listaids_unmount -> parametrounmount .)
+    EXECUTE         reduce using rule 61 (listaids_unmount -> parametrounmount .)
+    MKDISK          reduce using rule 61 (listaids_unmount -> parametrounmount .)
+    COMENTARIOS     reduce using rule 61 (listaids_unmount -> parametrounmount .)
+    REP             reduce using rule 61 (listaids_unmount -> parametrounmount .)
+    RMDISK          reduce using rule 61 (listaids_unmount -> parametrounmount .)
+    FDISK           reduce using rule 61 (listaids_unmount -> parametrounmount .)
+    MOUNT           reduce using rule 61 (listaids_unmount -> parametrounmount .)
+    UNMOUNT         reduce using rule 61 (listaids_unmount -> parametrounmount .)
+    MKFS            reduce using rule 61 (listaids_unmount -> parametrounmount .)
+    $end            reduce using rule 61 (listaids_unmount -> parametrounmount .)
 
 
 state 40
 
-    (60) parametrounmount -> GUION . parametroid
-    (61) parametroid -> . ID IGUAL IDENTIFICADOR
+    (62) parametrounmount -> GUION . parametroid
+    (63) parametroid -> . ID IGUAL IDENTIFICADOR
 
     ID              shift and go to state 60
 
@@ -902,53 +906,53 @@ state 40
 
 state 41
 
-    (62) comandomkfs -> MKFS listaparametros_mkfs .
-    (63) listaparametros_mkfs -> listaparametros_mkfs . parametromkfs
-    (65) parametromkfs -> . GUION parametroid
-    (66) parametromkfs -> . GUION parametrotype
-    (67) parametromkfs -> . GUION parametrofs
+    (64) comandomkfs -> MKFS listaparametros_mkfs .
+    (65) listaparametros_mkfs -> listaparametros_mkfs . parametromkfs
+    (67) parametromkfs -> . GUION parametroid
+    (68) parametromkfs -> . GUION parametrotype
+    (69) parametromkfs -> . GUION parametrofs
 
-    PAUSE           reduce using rule 62 (comandomkfs -> MKFS listaparametros_mkfs .)
-    EXECUTE         reduce using rule 62 (comandomkfs -> MKFS listaparametros_mkfs .)
-    MKDISK          reduce using rule 62 (comandomkfs -> MKFS listaparametros_mkfs .)
-    COMENTARIOS     reduce using rule 62 (comandomkfs -> MKFS listaparametros_mkfs .)
-    REP             reduce using rule 62 (comandomkfs -> MKFS listaparametros_mkfs .)
-    RMDISK          reduce using rule 62 (comandomkfs -> MKFS listaparametros_mkfs .)
-    FDISK           reduce using rule 62 (comandomkfs -> MKFS listaparametros_mkfs .)
-    MOUNT           reduce using rule 62 (comandomkfs -> MKFS listaparametros_mkfs .)
-    UNMOUNT         reduce using rule 62 (comandomkfs -> MKFS listaparametros_mkfs .)
-    MKFS            reduce using rule 62 (comandomkfs -> MKFS listaparametros_mkfs .)
-    $end            reduce using rule 62 (comandomkfs -> MKFS listaparametros_mkfs .)
+    PAUSE           reduce using rule 64 (comandomkfs -> MKFS listaparametros_mkfs .)
+    EXECUTE         reduce using rule 64 (comandomkfs -> MKFS listaparametros_mkfs .)
+    MKDISK          reduce using rule 64 (comandomkfs -> MKFS listaparametros_mkfs .)
+    COMENTARIOS     reduce using rule 64 (comandomkfs -> MKFS listaparametros_mkfs .)
+    REP             reduce using rule 64 (comandomkfs -> MKFS listaparametros_mkfs .)
+    RMDISK          reduce using rule 64 (comandomkfs -> MKFS listaparametros_mkfs .)
+    FDISK           reduce using rule 64 (comandomkfs -> MKFS listaparametros_mkfs .)
+    MOUNT           reduce using rule 64 (comandomkfs -> MKFS listaparametros_mkfs .)
+    UNMOUNT         reduce using rule 64 (comandomkfs -> MKFS listaparametros_mkfs .)
+    MKFS            reduce using rule 64 (comandomkfs -> MKFS listaparametros_mkfs .)
+    $end            reduce using rule 64 (comandomkfs -> MKFS listaparametros_mkfs .)
     GUION           shift and go to state 43
 
     parametromkfs                  shift and go to state 80
 
 state 42
 
-    (64) listaparametros_mkfs -> parametromkfs .
+    (66) listaparametros_mkfs -> parametromkfs .
 
-    GUION           reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
-    PAUSE           reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
-    EXECUTE         reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
-    MKDISK          reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
-    COMENTARIOS     reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
-    REP             reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
-    RMDISK          reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
-    FDISK           reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
-    MOUNT           reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
-    UNMOUNT         reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
-    MKFS            reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
-    $end            reduce using rule 64 (listaparametros_mkfs -> parametromkfs .)
+    GUION           reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
+    PAUSE           reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
+    EXECUTE         reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
+    MKDISK          reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
+    COMENTARIOS     reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
+    REP             reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
+    RMDISK          reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
+    FDISK           reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
+    MOUNT           reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
+    UNMOUNT         reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
+    MKFS            reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
+    $end            reduce using rule 66 (listaparametros_mkfs -> parametromkfs .)
 
 
 state 43
 
-    (65) parametromkfs -> GUION . parametroid
-    (66) parametromkfs -> GUION . parametrotype
-    (67) parametromkfs -> GUION . parametrofs
-    (61) parametroid -> . ID IGUAL IDENTIFICADOR
-    (49) parametrotype -> . TYPE IGUAL IDENTIFICADOR
-    (68) parametrofs -> . FS IGUAL FORMATEAR
+    (67) parametromkfs -> GUION . parametroid
+    (68) parametromkfs -> GUION . parametrotype
+    (69) parametromkfs -> GUION . parametrofs
+    (63) parametroid -> . ID IGUAL IDENTIFICADOR
+    (51) parametrotype -> . TYPE IGUAL IDENTIFICADOR
+    (70) parametrofs -> . FS IGUAL FORMATEAR
 
     ID              shift and go to state 60
     TYPE            shift and go to state 72
@@ -1057,509 +1061,509 @@ state 49
 
 state 50
 
-    (22) parametropath -> PATH . IGUAL VALORDEPATH NOMBREARCHIVO
+    (22) parametropath -> PATH . IGUAL valorespath
 
     IGUAL           shift and go to state 86
 
 
 state 51
 
-    (23) parametrosize -> SIZE . IGUAL NUMEROS
+    (25) parametrosize -> SIZE . IGUAL NUMEROS
 
     IGUAL           shift and go to state 87
 
 
 state 52
 
-    (24) parametrounit -> UNIT . IGUAL IDENTIFICADOR
+    (26) parametrounit -> UNIT . IGUAL IDENTIFICADOR
 
     IGUAL           shift and go to state 88
 
 
 state 53
 
-    (25) parametrofit -> FIT . IGUAL IDENTIFICADOR
+    (27) parametrofit -> FIT . IGUAL IDENTIFICADOR
 
     IGUAL           shift and go to state 89
 
 
 state 54
 
-    (28) listaparametros_rep -> listaparametros_rep parametrorep .
+    (30) listaparametros_rep -> listaparametros_rep parametrorep .
 
-    GUION           reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
-    PAUSE           reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
-    EXECUTE         reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
-    MKDISK          reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
-    COMENTARIOS     reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
-    REP             reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
-    RMDISK          reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
-    FDISK           reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
-    MOUNT           reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
-    UNMOUNT         reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
-    MKFS            reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
-    $end            reduce using rule 28 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    GUION           reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    PAUSE           reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    EXECUTE         reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    MKDISK          reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    COMENTARIOS     reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    REP             reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    RMDISK          reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    FDISK           reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    MOUNT           reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    UNMOUNT         reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    MKFS            reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
+    $end            reduce using rule 30 (listaparametros_rep -> listaparametros_rep parametrorep .)
 
 
 state 55
 
-    (30) parametrorep -> GUION parametroname .
+    (32) parametrorep -> GUION parametroname .
 
-    GUION           reduce using rule 30 (parametrorep -> GUION parametroname .)
-    PAUSE           reduce using rule 30 (parametrorep -> GUION parametroname .)
-    EXECUTE         reduce using rule 30 (parametrorep -> GUION parametroname .)
-    MKDISK          reduce using rule 30 (parametrorep -> GUION parametroname .)
-    COMENTARIOS     reduce using rule 30 (parametrorep -> GUION parametroname .)
-    REP             reduce using rule 30 (parametrorep -> GUION parametroname .)
-    RMDISK          reduce using rule 30 (parametrorep -> GUION parametroname .)
-    FDISK           reduce using rule 30 (parametrorep -> GUION parametroname .)
-    MOUNT           reduce using rule 30 (parametrorep -> GUION parametroname .)
-    UNMOUNT         reduce using rule 30 (parametrorep -> GUION parametroname .)
-    MKFS            reduce using rule 30 (parametrorep -> GUION parametroname .)
-    $end            reduce using rule 30 (parametrorep -> GUION parametroname .)
+    GUION           reduce using rule 32 (parametrorep -> GUION parametroname .)
+    PAUSE           reduce using rule 32 (parametrorep -> GUION parametroname .)
+    EXECUTE         reduce using rule 32 (parametrorep -> GUION parametroname .)
+    MKDISK          reduce using rule 32 (parametrorep -> GUION parametroname .)
+    COMENTARIOS     reduce using rule 32 (parametrorep -> GUION parametroname .)
+    REP             reduce using rule 32 (parametrorep -> GUION parametroname .)
+    RMDISK          reduce using rule 32 (parametrorep -> GUION parametroname .)
+    FDISK           reduce using rule 32 (parametrorep -> GUION parametroname .)
+    MOUNT           reduce using rule 32 (parametrorep -> GUION parametroname .)
+    UNMOUNT         reduce using rule 32 (parametrorep -> GUION parametroname .)
+    MKFS            reduce using rule 32 (parametrorep -> GUION parametroname .)
+    $end            reduce using rule 32 (parametrorep -> GUION parametroname .)
 
 
 state 56
 
-    (31) parametrorep -> GUION parametropath .
+    (33) parametrorep -> GUION parametropath .
 
-    GUION           reduce using rule 31 (parametrorep -> GUION parametropath .)
-    PAUSE           reduce using rule 31 (parametrorep -> GUION parametropath .)
-    EXECUTE         reduce using rule 31 (parametrorep -> GUION parametropath .)
-    MKDISK          reduce using rule 31 (parametrorep -> GUION parametropath .)
-    COMENTARIOS     reduce using rule 31 (parametrorep -> GUION parametropath .)
-    REP             reduce using rule 31 (parametrorep -> GUION parametropath .)
-    RMDISK          reduce using rule 31 (parametrorep -> GUION parametropath .)
-    FDISK           reduce using rule 31 (parametrorep -> GUION parametropath .)
-    MOUNT           reduce using rule 31 (parametrorep -> GUION parametropath .)
-    UNMOUNT         reduce using rule 31 (parametrorep -> GUION parametropath .)
-    MKFS            reduce using rule 31 (parametrorep -> GUION parametropath .)
-    $end            reduce using rule 31 (parametrorep -> GUION parametropath .)
+    GUION           reduce using rule 33 (parametrorep -> GUION parametropath .)
+    PAUSE           reduce using rule 33 (parametrorep -> GUION parametropath .)
+    EXECUTE         reduce using rule 33 (parametrorep -> GUION parametropath .)
+    MKDISK          reduce using rule 33 (parametrorep -> GUION parametropath .)
+    COMENTARIOS     reduce using rule 33 (parametrorep -> GUION parametropath .)
+    REP             reduce using rule 33 (parametrorep -> GUION parametropath .)
+    RMDISK          reduce using rule 33 (parametrorep -> GUION parametropath .)
+    FDISK           reduce using rule 33 (parametrorep -> GUION parametropath .)
+    MOUNT           reduce using rule 33 (parametrorep -> GUION parametropath .)
+    UNMOUNT         reduce using rule 33 (parametrorep -> GUION parametropath .)
+    MKFS            reduce using rule 33 (parametrorep -> GUION parametropath .)
+    $end            reduce using rule 33 (parametrorep -> GUION parametropath .)
 
 
 state 57
 
-    (32) parametrorep -> GUION parametroid .
+    (34) parametrorep -> GUION parametroid .
 
-    GUION           reduce using rule 32 (parametrorep -> GUION parametroid .)
-    PAUSE           reduce using rule 32 (parametrorep -> GUION parametroid .)
-    EXECUTE         reduce using rule 32 (parametrorep -> GUION parametroid .)
-    MKDISK          reduce using rule 32 (parametrorep -> GUION parametroid .)
-    COMENTARIOS     reduce using rule 32 (parametrorep -> GUION parametroid .)
-    REP             reduce using rule 32 (parametrorep -> GUION parametroid .)
-    RMDISK          reduce using rule 32 (parametrorep -> GUION parametroid .)
-    FDISK           reduce using rule 32 (parametrorep -> GUION parametroid .)
-    MOUNT           reduce using rule 32 (parametrorep -> GUION parametroid .)
-    UNMOUNT         reduce using rule 32 (parametrorep -> GUION parametroid .)
-    MKFS            reduce using rule 32 (parametrorep -> GUION parametroid .)
-    $end            reduce using rule 32 (parametrorep -> GUION parametroid .)
+    GUION           reduce using rule 34 (parametrorep -> GUION parametroid .)
+    PAUSE           reduce using rule 34 (parametrorep -> GUION parametroid .)
+    EXECUTE         reduce using rule 34 (parametrorep -> GUION parametroid .)
+    MKDISK          reduce using rule 34 (parametrorep -> GUION parametroid .)
+    COMENTARIOS     reduce using rule 34 (parametrorep -> GUION parametroid .)
+    REP             reduce using rule 34 (parametrorep -> GUION parametroid .)
+    RMDISK          reduce using rule 34 (parametrorep -> GUION parametroid .)
+    FDISK           reduce using rule 34 (parametrorep -> GUION parametroid .)
+    MOUNT           reduce using rule 34 (parametrorep -> GUION parametroid .)
+    UNMOUNT         reduce using rule 34 (parametrorep -> GUION parametroid .)
+    MKFS            reduce using rule 34 (parametrorep -> GUION parametroid .)
+    $end            reduce using rule 34 (parametrorep -> GUION parametroid .)
 
 
 state 58
 
-    (33) parametrorep -> GUION parametroruta .
+    (35) parametrorep -> GUION parametroruta .
 
-    GUION           reduce using rule 33 (parametrorep -> GUION parametroruta .)
-    PAUSE           reduce using rule 33 (parametrorep -> GUION parametroruta .)
-    EXECUTE         reduce using rule 33 (parametrorep -> GUION parametroruta .)
-    MKDISK          reduce using rule 33 (parametrorep -> GUION parametroruta .)
-    COMENTARIOS     reduce using rule 33 (parametrorep -> GUION parametroruta .)
-    REP             reduce using rule 33 (parametrorep -> GUION parametroruta .)
-    RMDISK          reduce using rule 33 (parametrorep -> GUION parametroruta .)
-    FDISK           reduce using rule 33 (parametrorep -> GUION parametroruta .)
-    MOUNT           reduce using rule 33 (parametrorep -> GUION parametroruta .)
-    UNMOUNT         reduce using rule 33 (parametrorep -> GUION parametroruta .)
-    MKFS            reduce using rule 33 (parametrorep -> GUION parametroruta .)
-    $end            reduce using rule 33 (parametrorep -> GUION parametroruta .)
+    GUION           reduce using rule 35 (parametrorep -> GUION parametroruta .)
+    PAUSE           reduce using rule 35 (parametrorep -> GUION parametroruta .)
+    EXECUTE         reduce using rule 35 (parametrorep -> GUION parametroruta .)
+    MKDISK          reduce using rule 35 (parametrorep -> GUION parametroruta .)
+    COMENTARIOS     reduce using rule 35 (parametrorep -> GUION parametroruta .)
+    REP             reduce using rule 35 (parametrorep -> GUION parametroruta .)
+    RMDISK          reduce using rule 35 (parametrorep -> GUION parametroruta .)
+    FDISK           reduce using rule 35 (parametrorep -> GUION parametroruta .)
+    MOUNT           reduce using rule 35 (parametrorep -> GUION parametroruta .)
+    UNMOUNT         reduce using rule 35 (parametrorep -> GUION parametroruta .)
+    MKFS            reduce using rule 35 (parametrorep -> GUION parametroruta .)
+    $end            reduce using rule 35 (parametrorep -> GUION parametroruta .)
 
 
 state 59
 
-    (47) parametroname -> NAME . IGUAL STRING
-    (48) parametroname -> NAME . IGUAL IDENTIFICADOR
+    (49) parametroname -> NAME . IGUAL STRING
+    (50) parametroname -> NAME . IGUAL IDENTIFICADOR
 
     IGUAL           shift and go to state 90
 
 
 state 60
 
-    (61) parametroid -> ID . IGUAL IDENTIFICADOR
+    (63) parametroid -> ID . IGUAL IDENTIFICADOR
 
     IGUAL           shift and go to state 91
 
 
 state 61
 
-    (34) parametroruta -> RUTA . IGUAL VALORDEPATH NOMBREARCHIVO
+    (36) parametroruta -> RUTA . IGUAL VALORDEPATH NOMBREARCHIVO
 
     IGUAL           shift and go to state 92
 
 
 state 62
 
-    (35) comandormdisk -> RMDISK GUION parametropath .
+    (37) comandormdisk -> RMDISK GUION parametropath .
 
-    PAUSE           reduce using rule 35 (comandormdisk -> RMDISK GUION parametropath .)
-    EXECUTE         reduce using rule 35 (comandormdisk -> RMDISK GUION parametropath .)
-    MKDISK          reduce using rule 35 (comandormdisk -> RMDISK GUION parametropath .)
-    COMENTARIOS     reduce using rule 35 (comandormdisk -> RMDISK GUION parametropath .)
-    REP             reduce using rule 35 (comandormdisk -> RMDISK GUION parametropath .)
-    RMDISK          reduce using rule 35 (comandormdisk -> RMDISK GUION parametropath .)
-    FDISK           reduce using rule 35 (comandormdisk -> RMDISK GUION parametropath .)
-    MOUNT           reduce using rule 35 (comandormdisk -> RMDISK GUION parametropath .)
-    UNMOUNT         reduce using rule 35 (comandormdisk -> RMDISK GUION parametropath .)
-    MKFS            reduce using rule 35 (comandormdisk -> RMDISK GUION parametropath .)
-    $end            reduce using rule 35 (comandormdisk -> RMDISK GUION parametropath .)
+    PAUSE           reduce using rule 37 (comandormdisk -> RMDISK GUION parametropath .)
+    EXECUTE         reduce using rule 37 (comandormdisk -> RMDISK GUION parametropath .)
+    MKDISK          reduce using rule 37 (comandormdisk -> RMDISK GUION parametropath .)
+    COMENTARIOS     reduce using rule 37 (comandormdisk -> RMDISK GUION parametropath .)
+    REP             reduce using rule 37 (comandormdisk -> RMDISK GUION parametropath .)
+    RMDISK          reduce using rule 37 (comandormdisk -> RMDISK GUION parametropath .)
+    FDISK           reduce using rule 37 (comandormdisk -> RMDISK GUION parametropath .)
+    MOUNT           reduce using rule 37 (comandormdisk -> RMDISK GUION parametropath .)
+    UNMOUNT         reduce using rule 37 (comandormdisk -> RMDISK GUION parametropath .)
+    MKFS            reduce using rule 37 (comandormdisk -> RMDISK GUION parametropath .)
+    $end            reduce using rule 37 (comandormdisk -> RMDISK GUION parametropath .)
 
 
 state 63
 
-    (37) listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .
+    (39) listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .
 
-    GUION           reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
-    PAUSE           reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
-    EXECUTE         reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
-    MKDISK          reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
-    COMENTARIOS     reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
-    REP             reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
-    RMDISK          reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
-    FDISK           reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
-    MOUNT           reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
-    UNMOUNT         reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
-    MKFS            reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
-    $end            reduce using rule 37 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    GUION           reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    PAUSE           reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    EXECUTE         reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    MKDISK          reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    COMENTARIOS     reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    REP             reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    RMDISK          reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    FDISK           reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    MOUNT           reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    UNMOUNT         reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    MKFS            reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
+    $end            reduce using rule 39 (listaparametros_fdisk -> listaparametros_fdisk parametrofdisk .)
 
 
 state 64
 
-    (39) parametrofdisk -> GUION parametrosize .
+    (41) parametrofdisk -> GUION parametrosize .
 
-    GUION           reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
-    PAUSE           reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
-    EXECUTE         reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
-    MKDISK          reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
-    COMENTARIOS     reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
-    REP             reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
-    RMDISK          reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
-    FDISK           reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
-    MOUNT           reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
-    UNMOUNT         reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
-    MKFS            reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
-    $end            reduce using rule 39 (parametrofdisk -> GUION parametrosize .)
+    GUION           reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
+    PAUSE           reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
+    EXECUTE         reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
+    MKDISK          reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
+    COMENTARIOS     reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
+    REP             reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
+    RMDISK          reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
+    FDISK           reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
+    MOUNT           reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
+    UNMOUNT         reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
+    MKFS            reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
+    $end            reduce using rule 41 (parametrofdisk -> GUION parametrosize .)
 
 
 state 65
 
-    (40) parametrofdisk -> GUION parametropath .
+    (42) parametrofdisk -> GUION parametropath .
 
-    GUION           reduce using rule 40 (parametrofdisk -> GUION parametropath .)
-    PAUSE           reduce using rule 40 (parametrofdisk -> GUION parametropath .)
-    EXECUTE         reduce using rule 40 (parametrofdisk -> GUION parametropath .)
-    MKDISK          reduce using rule 40 (parametrofdisk -> GUION parametropath .)
-    COMENTARIOS     reduce using rule 40 (parametrofdisk -> GUION parametropath .)
-    REP             reduce using rule 40 (parametrofdisk -> GUION parametropath .)
-    RMDISK          reduce using rule 40 (parametrofdisk -> GUION parametropath .)
-    FDISK           reduce using rule 40 (parametrofdisk -> GUION parametropath .)
-    MOUNT           reduce using rule 40 (parametrofdisk -> GUION parametropath .)
-    UNMOUNT         reduce using rule 40 (parametrofdisk -> GUION parametropath .)
-    MKFS            reduce using rule 40 (parametrofdisk -> GUION parametropath .)
-    $end            reduce using rule 40 (parametrofdisk -> GUION parametropath .)
+    GUION           reduce using rule 42 (parametrofdisk -> GUION parametropath .)
+    PAUSE           reduce using rule 42 (parametrofdisk -> GUION parametropath .)
+    EXECUTE         reduce using rule 42 (parametrofdisk -> GUION parametropath .)
+    MKDISK          reduce using rule 42 (parametrofdisk -> GUION parametropath .)
+    COMENTARIOS     reduce using rule 42 (parametrofdisk -> GUION parametropath .)
+    REP             reduce using rule 42 (parametrofdisk -> GUION parametropath .)
+    RMDISK          reduce using rule 42 (parametrofdisk -> GUION parametropath .)
+    FDISK           reduce using rule 42 (parametrofdisk -> GUION parametropath .)
+    MOUNT           reduce using rule 42 (parametrofdisk -> GUION parametropath .)
+    UNMOUNT         reduce using rule 42 (parametrofdisk -> GUION parametropath .)
+    MKFS            reduce using rule 42 (parametrofdisk -> GUION parametropath .)
+    $end            reduce using rule 42 (parametrofdisk -> GUION parametropath .)
 
 
 state 66
 
-    (41) parametrofdisk -> GUION parametroname .
+    (43) parametrofdisk -> GUION parametroname .
 
-    GUION           reduce using rule 41 (parametrofdisk -> GUION parametroname .)
-    PAUSE           reduce using rule 41 (parametrofdisk -> GUION parametroname .)
-    EXECUTE         reduce using rule 41 (parametrofdisk -> GUION parametroname .)
-    MKDISK          reduce using rule 41 (parametrofdisk -> GUION parametroname .)
-    COMENTARIOS     reduce using rule 41 (parametrofdisk -> GUION parametroname .)
-    REP             reduce using rule 41 (parametrofdisk -> GUION parametroname .)
-    RMDISK          reduce using rule 41 (parametrofdisk -> GUION parametroname .)
-    FDISK           reduce using rule 41 (parametrofdisk -> GUION parametroname .)
-    MOUNT           reduce using rule 41 (parametrofdisk -> GUION parametroname .)
-    UNMOUNT         reduce using rule 41 (parametrofdisk -> GUION parametroname .)
-    MKFS            reduce using rule 41 (parametrofdisk -> GUION parametroname .)
-    $end            reduce using rule 41 (parametrofdisk -> GUION parametroname .)
+    GUION           reduce using rule 43 (parametrofdisk -> GUION parametroname .)
+    PAUSE           reduce using rule 43 (parametrofdisk -> GUION parametroname .)
+    EXECUTE         reduce using rule 43 (parametrofdisk -> GUION parametroname .)
+    MKDISK          reduce using rule 43 (parametrofdisk -> GUION parametroname .)
+    COMENTARIOS     reduce using rule 43 (parametrofdisk -> GUION parametroname .)
+    REP             reduce using rule 43 (parametrofdisk -> GUION parametroname .)
+    RMDISK          reduce using rule 43 (parametrofdisk -> GUION parametroname .)
+    FDISK           reduce using rule 43 (parametrofdisk -> GUION parametroname .)
+    MOUNT           reduce using rule 43 (parametrofdisk -> GUION parametroname .)
+    UNMOUNT         reduce using rule 43 (parametrofdisk -> GUION parametroname .)
+    MKFS            reduce using rule 43 (parametrofdisk -> GUION parametroname .)
+    $end            reduce using rule 43 (parametrofdisk -> GUION parametroname .)
 
 
 state 67
 
-    (42) parametrofdisk -> GUION parametrounit .
+    (44) parametrofdisk -> GUION parametrounit .
 
-    GUION           reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
-    PAUSE           reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
-    EXECUTE         reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
-    MKDISK          reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
-    COMENTARIOS     reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
-    REP             reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
-    RMDISK          reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
-    FDISK           reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
-    MOUNT           reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
-    UNMOUNT         reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
-    MKFS            reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
-    $end            reduce using rule 42 (parametrofdisk -> GUION parametrounit .)
+    GUION           reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
+    PAUSE           reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
+    EXECUTE         reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
+    MKDISK          reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
+    COMENTARIOS     reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
+    REP             reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
+    RMDISK          reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
+    FDISK           reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
+    MOUNT           reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
+    UNMOUNT         reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
+    MKFS            reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
+    $end            reduce using rule 44 (parametrofdisk -> GUION parametrounit .)
 
 
 state 68
 
-    (43) parametrofdisk -> GUION parametrotype .
+    (45) parametrofdisk -> GUION parametrotype .
 
-    GUION           reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
-    PAUSE           reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
-    EXECUTE         reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
-    MKDISK          reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
-    COMENTARIOS     reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
-    REP             reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
-    RMDISK          reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
-    FDISK           reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
-    MOUNT           reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
-    UNMOUNT         reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
-    MKFS            reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
-    $end            reduce using rule 43 (parametrofdisk -> GUION parametrotype .)
+    GUION           reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
+    PAUSE           reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
+    EXECUTE         reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
+    MKDISK          reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
+    COMENTARIOS     reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
+    REP             reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
+    RMDISK          reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
+    FDISK           reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
+    MOUNT           reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
+    UNMOUNT         reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
+    MKFS            reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
+    $end            reduce using rule 45 (parametrofdisk -> GUION parametrotype .)
 
 
 state 69
 
-    (44) parametrofdisk -> GUION parametrofit .
+    (46) parametrofdisk -> GUION parametrofit .
 
-    GUION           reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
-    PAUSE           reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
-    EXECUTE         reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
-    MKDISK          reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
-    COMENTARIOS     reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
-    REP             reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
-    RMDISK          reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
-    FDISK           reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
-    MOUNT           reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
-    UNMOUNT         reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
-    MKFS            reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
-    $end            reduce using rule 44 (parametrofdisk -> GUION parametrofit .)
+    GUION           reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
+    PAUSE           reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
+    EXECUTE         reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
+    MKDISK          reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
+    COMENTARIOS     reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
+    REP             reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
+    RMDISK          reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
+    FDISK           reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
+    MOUNT           reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
+    UNMOUNT         reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
+    MKFS            reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
+    $end            reduce using rule 46 (parametrofdisk -> GUION parametrofit .)
 
 
 state 70
 
-    (45) parametrofdisk -> GUION parametrodelete .
+    (47) parametrofdisk -> GUION parametrodelete .
 
-    GUION           reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
-    PAUSE           reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
-    EXECUTE         reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
-    MKDISK          reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
-    COMENTARIOS     reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
-    REP             reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
-    RMDISK          reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
-    FDISK           reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
-    MOUNT           reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
-    UNMOUNT         reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
-    MKFS            reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
-    $end            reduce using rule 45 (parametrofdisk -> GUION parametrodelete .)
+    GUION           reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
+    PAUSE           reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
+    EXECUTE         reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
+    MKDISK          reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
+    COMENTARIOS     reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
+    REP             reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
+    RMDISK          reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
+    FDISK           reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
+    MOUNT           reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
+    UNMOUNT         reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
+    MKFS            reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
+    $end            reduce using rule 47 (parametrofdisk -> GUION parametrodelete .)
 
 
 state 71
 
-    (46) parametrofdisk -> GUION parametroadd .
+    (48) parametrofdisk -> GUION parametroadd .
 
-    GUION           reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
-    PAUSE           reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
-    EXECUTE         reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
-    MKDISK          reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
-    COMENTARIOS     reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
-    REP             reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
-    RMDISK          reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
-    FDISK           reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
-    MOUNT           reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
-    UNMOUNT         reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
-    MKFS            reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
-    $end            reduce using rule 46 (parametrofdisk -> GUION parametroadd .)
+    GUION           reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
+    PAUSE           reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
+    EXECUTE         reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
+    MKDISK          reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
+    COMENTARIOS     reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
+    REP             reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
+    RMDISK          reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
+    FDISK           reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
+    MOUNT           reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
+    UNMOUNT         reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
+    MKFS            reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
+    $end            reduce using rule 48 (parametrofdisk -> GUION parametroadd .)
 
 
 state 72
 
-    (49) parametrotype -> TYPE . IGUAL IDENTIFICADOR
+    (51) parametrotype -> TYPE . IGUAL IDENTIFICADOR
 
     IGUAL           shift and go to state 93
 
 
 state 73
 
-    (50) parametrodelete -> DELETE . IGUAL IDENTIFICADOR
+    (52) parametrodelete -> DELETE . IGUAL IDENTIFICADOR
 
     IGUAL           shift and go to state 94
 
 
 state 74
 
-    (51) parametroadd -> ADD . IGUAL NUMEROS
+    (53) parametroadd -> ADD . IGUAL NUMEROS
 
     IGUAL           shift and go to state 95
 
 
 state 75
 
-    (53) listaparametros_mount -> listaparametros_mount parametromount .
+    (55) listaparametros_mount -> listaparametros_mount parametromount .
 
-    GUION           reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
-    PAUSE           reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
-    EXECUTE         reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
-    MKDISK          reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
-    COMENTARIOS     reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
-    REP             reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
-    RMDISK          reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
-    FDISK           reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
-    MOUNT           reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
-    UNMOUNT         reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
-    MKFS            reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
-    $end            reduce using rule 53 (listaparametros_mount -> listaparametros_mount parametromount .)
+    GUION           reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
+    PAUSE           reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
+    EXECUTE         reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
+    MKDISK          reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
+    COMENTARIOS     reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
+    REP             reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
+    RMDISK          reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
+    FDISK           reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
+    MOUNT           reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
+    UNMOUNT         reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
+    MKFS            reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
+    $end            reduce using rule 55 (listaparametros_mount -> listaparametros_mount parametromount .)
 
 
 state 76
 
-    (55) parametromount -> GUION parametropath .
+    (57) parametromount -> GUION parametropath .
 
-    GUION           reduce using rule 55 (parametromount -> GUION parametropath .)
-    PAUSE           reduce using rule 55 (parametromount -> GUION parametropath .)
-    EXECUTE         reduce using rule 55 (parametromount -> GUION parametropath .)
-    MKDISK          reduce using rule 55 (parametromount -> GUION parametropath .)
-    COMENTARIOS     reduce using rule 55 (parametromount -> GUION parametropath .)
-    REP             reduce using rule 55 (parametromount -> GUION parametropath .)
-    RMDISK          reduce using rule 55 (parametromount -> GUION parametropath .)
-    FDISK           reduce using rule 55 (parametromount -> GUION parametropath .)
-    MOUNT           reduce using rule 55 (parametromount -> GUION parametropath .)
-    UNMOUNT         reduce using rule 55 (parametromount -> GUION parametropath .)
-    MKFS            reduce using rule 55 (parametromount -> GUION parametropath .)
-    $end            reduce using rule 55 (parametromount -> GUION parametropath .)
+    GUION           reduce using rule 57 (parametromount -> GUION parametropath .)
+    PAUSE           reduce using rule 57 (parametromount -> GUION parametropath .)
+    EXECUTE         reduce using rule 57 (parametromount -> GUION parametropath .)
+    MKDISK          reduce using rule 57 (parametromount -> GUION parametropath .)
+    COMENTARIOS     reduce using rule 57 (parametromount -> GUION parametropath .)
+    REP             reduce using rule 57 (parametromount -> GUION parametropath .)
+    RMDISK          reduce using rule 57 (parametromount -> GUION parametropath .)
+    FDISK           reduce using rule 57 (parametromount -> GUION parametropath .)
+    MOUNT           reduce using rule 57 (parametromount -> GUION parametropath .)
+    UNMOUNT         reduce using rule 57 (parametromount -> GUION parametropath .)
+    MKFS            reduce using rule 57 (parametromount -> GUION parametropath .)
+    $end            reduce using rule 57 (parametromount -> GUION parametropath .)
 
 
 state 77
 
-    (56) parametromount -> GUION parametroname .
+    (58) parametromount -> GUION parametroname .
 
-    GUION           reduce using rule 56 (parametromount -> GUION parametroname .)
-    PAUSE           reduce using rule 56 (parametromount -> GUION parametroname .)
-    EXECUTE         reduce using rule 56 (parametromount -> GUION parametroname .)
-    MKDISK          reduce using rule 56 (parametromount -> GUION parametroname .)
-    COMENTARIOS     reduce using rule 56 (parametromount -> GUION parametroname .)
-    REP             reduce using rule 56 (parametromount -> GUION parametroname .)
-    RMDISK          reduce using rule 56 (parametromount -> GUION parametroname .)
-    FDISK           reduce using rule 56 (parametromount -> GUION parametroname .)
-    MOUNT           reduce using rule 56 (parametromount -> GUION parametroname .)
-    UNMOUNT         reduce using rule 56 (parametromount -> GUION parametroname .)
-    MKFS            reduce using rule 56 (parametromount -> GUION parametroname .)
-    $end            reduce using rule 56 (parametromount -> GUION parametroname .)
+    GUION           reduce using rule 58 (parametromount -> GUION parametroname .)
+    PAUSE           reduce using rule 58 (parametromount -> GUION parametroname .)
+    EXECUTE         reduce using rule 58 (parametromount -> GUION parametroname .)
+    MKDISK          reduce using rule 58 (parametromount -> GUION parametroname .)
+    COMENTARIOS     reduce using rule 58 (parametromount -> GUION parametroname .)
+    REP             reduce using rule 58 (parametromount -> GUION parametroname .)
+    RMDISK          reduce using rule 58 (parametromount -> GUION parametroname .)
+    FDISK           reduce using rule 58 (parametromount -> GUION parametroname .)
+    MOUNT           reduce using rule 58 (parametromount -> GUION parametroname .)
+    UNMOUNT         reduce using rule 58 (parametromount -> GUION parametroname .)
+    MKFS            reduce using rule 58 (parametromount -> GUION parametroname .)
+    $end            reduce using rule 58 (parametromount -> GUION parametroname .)
 
 
 state 78
 
-    (58) listaids_unmount -> listaids_unmount parametrounmount .
+    (60) listaids_unmount -> listaids_unmount parametrounmount .
 
-    GUION           reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
-    PAUSE           reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
-    EXECUTE         reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
-    MKDISK          reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
-    COMENTARIOS     reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
-    REP             reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
-    RMDISK          reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
-    FDISK           reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
-    MOUNT           reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
-    UNMOUNT         reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
-    MKFS            reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
-    $end            reduce using rule 58 (listaids_unmount -> listaids_unmount parametrounmount .)
+    GUION           reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
+    PAUSE           reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
+    EXECUTE         reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
+    MKDISK          reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
+    COMENTARIOS     reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
+    REP             reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
+    RMDISK          reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
+    FDISK           reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
+    MOUNT           reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
+    UNMOUNT         reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
+    MKFS            reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
+    $end            reduce using rule 60 (listaids_unmount -> listaids_unmount parametrounmount .)
 
 
 state 79
 
-    (60) parametrounmount -> GUION parametroid .
+    (62) parametrounmount -> GUION parametroid .
 
-    GUION           reduce using rule 60 (parametrounmount -> GUION parametroid .)
-    PAUSE           reduce using rule 60 (parametrounmount -> GUION parametroid .)
-    EXECUTE         reduce using rule 60 (parametrounmount -> GUION parametroid .)
-    MKDISK          reduce using rule 60 (parametrounmount -> GUION parametroid .)
-    COMENTARIOS     reduce using rule 60 (parametrounmount -> GUION parametroid .)
-    REP             reduce using rule 60 (parametrounmount -> GUION parametroid .)
-    RMDISK          reduce using rule 60 (parametrounmount -> GUION parametroid .)
-    FDISK           reduce using rule 60 (parametrounmount -> GUION parametroid .)
-    MOUNT           reduce using rule 60 (parametrounmount -> GUION parametroid .)
-    UNMOUNT         reduce using rule 60 (parametrounmount -> GUION parametroid .)
-    MKFS            reduce using rule 60 (parametrounmount -> GUION parametroid .)
-    $end            reduce using rule 60 (parametrounmount -> GUION parametroid .)
+    GUION           reduce using rule 62 (parametrounmount -> GUION parametroid .)
+    PAUSE           reduce using rule 62 (parametrounmount -> GUION parametroid .)
+    EXECUTE         reduce using rule 62 (parametrounmount -> GUION parametroid .)
+    MKDISK          reduce using rule 62 (parametrounmount -> GUION parametroid .)
+    COMENTARIOS     reduce using rule 62 (parametrounmount -> GUION parametroid .)
+    REP             reduce using rule 62 (parametrounmount -> GUION parametroid .)
+    RMDISK          reduce using rule 62 (parametrounmount -> GUION parametroid .)
+    FDISK           reduce using rule 62 (parametrounmount -> GUION parametroid .)
+    MOUNT           reduce using rule 62 (parametrounmount -> GUION parametroid .)
+    UNMOUNT         reduce using rule 62 (parametrounmount -> GUION parametroid .)
+    MKFS            reduce using rule 62 (parametrounmount -> GUION parametroid .)
+    $end            reduce using rule 62 (parametrounmount -> GUION parametroid .)
 
 
 state 80
 
-    (63) listaparametros_mkfs -> listaparametros_mkfs parametromkfs .
+    (65) listaparametros_mkfs -> listaparametros_mkfs parametromkfs .
 
-    GUION           reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
-    PAUSE           reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
-    EXECUTE         reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
-    MKDISK          reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
-    COMENTARIOS     reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
-    REP             reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
-    RMDISK          reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
-    FDISK           reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
-    MOUNT           reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
-    UNMOUNT         reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
-    MKFS            reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
-    $end            reduce using rule 63 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    GUION           reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    PAUSE           reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    EXECUTE         reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    MKDISK          reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    COMENTARIOS     reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    REP             reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    RMDISK          reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    FDISK           reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    MOUNT           reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    UNMOUNT         reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    MKFS            reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
+    $end            reduce using rule 65 (listaparametros_mkfs -> listaparametros_mkfs parametromkfs .)
 
 
 state 81
 
-    (65) parametromkfs -> GUION parametroid .
+    (67) parametromkfs -> GUION parametroid .
 
-    GUION           reduce using rule 65 (parametromkfs -> GUION parametroid .)
-    PAUSE           reduce using rule 65 (parametromkfs -> GUION parametroid .)
-    EXECUTE         reduce using rule 65 (parametromkfs -> GUION parametroid .)
-    MKDISK          reduce using rule 65 (parametromkfs -> GUION parametroid .)
-    COMENTARIOS     reduce using rule 65 (parametromkfs -> GUION parametroid .)
-    REP             reduce using rule 65 (parametromkfs -> GUION parametroid .)
-    RMDISK          reduce using rule 65 (parametromkfs -> GUION parametroid .)
-    FDISK           reduce using rule 65 (parametromkfs -> GUION parametroid .)
-    MOUNT           reduce using rule 65 (parametromkfs -> GUION parametroid .)
-    UNMOUNT         reduce using rule 65 (parametromkfs -> GUION parametroid .)
-    MKFS            reduce using rule 65 (parametromkfs -> GUION parametroid .)
-    $end            reduce using rule 65 (parametromkfs -> GUION parametroid .)
+    GUION           reduce using rule 67 (parametromkfs -> GUION parametroid .)
+    PAUSE           reduce using rule 67 (parametromkfs -> GUION parametroid .)
+    EXECUTE         reduce using rule 67 (parametromkfs -> GUION parametroid .)
+    MKDISK          reduce using rule 67 (parametromkfs -> GUION parametroid .)
+    COMENTARIOS     reduce using rule 67 (parametromkfs -> GUION parametroid .)
+    REP             reduce using rule 67 (parametromkfs -> GUION parametroid .)
+    RMDISK          reduce using rule 67 (parametromkfs -> GUION parametroid .)
+    FDISK           reduce using rule 67 (parametromkfs -> GUION parametroid .)
+    MOUNT           reduce using rule 67 (parametromkfs -> GUION parametroid .)
+    UNMOUNT         reduce using rule 67 (parametromkfs -> GUION parametroid .)
+    MKFS            reduce using rule 67 (parametromkfs -> GUION parametroid .)
+    $end            reduce using rule 67 (parametromkfs -> GUION parametroid .)
 
 
 state 82
 
-    (66) parametromkfs -> GUION parametrotype .
+    (68) parametromkfs -> GUION parametrotype .
 
-    GUION           reduce using rule 66 (parametromkfs -> GUION parametrotype .)
-    PAUSE           reduce using rule 66 (parametromkfs -> GUION parametrotype .)
-    EXECUTE         reduce using rule 66 (parametromkfs -> GUION parametrotype .)
-    MKDISK          reduce using rule 66 (parametromkfs -> GUION parametrotype .)
-    COMENTARIOS     reduce using rule 66 (parametromkfs -> GUION parametrotype .)
-    REP             reduce using rule 66 (parametromkfs -> GUION parametrotype .)
-    RMDISK          reduce using rule 66 (parametromkfs -> GUION parametrotype .)
-    FDISK           reduce using rule 66 (parametromkfs -> GUION parametrotype .)
-    MOUNT           reduce using rule 66 (parametromkfs -> GUION parametrotype .)
-    UNMOUNT         reduce using rule 66 (parametromkfs -> GUION parametrotype .)
-    MKFS            reduce using rule 66 (parametromkfs -> GUION parametrotype .)
-    $end            reduce using rule 66 (parametromkfs -> GUION parametrotype .)
+    GUION           reduce using rule 68 (parametromkfs -> GUION parametrotype .)
+    PAUSE           reduce using rule 68 (parametromkfs -> GUION parametrotype .)
+    EXECUTE         reduce using rule 68 (parametromkfs -> GUION parametrotype .)
+    MKDISK          reduce using rule 68 (parametromkfs -> GUION parametrotype .)
+    COMENTARIOS     reduce using rule 68 (parametromkfs -> GUION parametrotype .)
+    REP             reduce using rule 68 (parametromkfs -> GUION parametrotype .)
+    RMDISK          reduce using rule 68 (parametromkfs -> GUION parametrotype .)
+    FDISK           reduce using rule 68 (parametromkfs -> GUION parametrotype .)
+    MOUNT           reduce using rule 68 (parametromkfs -> GUION parametrotype .)
+    UNMOUNT         reduce using rule 68 (parametromkfs -> GUION parametrotype .)
+    MKFS            reduce using rule 68 (parametromkfs -> GUION parametrotype .)
+    $end            reduce using rule 68 (parametromkfs -> GUION parametrotype .)
 
 
 state 83
 
-    (67) parametromkfs -> GUION parametrofs .
+    (69) parametromkfs -> GUION parametrofs .
 
-    GUION           reduce using rule 67 (parametromkfs -> GUION parametrofs .)
-    PAUSE           reduce using rule 67 (parametromkfs -> GUION parametrofs .)
-    EXECUTE         reduce using rule 67 (parametromkfs -> GUION parametrofs .)
-    MKDISK          reduce using rule 67 (parametromkfs -> GUION parametrofs .)
-    COMENTARIOS     reduce using rule 67 (parametromkfs -> GUION parametrofs .)
-    REP             reduce using rule 67 (parametromkfs -> GUION parametrofs .)
-    RMDISK          reduce using rule 67 (parametromkfs -> GUION parametrofs .)
-    FDISK           reduce using rule 67 (parametromkfs -> GUION parametrofs .)
-    MOUNT           reduce using rule 67 (parametromkfs -> GUION parametrofs .)
-    UNMOUNT         reduce using rule 67 (parametromkfs -> GUION parametrofs .)
-    MKFS            reduce using rule 67 (parametromkfs -> GUION parametrofs .)
-    $end            reduce using rule 67 (parametromkfs -> GUION parametrofs .)
+    GUION           reduce using rule 69 (parametromkfs -> GUION parametrofs .)
+    PAUSE           reduce using rule 69 (parametromkfs -> GUION parametrofs .)
+    EXECUTE         reduce using rule 69 (parametromkfs -> GUION parametrofs .)
+    MKDISK          reduce using rule 69 (parametromkfs -> GUION parametrofs .)
+    COMENTARIOS     reduce using rule 69 (parametromkfs -> GUION parametrofs .)
+    REP             reduce using rule 69 (parametromkfs -> GUION parametrofs .)
+    RMDISK          reduce using rule 69 (parametromkfs -> GUION parametrofs .)
+    FDISK           reduce using rule 69 (parametromkfs -> GUION parametrofs .)
+    MOUNT           reduce using rule 69 (parametromkfs -> GUION parametrofs .)
+    UNMOUNT         reduce using rule 69 (parametromkfs -> GUION parametrofs .)
+    MKFS            reduce using rule 69 (parametromkfs -> GUION parametrofs .)
+    $end            reduce using rule 69 (parametromkfs -> GUION parametrofs .)
 
 
 state 84
 
-    (68) parametrofs -> FS . IGUAL FORMATEAR
+    (70) parametrofs -> FS . IGUAL FORMATEAR
 
     IGUAL           shift and go to state 96
 
@@ -1573,285 +1577,314 @@ state 85
 
 state 86
 
-    (22) parametropath -> PATH IGUAL . VALORDEPATH NOMBREARCHIVO
+    (22) parametropath -> PATH IGUAL . valorespath
+    (23) valorespath -> . VALORDEPATH NOMBREARCHIVO
+    (24) valorespath -> . COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS
 
-    VALORDEPATH     shift and go to state 98
+    VALORDEPATH     shift and go to state 99
+    COMILLAS        shift and go to state 100
 
+    valorespath                    shift and go to state 98
 
 state 87
 
-    (23) parametrosize -> SIZE IGUAL . NUMEROS
+    (25) parametrosize -> SIZE IGUAL . NUMEROS
 
-    NUMEROS         shift and go to state 99
+    NUMEROS         shift and go to state 101
 
 
 state 88
 
-    (24) parametrounit -> UNIT IGUAL . IDENTIFICADOR
+    (26) parametrounit -> UNIT IGUAL . IDENTIFICADOR
 
-    IDENTIFICADOR   shift and go to state 100
+    IDENTIFICADOR   shift and go to state 102
 
 
 state 89
 
-    (25) parametrofit -> FIT IGUAL . IDENTIFICADOR
+    (27) parametrofit -> FIT IGUAL . IDENTIFICADOR
 
-    IDENTIFICADOR   shift and go to state 101
+    IDENTIFICADOR   shift and go to state 103
 
 
 state 90
 
-    (47) parametroname -> NAME IGUAL . STRING
-    (48) parametroname -> NAME IGUAL . IDENTIFICADOR
+    (49) parametroname -> NAME IGUAL . STRING
+    (50) parametroname -> NAME IGUAL . IDENTIFICADOR
 
-    STRING          shift and go to state 102
-    IDENTIFICADOR   shift and go to state 103
+    STRING          shift and go to state 104
+    IDENTIFICADOR   shift and go to state 105
 
 
 state 91
 
-    (61) parametroid -> ID IGUAL . IDENTIFICADOR
-
-    IDENTIFICADOR   shift and go to state 104
-
-
-state 92
-
-    (34) parametroruta -> RUTA IGUAL . VALORDEPATH NOMBREARCHIVO
-
-    VALORDEPATH     shift and go to state 105
-
-
-state 93
-
-    (49) parametrotype -> TYPE IGUAL . IDENTIFICADOR
+    (63) parametroid -> ID IGUAL . IDENTIFICADOR
 
     IDENTIFICADOR   shift and go to state 106
 
 
+state 92
+
+    (36) parametroruta -> RUTA IGUAL . VALORDEPATH NOMBREARCHIVO
+
+    VALORDEPATH     shift and go to state 107
+
+
+state 93
+
+    (51) parametrotype -> TYPE IGUAL . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 108
+
+
 state 94
 
-    (50) parametrodelete -> DELETE IGUAL . IDENTIFICADOR
+    (52) parametrodelete -> DELETE IGUAL . IDENTIFICADOR
 
-    IDENTIFICADOR   shift and go to state 107
+    IDENTIFICADOR   shift and go to state 109
 
 
 state 95
 
-    (51) parametroadd -> ADD IGUAL . NUMEROS
+    (53) parametroadd -> ADD IGUAL . NUMEROS
 
-    NUMEROS         shift and go to state 108
+    NUMEROS         shift and go to state 110
 
 
 state 96
 
-    (68) parametrofs -> FS IGUAL . FORMATEAR
+    (70) parametrofs -> FS IGUAL . FORMATEAR
 
-    FORMATEAR       shift and go to state 109
+    FORMATEAR       shift and go to state 111
 
 
 state 97
 
     (14) comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH . NOMBREARCHIVO
 
-    NOMBREARCHIVO   shift and go to state 110
+    NOMBREARCHIVO   shift and go to state 112
 
 
 state 98
 
-    (22) parametropath -> PATH IGUAL VALORDEPATH . NOMBREARCHIVO
+    (22) parametropath -> PATH IGUAL valorespath .
 
-    NOMBREARCHIVO   shift and go to state 111
+    GUION           reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
+    PAUSE           reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
+    EXECUTE         reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
+    MKDISK          reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
+    COMENTARIOS     reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
+    REP             reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
+    RMDISK          reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
+    FDISK           reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
+    MOUNT           reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
+    UNMOUNT         reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
+    MKFS            reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
+    $end            reduce using rule 22 (parametropath -> PATH IGUAL valorespath .)
 
 
 state 99
 
-    (23) parametrosize -> SIZE IGUAL NUMEROS .
+    (23) valorespath -> VALORDEPATH . NOMBREARCHIVO
 
-    GUION           reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
-    PAUSE           reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
-    EXECUTE         reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
-    MKDISK          reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
-    COMENTARIOS     reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
-    REP             reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
-    RMDISK          reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
-    FDISK           reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
-    MOUNT           reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
-    UNMOUNT         reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
-    MKFS            reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
-    $end            reduce using rule 23 (parametrosize -> SIZE IGUAL NUMEROS .)
+    NOMBREARCHIVO   shift and go to state 113
 
 
 state 100
 
-    (24) parametrounit -> UNIT IGUAL IDENTIFICADOR .
+    (24) valorespath -> COMILLAS . VALORDEPATH NOMBREARCHIVO COMILLAS
 
-    GUION           reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
-    PAUSE           reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
-    EXECUTE         reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
-    MKDISK          reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
-    COMENTARIOS     reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
-    REP             reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
-    RMDISK          reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
-    FDISK           reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
-    MOUNT           reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
-    UNMOUNT         reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
-    MKFS            reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
-    $end            reduce using rule 24 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    VALORDEPATH     shift and go to state 114
 
 
 state 101
 
-    (25) parametrofit -> FIT IGUAL IDENTIFICADOR .
+    (25) parametrosize -> SIZE IGUAL NUMEROS .
 
-    GUION           reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
-    PAUSE           reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
-    EXECUTE         reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
-    MKDISK          reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
-    COMENTARIOS     reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
-    REP             reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
-    RMDISK          reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
-    FDISK           reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
-    MOUNT           reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
-    UNMOUNT         reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
-    MKFS            reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
-    $end            reduce using rule 25 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    GUION           reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
+    PAUSE           reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
+    EXECUTE         reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
+    MKDISK          reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
+    COMENTARIOS     reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
+    REP             reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
+    RMDISK          reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
+    FDISK           reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
+    MOUNT           reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
+    UNMOUNT         reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
+    MKFS            reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
+    $end            reduce using rule 25 (parametrosize -> SIZE IGUAL NUMEROS .)
 
 
 state 102
 
-    (47) parametroname -> NAME IGUAL STRING .
+    (26) parametrounit -> UNIT IGUAL IDENTIFICADOR .
 
-    GUION           reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
-    PAUSE           reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
-    EXECUTE         reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
-    MKDISK          reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
-    COMENTARIOS     reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
-    REP             reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
-    RMDISK          reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
-    FDISK           reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
-    MOUNT           reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
-    UNMOUNT         reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
-    MKFS            reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
-    $end            reduce using rule 47 (parametroname -> NAME IGUAL STRING .)
+    GUION           reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    PAUSE           reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    EXECUTE         reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    MKDISK          reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    COMENTARIOS     reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    REP             reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    RMDISK          reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    FDISK           reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    MOUNT           reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    UNMOUNT         reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    MKFS            reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
+    $end            reduce using rule 26 (parametrounit -> UNIT IGUAL IDENTIFICADOR .)
 
 
 state 103
 
-    (48) parametroname -> NAME IGUAL IDENTIFICADOR .
+    (27) parametrofit -> FIT IGUAL IDENTIFICADOR .
 
-    GUION           reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
-    PAUSE           reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
-    EXECUTE         reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
-    MKDISK          reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
-    COMENTARIOS     reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
-    REP             reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
-    RMDISK          reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
-    FDISK           reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
-    MOUNT           reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
-    UNMOUNT         reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
-    MKFS            reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
-    $end            reduce using rule 48 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    GUION           reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    PAUSE           reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    EXECUTE         reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    MKDISK          reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    COMENTARIOS     reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    REP             reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    RMDISK          reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    FDISK           reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    MOUNT           reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    UNMOUNT         reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    MKFS            reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
+    $end            reduce using rule 27 (parametrofit -> FIT IGUAL IDENTIFICADOR .)
 
 
 state 104
 
-    (61) parametroid -> ID IGUAL IDENTIFICADOR .
+    (49) parametroname -> NAME IGUAL STRING .
 
-    GUION           reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
-    PAUSE           reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
-    EXECUTE         reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
-    MKDISK          reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
-    COMENTARIOS     reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
-    REP             reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
-    RMDISK          reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
-    FDISK           reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
-    MOUNT           reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
-    UNMOUNT         reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
-    MKFS            reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
-    $end            reduce using rule 61 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    GUION           reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
+    PAUSE           reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
+    EXECUTE         reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
+    MKDISK          reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
+    COMENTARIOS     reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
+    REP             reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
+    RMDISK          reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
+    FDISK           reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
+    MOUNT           reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
+    UNMOUNT         reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
+    MKFS            reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
+    $end            reduce using rule 49 (parametroname -> NAME IGUAL STRING .)
 
 
 state 105
 
-    (34) parametroruta -> RUTA IGUAL VALORDEPATH . NOMBREARCHIVO
+    (50) parametroname -> NAME IGUAL IDENTIFICADOR .
 
-    NOMBREARCHIVO   shift and go to state 112
+    GUION           reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    PAUSE           reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    EXECUTE         reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    MKDISK          reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    COMENTARIOS     reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    REP             reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    RMDISK          reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    FDISK           reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    MOUNT           reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    UNMOUNT         reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    MKFS            reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
+    $end            reduce using rule 50 (parametroname -> NAME IGUAL IDENTIFICADOR .)
 
 
 state 106
 
-    (49) parametrotype -> TYPE IGUAL IDENTIFICADOR .
+    (63) parametroid -> ID IGUAL IDENTIFICADOR .
 
-    GUION           reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
-    PAUSE           reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
-    EXECUTE         reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
-    MKDISK          reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
-    COMENTARIOS     reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
-    REP             reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
-    RMDISK          reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
-    FDISK           reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
-    MOUNT           reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
-    UNMOUNT         reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
-    MKFS            reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
-    $end            reduce using rule 49 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    GUION           reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    PAUSE           reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    EXECUTE         reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    MKDISK          reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    COMENTARIOS     reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    REP             reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    RMDISK          reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    FDISK           reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    MOUNT           reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    UNMOUNT         reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    MKFS            reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
+    $end            reduce using rule 63 (parametroid -> ID IGUAL IDENTIFICADOR .)
 
 
 state 107
 
-    (50) parametrodelete -> DELETE IGUAL IDENTIFICADOR .
+    (36) parametroruta -> RUTA IGUAL VALORDEPATH . NOMBREARCHIVO
 
-    GUION           reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
-    PAUSE           reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
-    EXECUTE         reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
-    MKDISK          reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
-    COMENTARIOS     reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
-    REP             reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
-    RMDISK          reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
-    FDISK           reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
-    MOUNT           reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
-    UNMOUNT         reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
-    MKFS            reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
-    $end            reduce using rule 50 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    NOMBREARCHIVO   shift and go to state 115
 
 
 state 108
 
-    (51) parametroadd -> ADD IGUAL NUMEROS .
+    (51) parametrotype -> TYPE IGUAL IDENTIFICADOR .
 
-    GUION           reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
-    PAUSE           reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
-    EXECUTE         reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
-    MKDISK          reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
-    COMENTARIOS     reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
-    REP             reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
-    RMDISK          reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
-    FDISK           reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
-    MOUNT           reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
-    UNMOUNT         reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
-    MKFS            reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
-    $end            reduce using rule 51 (parametroadd -> ADD IGUAL NUMEROS .)
+    GUION           reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    PAUSE           reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    EXECUTE         reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    MKDISK          reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    COMENTARIOS     reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    REP             reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    RMDISK          reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    FDISK           reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    MOUNT           reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    UNMOUNT         reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    MKFS            reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
+    $end            reduce using rule 51 (parametrotype -> TYPE IGUAL IDENTIFICADOR .)
 
 
 state 109
 
-    (68) parametrofs -> FS IGUAL FORMATEAR .
+    (52) parametrodelete -> DELETE IGUAL IDENTIFICADOR .
 
-    GUION           reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
-    PAUSE           reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
-    EXECUTE         reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
-    MKDISK          reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
-    COMENTARIOS     reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
-    REP             reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
-    RMDISK          reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
-    FDISK           reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
-    MOUNT           reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
-    UNMOUNT         reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
-    MKFS            reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
-    $end            reduce using rule 68 (parametrofs -> FS IGUAL FORMATEAR .)
+    GUION           reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    PAUSE           reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    EXECUTE         reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    MKDISK          reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    COMENTARIOS     reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    REP             reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    RMDISK          reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    FDISK           reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    MOUNT           reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    UNMOUNT         reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    MKFS            reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
+    $end            reduce using rule 52 (parametrodelete -> DELETE IGUAL IDENTIFICADOR .)
 
 
 state 110
+
+    (53) parametroadd -> ADD IGUAL NUMEROS .
+
+    GUION           reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+    PAUSE           reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+    EXECUTE         reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+    MKDISK          reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+    COMENTARIOS     reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+    REP             reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+    RMDISK          reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+    FDISK           reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+    MOUNT           reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+    UNMOUNT         reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+    MKFS            reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+    $end            reduce using rule 53 (parametroadd -> ADD IGUAL NUMEROS .)
+
+
+state 111
+
+    (70) parametrofs -> FS IGUAL FORMATEAR .
+
+    GUION           reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+    PAUSE           reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+    EXECUTE         reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+    MKDISK          reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+    COMENTARIOS     reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+    REP             reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+    RMDISK          reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+    FDISK           reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+    MOUNT           reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+    UNMOUNT         reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+    MKFS            reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+    $end            reduce using rule 70 (parametrofs -> FS IGUAL FORMATEAR .)
+
+
+state 112
 
     (14) comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .
 
@@ -1868,38 +1901,70 @@ state 110
     $end            reduce using rule 14 (comandoexecute -> EXECUTE GUION PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
 
 
-state 111
+state 113
 
-    (22) parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .
+    (23) valorespath -> VALORDEPATH NOMBREARCHIVO .
 
-    GUION           reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    PAUSE           reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    EXECUTE         reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    MKDISK          reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    COMENTARIOS     reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    REP             reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    RMDISK          reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    FDISK           reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    MOUNT           reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    UNMOUNT         reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    MKFS            reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
-    $end            reduce using rule 22 (parametropath -> PATH IGUAL VALORDEPATH NOMBREARCHIVO .)
+    GUION           reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
+    PAUSE           reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
+    EXECUTE         reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
+    MKDISK          reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
+    COMENTARIOS     reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
+    REP             reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
+    RMDISK          reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
+    FDISK           reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
+    MOUNT           reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
+    UNMOUNT         reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
+    MKFS            reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
+    $end            reduce using rule 23 (valorespath -> VALORDEPATH NOMBREARCHIVO .)
 
 
-state 112
+state 114
 
-    (34) parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .
+    (24) valorespath -> COMILLAS VALORDEPATH . NOMBREARCHIVO COMILLAS
 
-    GUION           reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
-    PAUSE           reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
-    EXECUTE         reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
-    MKDISK          reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
-    COMENTARIOS     reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
-    REP             reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
-    RMDISK          reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
-    FDISK           reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
-    MOUNT           reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
-    UNMOUNT         reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
-    MKFS            reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
-    $end            reduce using rule 34 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    NOMBREARCHIVO   shift and go to state 116
+
+
+state 115
+
+    (36) parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .
+
+    GUION           reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    PAUSE           reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    EXECUTE         reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    MKDISK          reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    COMENTARIOS     reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    REP             reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    RMDISK          reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    FDISK           reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    MOUNT           reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    UNMOUNT         reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    MKFS            reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+    $end            reduce using rule 36 (parametroruta -> RUTA IGUAL VALORDEPATH NOMBREARCHIVO .)
+
+
+state 116
+
+    (24) valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO . COMILLAS
+
+    COMILLAS        shift and go to state 117
+
+
+state 117
+
+    (24) valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .
+
+    GUION           reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
+    PAUSE           reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
+    EXECUTE         reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
+    MKDISK          reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
+    COMENTARIOS     reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
+    REP             reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
+    RMDISK          reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
+    FDISK           reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
+    MOUNT           reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
+    UNMOUNT         reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
+    MKFS            reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
+    $end            reduce using rule 24 (valorespath -> COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS .)
 

@@ -31,6 +31,7 @@ palabrasReservadas = {"execute":"EXECUTE",
                       "rep": "REP"}
 
 tokens = ["IDENTIFICADOR",
+          "COMILLAS",
           "STRING",
           "NUMEROS",
           "COMENTARIOS",
@@ -46,7 +47,9 @@ t_GUION = r"-"   #como solo es un caracter se hace de esta forma
 t_IGUAL = r"="   #como solo es un caracter se hace de esta forma
 
 
-
+def t_COMILLAS(t):
+    r'\"'
+    return t
 
 
 def t_STRING(t):
@@ -60,12 +63,12 @@ def t_COMENTARIOS(t):
     return t
 
 def t_VALORDEPATH(t): #solo es la ruta aun no esta el archivo
-    r'\/[a-zA-Z0-9_\/]*\/'
+    r'\/[a-zA-Z0-9_ !\/]*\/'
     return t
 
 
 def t_NOMBREARCHIVO(t):
-    r'[a-zA-Z0-9_]+\.(adsj|dsk|txt|jpg)' 
+    r'[a-zA-Z0-9_ !]+\.(adsj|dsk|txt|jpg)' 
     return t
 
 def t_IDENTIFICADOR(t):
@@ -162,9 +165,18 @@ def p_parametromkdisk(t):
     t[0] = t[2]
 
 def p_parametropath(t):
-    '''parametropath : PATH IGUAL VALORDEPATH NOMBREARCHIVO'''
-    t[0] = {"rutaArchivo" : t[3],
-            "nombrearchivo": t[4]}
+    '''parametropath : PATH IGUAL valorespath'''
+    t[0] = t[3]
+
+def p_valorespath(t):
+    '''valorespath : VALORDEPATH NOMBREARCHIVO 
+                   | COMILLAS VALORDEPATH NOMBREARCHIVO COMILLAS'''
+    if len(t) == 3:
+        t[0] = {"rutaArchivo" : t[1],
+                "nombrearchivo": t[2]}
+    else:
+        t[0] = {"rutaArchivo" : t[2],
+                "nombrearchivo": t[3]}
 
 def p_parametrosize(t):
     '''parametrosize : SIZE IGUAL NUMEROS'''
