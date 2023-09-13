@@ -25,6 +25,12 @@ def Fwrite_displacement(file, displacement, data): #este data es bites
 
 def Fcreate_file(fileName):
     try:
+        # Divide la ruta en carpetas y nombre de archivo
+        folder, file_name = os.path.split(fileName)
+        # Crea las carpetas necesarias si no existen
+        if folder:
+            os.makedirs(folder, exist_ok=True)
+        # Crea el archivo
         fileOpen = open(fileName, "wb")
         fileOpen.close()
         print("Archivo creado exitosamente")
