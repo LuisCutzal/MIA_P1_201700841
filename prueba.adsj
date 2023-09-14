@@ -1,4 +1,4 @@
-#mkdisk -size=10 -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -fit=WF
+#mkdisk -size=10 -path="/home/luis/Escritorio/Archivos2023/proyectos/asd f/Disco4.dsk" -fit=WF
 #mkdisk -path=/home/user/Disco2.dsk -unit=M -size=2
 #mkdisk -size=5 -unit=M -path="/home/mis discos/Disco3.dsk"
 #mkdisk -size=10 -path="/home/mis discos/Disco4.dsk"
@@ -21,4 +21,5 @@ mount -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=Partic
 mount -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionL1
 mount -path=/home/luis/Escritorio/Archivos2023/proyectos/Disco4.dsk -name=ParticionL3
 
-unmount -id=411Disco4
+#unmount -id=417Disco4
+rep -id=411Disco4 -path=/home/luis/Escritorio/Archivos2023/proyectos/prueba.jpg -name=mbr
