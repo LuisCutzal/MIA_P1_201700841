@@ -244,37 +244,72 @@ class REP():
     
     
     def crearGrafoDisk(self, listaMount):
-        direccion=""
+        direccion = ""
         for identificadores in listaMount:
             if identificadores['id'] == self.identificador:
-                direccion= identificadores['path']
+                direccion = identificadores['path']
                 particion = identificadores['particion']
-                temporalMBR = MBR(0,0,0,0)
-                datos = Fread_displacement(direccion,0,struct.calcsize(temporalMBR.constMBR) + struct.calcsize(temporalMBR.particion1.constanteParticion)*4)
-                temporalMBR.doDeserialize(datos) #ya tenemos los datos del mbr
+                temporalMBR = MBR(0, 0, 0, 0)
+                datos = Fread_displacement(direccion, 0, struct.calcsize(temporalMBR.constMBR) + struct.calcsize(temporalMBR.particion1.constanteParticion) * 4)
+                temporalMBR.doDeserialize(datos)  # ya tenemos los datos del MBR
                 self.temporalMBR = temporalMBR
-                listaParticiones = [self.temporalMBR.particion1,self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4]
-                tamanoMBR = self.temporalMBR.mbr_tamano
-                fechacreacionMBR = self.temporalMBR.mbr_fecha_creacion
-                asignatureMBR = self.temporalMBR.mbr_dsk_signature        
-                print(tamanoMBR)
-                for particion in listaParticiones:
-                    if particion.part_type == "E":
-                        ebr_start = particion.part_start
-                        print(particion.part_status)
-                        while True:
-                            actualEBR = EBR()
-                            tamanioEBR = struct.calcsize(actualEBR.constanteEBR)
-                            datosEBR = Fread_displacement(direccion, ebr_start, tamanioEBR)
-                            actualEBR.doDeserialize(datosEBR)
-                            print("Particion Logica")
-                            if actualEBR.part_status == "1":
-                                print(actualEBR.part_status)
-                            if actualEBR.part_next == -1:
-                                break  # No hay más EBRs en la partición extendida
-                            ebr_start = actualEBR.part_next  #Siguiente EBR
-                    elif particion.part_status == "1":
-                        print(particion.part_status)
-                return
-        
+                listaParticiones = [self.temporalMBR.particion1, self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4]
+                totalDisco = self.temporalMBR.mbr_tamano
+                espacioUsado = 0
+                espacioLibre = totalDisco  # Inicialmente, el espacio libre es igual al tamaño total del disco
                 
+                # Inicializa la variable de salida
+                salida = """
+                digraph D {
+                    subgraph cluster_0 {
+                        bgcolor="#68d9e2"
+                        node [style="rounded" style=filled];
+                """                
+                # Inicializa el contador de particiones lógicas dentro de la partición extendida
+                num_particiones_logicas = 0
+                for particion in listaParticiones:
+                    if particion.part_status == "1":
+                        salida += f"""
+                        node_{particion.part_name} [label="{particion.part_name}\\nTipo: {particion.part_type}\\nTamaño: {particion.part_s} bytes\\nPorcentaje: {(particion.part_s * 100) / totalDisco}%"]
+                        """
+                        espacioUsado += particion.part_s
+                        espacioLibre -= particion.part_s
+                        
+                        if particion.part_type == "E":
+                            # Si es una partición extendida, muestra sus particiones lógicas
+                            ebr_start = particion.part_start
+                            while True:
+                                actualEBR = EBR()
+                                tamanioEBR = struct.calcsize(actualEBR.constanteEBR)
+                                datosEBR = Fread_displacement(direccion, ebr_start, tamanioEBR)
+                                actualEBR.doDeserialize(datosEBR)
+                                if actualEBR.part_status == "1":
+                                    num_particiones_logicas += 1
+                                    salida += f"""
+                                    node_{particion.part_name}_logica{num_particiones_logicas} [label="{actualEBR.part_name}\\nTamaño: {actualEBR.part_s} bytes\\nPorcentaje: {(actualEBR.part_s * 100) / totalDisco}%"]
+                                    """
+                                if actualEBR.part_next == -1:
+                                    break  # No hay más EBRs en la partición extendida
+                                ebr_start = actualEBR.part_next  # Siguiente EBR
+                
+                # Agrega información del espacio libre
+                salida += f"""
+                node_Libre [label="Espacio Libre\\nTamaño: {espacioLibre} bytes\\nPorcentaje: {(espacioLibre * 100) / totalDisco}%"]
+                """
+                
+                # Cierra la definición del grafo
+                salida += """
+                    }
+                }
+                """
+                
+                # Crea y muestra el grafo DOT
+                graph = graphviz.Source(salida)
+                extencion = self.nombreArchivo.split(".")
+                graph.format = extencion[1]
+                graph.render(extencion[0], view=True)
+                return
+
+    # Asegúrate de que la función tenga acceso a las definiciones de MBR, Fread_displacement, y EBR según tu implementación actual.
+
+                    

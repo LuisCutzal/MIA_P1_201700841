@@ -37,3 +37,39 @@ class GRAFICADORA():
         graph = graphviz.Source(salida)
         graph.format = 'png'
         graph.render("output_file", view=True)
+        
+    def graficarFDISK(self):
+        salida ="""
+        digraph D {
+            subgraph cluster_0 {
+                bgcolor="#68d9e2"
+                node [style="rounded" style=filled];
+                node_A [shape=record    label="MBR|Libre|{Extendida|{EBR|LOGICA|EBR|LOGICA}}|ParticionP|Libre"];
+            }
+        
+        }
+        """
+        
+        
+        """
+        digraph D {
+    subgraph cluster_0 {
+        bgcolor="#68d9e2"
+        node [style="rounded" style=filled];
+       
+        node_A [shape=record    label="MBR|Libre|{Extendida|{EBR|LOGICA|EBR|LOGICA}}|ParticionP|Libre"];
+    }
+   
+}
+
+digraph D {
+    subgraph cluster_0 {
+        bgcolor="#68d9e2"
+        node [style="rounded" style=filled];
+
+        node_b [shape=record label="MBR:20|Libre:20|{Extendida|{EBR:20|LOGICA:20|EBR:20|LOGICA:20}}|ParticionP:20|Libre:20"];
+    }
+}
+        
+        
+        """
