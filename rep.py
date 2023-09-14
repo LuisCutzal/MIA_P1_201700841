@@ -309,7 +309,7 @@ class REP():
                 graph.format = extencion[1]
                 graph.render(extencion[0], view=True)
                 return
-
+        print(f"No se encontro el Disco")
     # Asegúrate de que la función tenga acceso a las definiciones de MBR, Fread_displacement, y EBR según tu implementación actual.
 
                     

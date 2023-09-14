@@ -18,7 +18,9 @@ class MOUNT(ctypes.Structure):
     def ejecutarMOUNT(self, listaMount):
         if not self.validarMount():
             print("Error, no se pudo ejecutar el comando mount")
-            return       
+            return
+        if self.contieneValores(listaMount):
+            return      
         self.leerMBR()
         if self.temporalMBR == "":
             print("Error, no se encuentra el MBR del archivo")
@@ -26,6 +28,11 @@ class MOUNT(ctypes.Structure):
         if not self.buscarParticion(listaMount):
             print(f"No se encontro la particion {self.name}")
             return
+        
+    def contieneValores(self, listaMount):
+        if listaMount:
+            return True
+        else: return False
    
     def validarMount(self):
         for val in self.listaParametros:

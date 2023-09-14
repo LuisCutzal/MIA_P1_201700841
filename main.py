@@ -12,12 +12,12 @@ def aplicacionComandos():
     input = iniciarAnalisis("execute -path=/home/luis/Escritorio/Archivos2023/proyectos/MIA_P1_201700841/prueba.adsj")
     #print(input)
     iniciarAnalisis(input)
-   
-    """while True: 
+    """
+    while True: 
         #iniciarAnalisis(input("-> "))
         iniciamos = iniciarAnalisis(input("-> "))
         #print(input)
-        iniciarAnalisis(iniciamos)"""
+        iniciarAnalisis(iniciamos) """
     
     
     '''

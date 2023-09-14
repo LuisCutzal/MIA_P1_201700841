@@ -49,8 +49,6 @@ class FDISK(ctypes.Structure):
                 else: 
                     self.escribirEBR()
                     return
-                
-                    
             if not self.comprobarEspacio(listaParticiones):
                 print("FDISK no se pudo ejecutar correctamente")
                 return
@@ -62,24 +60,23 @@ class FDISK(ctypes.Structure):
             #self.temporalMBR.dsk_fit = convertirstringaBin(self.temporalMBR.dsk_fit)
             #print(self.temporalMBR.doSerialize())
             escribirArchivoExistente(self.path, 0, self.temporalMBR.doSerialize())
-            
-            
+
         if self.delete != '\0':
             self.eliminarParticion(self.name)
-            """
+            
             if self.buscarnombre(listaParticiones,self.name):
                 self.eliminarParticion(self.name)
             else:
                 print("FDISK no se pudo ejecutar correctamente")
                 print("El nombre de la particion no exite o ya fue eliminado")
                 return
-            """
+            
         if self.add > 0:
             print("Agregando mas espacio")
-            
+            self.modificarEspacioParticion(self.name, self.add)
         if self.add <0:
             print("Quitando espacio")
-            
+            self.modificarEspacioParticion(self.name, self.add)
     
     def agregarValores(self):
         for val in self.listaParametros:
@@ -317,4 +314,41 @@ class FDISK(ctypes.Structure):
 
                 
                 
+    def modificarEspacioParticion(self, nombre_particion, espacio):
+        # Buscar la partición con el nombre dado en el MBR
+        listaParticiones = [self.temporalMBR.particion1, self.temporalMBR.particion2, self.temporalMBR.particion3, self.temporalMBR.particion4]
+        particion = None
+        for p in listaParticiones:
+            if p.part_name == nombre_particion:
+                particion = p
+                break
         
+        if particion is None:
+            print(f"No se encontró la partición {nombre_particion}.")
+            return
+        
+        # Verificar si el espacio es negativo (quitar espacio) o positivo (agregar espacio)
+        if espacio < 0:
+            if abs(espacio) > particion.part_s:
+                print(f"No se puede quitar {abs(espacio)} espacio de la partición {nombre_particion}, espacio insuficiente.")
+                return
+            particion.part_s -= abs(espacio)
+            print(f"Se quitó {abs(espacio)} espacio de la partición {nombre_particion}.")
+        elif espacio > 0:
+            particion.part_s += espacio
+            print(f"Se agregó {espacio} espacio a la partición {nombre_particion}.")
+        else:
+            print("No se realiza ninguna operación, el espacio es cero.")
+
+        # Actualizar el MBR con los cambios en el tamaño de la partición
+        self.temporalMBR.mbr_fecha_creacion = convertirTiempoEntero(self.temporalMBR.mbr_fecha_creacion)
+
+        # Actualizar el tamaño de la partición en el MBR
+        for i in range(len(listaParticiones)):
+            if listaParticiones[i].part_name == nombre_particion:
+                listaParticiones[i] = particion
+                break
+
+        # Escribir el MBR actualizado en el archivo
+        mbr_data = bytearray(self.temporalMBR.doSerialize())
+        escribirArchivoExistente(self.path, 0, mbr_data)
